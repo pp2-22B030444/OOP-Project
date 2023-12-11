@@ -1,0 +1,11 @@
+--=( WARNINGS )=--
+
+Result Report:
+
+	Some files were generated more than once during this generation.
+
+TechSupport.java : 2 times
+
+
+
+
