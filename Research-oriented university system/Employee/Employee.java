@@ -1,3 +1,5 @@
+/*НЕ ЗАКОНЧЕНА!!!*/
+
 package Employee;
 
 public abstract class Employee extends User implements Message{
