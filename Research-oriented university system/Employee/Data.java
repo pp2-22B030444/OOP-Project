@@ -1,5 +1,9 @@
 package Employee ;
 
+import java.util.Vector;
+
+import Department.Teacher;
+import Students.Student;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +38,6 @@ public class Data
 	 * @ordered
 	 */
 	
-	public  free;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,14 +46,13 @@ public class Data
 	 * @ordered
 	 */
 	
-	public  attribute3;
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Data(Singlton)(){
+	public Data(){
 		super();
 	}
 

@@ -3,7 +3,7 @@ package Employee ;
 import java.util.List;
 
 import Department.Course;
-import Department.typeOfCourse;
+import Department.TypeOfCourse;
 import Students.Student;
 
 /**
@@ -12,7 +12,7 @@ import Students.Student;
  * @generated
  */
 
-public class Manager implements CanViewStudent
+public class Manager E implements CanViewStudent
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -29,9 +29,9 @@ public class Manager implements CanViewStudent
 	 * @generated
 	 */
 	public Manager(){
-		super();
+		
 	}
-
+    
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -50,7 +50,7 @@ public class Manager implements CanViewStudent
 	 * @ordered
 	 */
 	
-	public void addCoursesForRegistration(typeOfCourse major, int yearOfStudy) {
+	public void addCoursesForRegistration(TypeOfCourse major, int yearOfStudy) {
 		// TODO implement me	
 	}
 	

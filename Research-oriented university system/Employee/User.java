@@ -42,7 +42,14 @@ public class User implements NewsObserver
 	 * @generated
 	 */
 	public User(){
-		super();
+		
+	}
+     
+	public User(String userName, int password, Language language) {
+		this();
+		this.userName = userName;
+		this.password = password;
+		this.language = language;
 	}
 
 	/**
@@ -72,6 +79,11 @@ public class User implements NewsObserver
 	public void update(News news) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", password=" + password + ", language=" + language + "]";
 	}
 	
 }

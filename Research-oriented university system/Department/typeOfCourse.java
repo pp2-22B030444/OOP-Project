@@ -5,7 +5,7 @@ package Department ;
  * <!--  end-user-doc  -->
  * @generated
  */
-public enum typeOfCourse
+public enum TypeOfCourse
 {
 	MAJOR, MINOR, FREE;
 }

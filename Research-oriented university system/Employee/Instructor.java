@@ -25,7 +25,12 @@ public class Instructor extends Employee implements CourseObserver
 	 * @generated
 	 */
 	public Instructor(){
-		super();
+		
+	}
+    
+	public Instructor(Instructor instance) {
+		this();
+		this.instance = instance;
 	}
 
 	/**
@@ -49,6 +54,12 @@ public class Instructor extends Employee implements CourseObserver
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Instructor [instance=" + instance + "]";
+	} 
+	
 	
 }
 

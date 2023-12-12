@@ -1,5 +1,7 @@
 package Department ;
 
+import java.util.Vector;
+
 import Students.Student;
 
 /**
@@ -17,7 +19,7 @@ public class Course
 	 * @ordered
 	 */
 	
-	public typeOfCourse typeOfCourse;
+	public TypeOfCourse typeOfCourse;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,7 +81,18 @@ public class Course
 	 * @generated
 	 */
 	public Course(){
-		super();
+		
+	}
+    
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
+		this();
+		this.typeOfCourse = typeOfCourse;
+		this.disciplineName = disciplineName;
+		this.credit = credit;
+		this.disciplineСode = disciplineСode;
+		this.ects = ects;
+		this.enrolledStudents = enrolledStudents;
+		this.maxStudents = maxStudents;
 	}
 
 	/**
@@ -103,6 +116,13 @@ public class Course
 	
 	public void removeStudent(Student student ) {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "Course [typeOfCourse=" + typeOfCourse + ", disciplineName=" + disciplineName + ", credit=" + credit
+				+ ", disciplineСode=" + disciplineСode + ", ects=" + ects + ", enrolledStudents=" + enrolledStudents
+				+ ", maxStudents=" + maxStudents + "]";
 	}
 	
 }

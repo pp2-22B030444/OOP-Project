@@ -1,5 +1,6 @@
 package Researcher ;
 
+import java.sql.Date;
 
 /**
  * <!-- begin-user-doc -->

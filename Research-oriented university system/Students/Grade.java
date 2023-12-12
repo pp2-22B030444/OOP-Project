@@ -7,5 +7,5 @@ package Students ;
  */
 public enum Grade
 {
-	'A', 'A-', 'B+', 'B', 'B-', 'C', 'C+', 'C-', 'D1', 'D', 'F';
+	A,A1 'B+', 'B', 'B-', 'C', 'C+', 'C-', 'D1', 'D', 'F';
 }

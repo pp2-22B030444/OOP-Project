@@ -1,5 +1,6 @@
 package Employee ;
 
+import java.sql.Date;
 
 /**
  * <!-- begin-user-doc -->

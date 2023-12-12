@@ -42,7 +42,14 @@ public class Lesson
 	 * @generated
 	 */
 	public Lesson(){
+		
+	}
+
+	public Lesson(TypeOfLesson type, Teacher teacher, Course course) {
 		super();
+		this.type = type;
+		this.teacher = teacher;
+		this.course = course;
 	}
 
 	/**
@@ -79,6 +86,11 @@ public class Lesson
 	public Course getCourse() {
 		// TODO implement me
 		return null;	
+	}
+
+	@Override
+	public String toString() {
+		return "Lesson [type=" + type + ", teacher=" + teacher + ", course=" + course + "]";
 	}
 	
 }

@@ -15,7 +15,7 @@ public class Admin
 	 * @generated
 	 */
 	public Admin(){
-		super();
+		
 	}
 
 	/**

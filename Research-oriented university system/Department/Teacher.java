@@ -1,5 +1,7 @@
 package Department ;
 
+import java.util.Vector;
+
 import Employee.CanViewStudent;
 import Employee.Employee;
 import Students.Student;
@@ -45,7 +47,14 @@ public class Teacher extends Employee
 	 * @generated
 	 */
 	public Teacher(){
-		super();
+		
+	}
+
+	public Teacher(TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
+		this();
+		this.teacherTitle = teacherTitle;
+		this.urgencyLevel = urgencyLevel;
+		this.taughtCourses = taughtCourses;
 	}
 
 	/**
@@ -102,6 +111,12 @@ public class Teacher extends Employee
 	
 	public void manageCourse() {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher [teacherTitle=" + teacherTitle + ", urgencyLevel=" + urgencyLevel + ", taughtCourses="
+				+ taughtCourses + "]";
 	}
 	
 }

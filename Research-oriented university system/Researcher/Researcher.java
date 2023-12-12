@@ -1,6 +1,7 @@
 package Researcher ;
 
-
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,20 +49,22 @@ public  interface Researcher
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
+	 * @return 
 	 * @generated
 	 * @ordered
 	 */
 	
-	public List<ResearchPaper> getResearchPapers() ;
+	public  void getResearchPapers(List<ResearchPaper> l) ;
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
+	 * @return 
 	 * @generated
 	 * @ordered
 	 */
 	
-	public List<ResearchProject> getResearchProjects() ;
+	public  void getResearchProjects(List<ResearchProject> l) ;
 	
 	/**
 	 * <!-- begin-user-doc -->

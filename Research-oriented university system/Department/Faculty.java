@@ -44,7 +44,14 @@ public class Faculty
 	 * @generated
 	 */
 	public Faculty(){
-		super();
+		
+	}
+
+	public Faculty(School school, Student students, Course courses) {
+		this();
+		this.school = school;
+		this.students = students;
+		this.courses = courses;
 	}
 
 	/**
@@ -67,6 +74,11 @@ public class Faculty
 	
 	public void getStudents() {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "Faculty [school=" + school + ", students=" + students + ", courses=" + courses + "]";
 	}
 	
 }

@@ -1,5 +1,7 @@
 package Employee ;
 
+import java.util.List;
+
 import Department.Course;
 
 /**
@@ -25,7 +27,12 @@ public class CoursePublisher
 	 * @generated
 	 */
 	public CoursePublisher(){
-		super();
+		
+	}
+
+	public CoursePublisher(List<CourseObserver> observers) {
+		this();
+		this.observers = observers;
 	}
 
 	/**
@@ -59,6 +66,11 @@ public class CoursePublisher
 	
 	public void unsubscribe(CourseObserver observer ) {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "CoursePublisher [observers=" + observers + "]";
 	}
 	
 }

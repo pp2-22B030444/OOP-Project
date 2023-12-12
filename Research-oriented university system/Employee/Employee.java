@@ -34,7 +34,13 @@ public class Employee extends User implements Message
 	 * @generated
 	 */
 	public Employee(){
-		super();
+		
+	}
+
+	public Employee(String id, String fullName) {
+		this();
+		this.id = id;
+		this.fullName = fullName;
 	}
 
 	/**
@@ -68,6 +74,11 @@ public class Employee extends User implements Message
 	
 	public void makeOrder() {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", fullName=" + fullName + "]";
 	}
 	
 }

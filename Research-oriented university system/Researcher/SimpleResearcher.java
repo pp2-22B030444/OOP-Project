@@ -38,7 +38,7 @@ public class SimpleResearcher extends Instructor implements Researcher
 	 * @ordered
 	 */
 	
-	public int h-index;
+	public int hIndex;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,16 +73,23 @@ public class SimpleResearcher extends Instructor implements Researcher
 		return null;
 	}
 
+
 	@Override
-	public List<ResearchPaper> getResearchPapers() {
+	public void printPapers(Comparator<ResearchPaper> comparator2) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 
 
 	@Override
-	public void printPapers(Comparator<ResearchPaper> comparator2) {
+	public void getResearchPapers(List<ResearchPaper> l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getResearchProjects(List<ResearchProject> l) {
 		// TODO Auto-generated method stub
 		
 	}

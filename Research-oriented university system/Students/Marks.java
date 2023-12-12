@@ -1,5 +1,6 @@
 package Students ;
 
+import Department.Course;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,7 @@ public class Marks
 	 * @ordered
 	 */
 	
-	public  firstAtt;
+	public double firstAtt;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,7 +44,7 @@ public class Marks
 	 * @ordered
 	 */
 	
-	public  secountAtt;
+	public double   secountAtt;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class Marks
 	 * @ordered
 	 */
 	
-	public  final;
+	public double finalGrade;
 	
 	/**
 	 * <!-- begin-user-doc -->
