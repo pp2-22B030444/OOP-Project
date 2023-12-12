@@ -3,7 +3,7 @@ package Employee ;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class User implements NewsObserver
+public class User implements NewsObserver,Cloneable
 {
 	
 	private String userName;
