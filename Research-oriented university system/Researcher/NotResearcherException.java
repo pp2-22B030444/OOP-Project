@@ -15,7 +15,7 @@ public class NotResearcherException
 	 * @generated
 	 */
 	public NotResearcherException(){
-		super();
+		
 	}
 
 	/**

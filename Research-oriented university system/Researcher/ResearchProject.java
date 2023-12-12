@@ -45,7 +45,14 @@ public class ResearchProject
 	 * @generated
 	 */
 	public ResearchProject(){
+		
+	}
+    
+	public ResearchProject(String topic, List<ResearchPaper> publishedPapers, List<Researcher> participants) {
 		super();
+		this.topic = topic;
+		this.publishedPapers = publishedPapers;
+		this.participants = participants;
 	}
 
 	/**
@@ -68,6 +75,12 @@ public class ResearchProject
 	
 	public void addPublishedPaper(ResearchPaper paper ) {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "ResearchProject [topic=" + topic + ", publishedPapers=" + publishedPapers + ", participants="
+				+ participants + "]";
 	}
 	
 }

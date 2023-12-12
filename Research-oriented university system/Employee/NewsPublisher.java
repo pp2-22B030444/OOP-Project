@@ -25,7 +25,12 @@ public class NewsPublisher
 	 * @generated
 	 */
 	public NewsPublisher(){
+		
+	}
+
+	public NewsPublisher(List<NewsObserver> observers) {
 		super();
+		this.observers = observers;
 	}
 
 	/**
@@ -37,6 +42,11 @@ public class NewsPublisher
 	
 	public void notifyObservers() {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "NewsPublisher [observers=" + observers + "]";
 	}
 	
 }

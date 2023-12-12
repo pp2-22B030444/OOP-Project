@@ -52,7 +52,15 @@ public class Transcript
 	 * @generated
 	 */
 	public Transcript(){
-		super();
+		
+	}
+
+	public Transcript(Course course, Marks marks, double result, double gpa) {
+		this();
+		this.course = course;
+		this.marks = marks;
+		this.result = result;
+		this.gpa = gpa;
 	}
 
 	/**
@@ -62,7 +70,8 @@ public class Transcript
 	 * @ordered
 	 */
 	
-	public void ShowTranscript() {
+	public String ShowTranscript(Course course,Marks marks) {
+		return course.getDisciplineСode()+course.getDisciplineName()+course.getCredit()+course.getEcts()+marks.getResult() ;
 		// TODO implement me	
 	}
 	

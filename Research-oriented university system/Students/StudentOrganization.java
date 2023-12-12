@@ -61,9 +61,19 @@ public class StudentOrganization
 	 * @generated
 	 */
 	public StudentOrganization(){
-		super();
+		
 	}
 
+
+	
+	public StudentOrganization(Vector<Student> listStudent, String name, Student head,
+			NameOrganization nameOrganization) {
+		this();
+		this.listStudent = listStudent;
+		this.name = name;
+		this.head = head;
+		this.nameOrganization = nameOrganization;
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -74,7 +84,6 @@ public class StudentOrganization
 	public void addMember(Student student) {
 		// TODO implement me	
 	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->

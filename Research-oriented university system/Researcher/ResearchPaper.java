@@ -70,7 +70,17 @@ public class ResearchPaper
 	 * @generated
 	 */
 	public ResearchPaper(){
-		super();
+		
+	}
+
+	public ResearchPaper(String journal, String author, Date date, int citations, int pages, String title) {
+		this();
+		this.journal = journal;
+		this.author = author;
+		this.date = date;
+		this.citations = citations;
+		this.pages = pages;
+		this.title = title;
 	}
 
 	/**
@@ -83,6 +93,12 @@ public class ResearchPaper
 	public String getCitation(Format f ) {
 		// TODO implement me
 		return "";	
+	}
+
+	@Override
+	public String toString() {
+		return "ResearchPaper [journal=" + journal + ", author=" + author + ", date=" + date + ", citations="
+				+ citations + ", pages=" + pages + ", title=" + title + "]";
 	}
 	
 }

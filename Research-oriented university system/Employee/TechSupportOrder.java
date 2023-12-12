@@ -42,7 +42,14 @@ public class TechSupportOrder
 	 * @generated
 	 */
 	public TechSupportOrder(){
-		super();
+		
+	}
+     
+	public TechSupportOrder(String description, boolean accepted, TypeOfRequest typeOfRequest) {
+		this();
+		this.description = description;
+		this.accepted = accepted;
+		this.typeOfRequest = typeOfRequest;
 	}
 
 	/**
@@ -66,6 +73,12 @@ public class TechSupportOrder
 	public boolean isAccepted() {
 		// TODO implement me
 		return false;	
+	}
+
+	@Override
+	public String toString() {
+		return "TechSupportOrder [description=" + description + ", accepted=" + accepted + ", typeOfRequest="
+				+ typeOfRequest + "]";
 	}
 	
 }

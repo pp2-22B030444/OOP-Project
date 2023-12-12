@@ -94,7 +94,21 @@ public class Student extends User
 	 * @generated
 	 */
 	public Student(){
-		super();
+		
+	}
+
+	public Student(String id, String fullName, School school, int yearOfStudy, GraduateStudent graduateStudent,
+			Vector<Course> registeredCourses, Map<Course, List<Marks>> transcript,
+			Map<Teacher, Integer> teacherRatings) {
+		this();
+		this.id = id;
+		this.fullName = fullName;
+		this.school = school;
+		this.yearOfStudy = yearOfStudy;
+		this.graduateStudent = graduateStudent;
+		this.registeredCourses = registeredCourses;
+		this.transcript = transcript;
+		this.teacherRatings = teacherRatings;
 	}
 
 	/**
@@ -194,6 +208,13 @@ public class Student extends User
 	
 	public void viewTeacherInfo(Course course) {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", fullName=" + fullName + ", school=" + school + ", yearOfStudy=" + yearOfStudy
+				+ ", graduateStudent=" + graduateStudent + ", registeredCourses=" + registeredCourses + ", transcript="
+				+ transcript + ", teacherRatings=" + teacherRatings + "]";
 	}
 	
 }

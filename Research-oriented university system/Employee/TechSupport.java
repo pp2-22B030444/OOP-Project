@@ -15,7 +15,12 @@ public class TechSupport extends Employee
 	 * @generated
 	 */
 	public TechSupport(){
-		super();
+		
+	}
+    
+	public TechSupport(String id, String fullName) {
+		super(id, fullName);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -60,6 +65,11 @@ public class TechSupport extends Employee
 	
 	public void viewAccept() {
 		// TODO implement me	
+	}
+
+	@Override
+	public String toString() {
+		return "TechSupport ["+super.toString()+"]";
 	}
 	
 }

@@ -28,7 +28,7 @@ public class Course
 	 * @ordered
 	 */
 	
-	public String disciplineName;
+	private String disciplineName;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class Course
 	 * @ordered
 	 */
 	
-	public int credit;
+	private int credit;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class Course
 	 * @ordered
 	 */
 	
-	public String disciplineСode;
+	private String disciplineСode;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,7 +55,7 @@ public class Course
 	 * @ordered
 	 */
 	
-	public int ects;
+	private int ects;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class Course
 	public Course(){
 		
 	}
-    
+
 	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
 		this();
 		this.typeOfCourse = typeOfCourse;
@@ -116,6 +116,39 @@ public class Course
 	
 	public void removeStudent(Student student ) {
 		// TODO implement me	
+	}
+    
+	public String getDisciplineName() {
+		return disciplineName;
+	}
+
+	public void setDisciplineName(String disciplineName) {
+		this.disciplineName = disciplineName;
+	}
+
+	public String getDisciplineСode() {
+		return disciplineСode;
+	}
+
+	public void setDisciplineСode(String disciplineСode) {
+		this.disciplineСode = disciplineСode;
+	}
+
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	public int getEcts() {
+		return ects;
+	}
+
+	public void setEcts(int ects) {
+		this.ects = ects;
 	}
 
 	@Override

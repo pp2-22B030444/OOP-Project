@@ -33,8 +33,20 @@ public class LowHIndexSupervisorException
 	 * @generated
 	 */
 	public LowHIndexSupervisorException(){
-		super();
+		
 	}
+
+	public LowHIndexSupervisorException(int hIndex, String supervisorName) {
+		this();
+		this.hIndex = hIndex;
+		this.supervisorName = supervisorName;
+	}
+
+	@Override
+	public String toString() {
+		return "LowHIndexSupervisorException [hIndex=" + hIndex + ", supervisorName=" + supervisorName + "]";
+	}
+	
 
 }
 

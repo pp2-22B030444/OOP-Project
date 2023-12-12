@@ -26,7 +26,7 @@ public class UserResearcher
 	 * @generated
 	 */
 	public UserResearcher(){
-		super();
+		
 	}
 
 }

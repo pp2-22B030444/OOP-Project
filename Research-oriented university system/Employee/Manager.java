@@ -12,7 +12,7 @@ import Students.Student;
  * @generated
  */
 
-public class Manager E implements CanViewStudent
+public class Manager extends Employee implements CanViewStudent
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -29,9 +29,16 @@ public class Manager E implements CanViewStudent
 	 * @generated
 	 */
 	public Manager(){
+		super();
 		
 	}
     
+	public Manager(String id, String fullName,ManagerType managerType) {
+		super(id, fullName);
+		this.managerType=managerType;
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -128,5 +135,12 @@ public class Manager E implements CanViewStudent
 	public void viewStudentInfo() {
 		// TODO Auto-generated method stub
 		
-	}}
+	}
+
+	@Override
+	public String toString() {
+		return "Manager [" + super.toString()+"managerType=" + managerType  + "]";
+	}
+	
+}
 
