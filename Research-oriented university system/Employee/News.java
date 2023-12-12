@@ -1,79 +1,41 @@
 package Employee ;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
 
 public class News implements NewsObserver
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public String topic;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public String text;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Date date;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public News(){
 		
 	}
-     
+
 	public News(String topic, String text, Date date) {
 		this();
 		this.topic = topic;
 		this.text = text;
 		this.date = date;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public void viewNews() {
-		// TODO implement me	
-	}
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        System.out.println("Topic: " + topic);
+        System.out.println("Text: " + text);
+        System.out.println("Date: " + dateFormat.format(date));
+    }
 
 	@Override
 	public void update(News news) {
-		// TODO Auto-generated method stub
-		
+	     System.out.println("Received a news update:");
+	     System.out.println(news);		
 	}
-
 	@Override
 	public String toString() {
 		return "News [topic=" + topic + ", text=" + text + ", date=" + date + "]";
 	}
 	
 }
-
