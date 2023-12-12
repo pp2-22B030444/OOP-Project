@@ -3,7 +3,7 @@ package Employee ;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class User implements NewsObserver,Cloneable
+public class User implements NewsObserver, Cloneable
 {
 	
 	private String userName;
@@ -62,34 +62,26 @@ public class User implements NewsObserver,Cloneable
 	
 	
 	
-	public void login(String enteredName, String enteredPassword) {
-		if (enteredName != null && enteredPassword != null) {
-	        
+	public void login(String enteredName, String enteredPassword) throws LoginException {
+	    if (enteredName != null && enteredPassword != null) {
 	        if (enteredName.equals(getUserName()) && enteredPassword.equals(getPassword())) {
 	            handleSuccessfulLogin();
 	        } else {
-	            handleFailedLogin();
+	            throw new LoginException("Invalid username or password");
 	        }
 	    } else {
-	        
-	        handleFailedLogin();
-	    }
-	}
-	
-	private void handleSuccessfulLogin() {
-	    
-	    if (this instanceof Student) {
-	        System.out.println("Student logged in");
-	    } else if (this instanceof Teacher) {
-	        System.out.println("Teacher logged in");
-	    } else if (this instanceof Admin) {
-	        System.out.println("Admin logged in");
+	        throw new LoginException("Invalid username or password");
 	    }
 	}
 
-	private void handleFailedLogin() {
-	    
-	    System.out.println("Login failed");
+	private void handleSuccessfulLogin() throws LoginException {
+	    if (this instanceof Student) {
+	        throw new StudentLoginException("Student logged in");
+	    } else if (this instanceof Teacher) {
+	        throw new TeacherLoginException("Teacher logged in");
+	    } else if (this instanceof Admin) {
+	        throw new AdminLoginException("Admin logged in");
+	    }
 	}
 	
 	@Override
