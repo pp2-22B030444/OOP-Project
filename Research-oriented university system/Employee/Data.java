@@ -5,16 +5,21 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
+import Department.Course;
+import Department.Lesson;
+import Department.Teacher;
+import Students.Marks;
+
 import java.io.*;
-
-
 
 public class Data implements Serializable {
     protected static Vector<Course> courses = new Vector<>();
+    public static Vector<Teacher> teachers= new Vector<>();
+    public static Vector<Object> students= new Vector<>();
     protected static Vector<User> users = new Vector<>();
     protected static HashMap<String, Course> studentRegistration = new HashMap<>();
     protected static HashMap<String, Integer> teacherRatings = new HashMap<>();
-    protected static Vector<Mark> marks = new Vector<>();
+    protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<String> newOrders = new Vector<>();
     protected static Vector<String> acceptedOrders = new Vector<>();
     protected static Vector<String> doneOrders = new Vector<>();
@@ -57,11 +62,11 @@ public class Data implements Serializable {
     }
 
 
-    public static Vector<Mark> getMarks() {
+    public static Vector<Marks> getMarks() {
         return marks;
     }
 
-    public static void setMarks(Vector<Mark> marks) {
+    public static void setMarks(Vector<Marks> marks) {
         Data.marks = marks;
     }
 
@@ -285,7 +290,7 @@ public class Data implements Serializable {
     	try {
         	fis = new FileInputStream("marks.txt");
         	oin = new ObjectInputStream(fis); 
-            marks = (Vector<Mark>) oin.readObject();
+            marks = (Vector<Marks>) oin.readObject();
             oin.close();
             fis.close();
     	}
@@ -415,4 +420,3 @@ public class Data implements Serializable {
 
 
 }
-
