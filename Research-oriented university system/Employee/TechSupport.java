@@ -6,16 +6,16 @@ public class TechSupport extends Employee
 {
 
 	public TechSupport(String name, String surname, String birthDate, String phoneNumber, String login, String password) {
-        super(name, surname, birthDate, phoneNumber, login, password);
+        super(name, surname, birthDate, phoneNumber, login, password, password);
     }
 	
-	public void getOrder(TechSupportOrder order) {
+	public void getOrder(TechSupportOrder order,) {
 		Data.newOrders.add(order);
 		System.out.println("New order received: " + order.getDescription());
 	}
 	
 	
-	public void Accept(TechSupport order) {
+	public void Accept(TechSupportOrder order) {
 		if(Data.newOrders.contains(order)) {
 			Data.acceptedOrders.add(order);
 			System.out.println("Order acceptede: " + order.getDescription());
@@ -37,14 +37,14 @@ public class TechSupport extends Employee
 	
 	public void viewAcceptedOrders() {
 		System.out.println("Accepted orders: ");
-		for(TechSupportOrder.toString() order: Data.acceptedOrders) {	
+		for( TechSupportOrder order: Data.acceptedOrders) {	
 			System.out.println(order);
 		}
 	}
 	
 	public void viewDoneOrders() {
 		System.out.println("Done orders: ");
-		for(TechSupportOrder.toString() order: Data.doneOrders) {	
+		for(TechSupportOrder order: Data.doneOrders) {	
 			System.out.println(order);
 		}
 		
@@ -56,4 +56,3 @@ public class TechSupport extends Employee
 	}
 	
 }
-
