@@ -4,6 +4,8 @@ public abstract class Employee extends User implements Message{
 	
 	private String id;
 	
+	
+	
 	public Employee(){
 		
 	}
