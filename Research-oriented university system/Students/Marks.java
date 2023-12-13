@@ -17,7 +17,6 @@ public class Marks{
 	public Marks(){
 		
 	}
-
 	public Marks( Course course, double firstAtt, double secountAtt, double finalGrade) {
 		this();
 		this.course = course;
@@ -29,10 +28,7 @@ public class Marks{
 		// TODO implement me
 		return "Disipline code: "+ course.getDisciplineСode() + " Disipline name: "+ course.getDisciplineName() + " Fist attestation: "+this.firstAtt+"/30" + " Second attestation: "+this.secountAtt+"/30" +" Final exam: "+ this.finalGrade+"/40" ;	
 	}
-	public Student getStudent() {
-		// TODO implement me
-		return null;	
-	}
+	
 	public double getResult() {
 		// TODO implement me
 		return  this.firstAtt+this.secountAtt+this.finalGrade;	
