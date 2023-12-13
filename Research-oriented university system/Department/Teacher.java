@@ -1,7 +1,6 @@
 package Department ;
 
 import java.util.Vector;
-
 import Employee.CanViewStudent;
 import Employee.Employee;
 import Students.Student;
@@ -12,7 +11,7 @@ import Students.Student;
  * @generated
  */
 
-public class Teacher extends Employee 
+public class Teacher extends Employee implements CanViewStudent
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,8 +114,14 @@ public class Teacher extends Employee
 
 	@Override
 	public String toString() {
-		return "Teacher [teacherTitle=" + teacherTitle + ", urgencyLevel=" + urgencyLevel + ", taughtCourses="
+		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle + ", taughtCourses="
 				+ taughtCourses + "]";
+	}
+
+	@Override
+	public void sendMessage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

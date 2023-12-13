@@ -141,6 +141,12 @@ public class Manager extends Employee implements CanViewStudent
 	public String toString() {
 		return "Manager [" + super.toString()+"managerType=" + managerType  + "]";
 	}
+
+	@Override
+	public void sendMessage() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

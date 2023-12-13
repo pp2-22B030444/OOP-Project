@@ -7,7 +7,7 @@ package Employee ;
  * @generated
  */
 
-public class Admin
+public class Admin extends User
 {
 	/**
 	 * <!-- begin-user-doc -->

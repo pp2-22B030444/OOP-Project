@@ -1,65 +1,50 @@
-package Employee ;
+package Employee;
 
 import Department.Course;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+public class Instructor extends Employee implements CourseObserver {
 
-public class Instructor extends Employee implements CourseObserver
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Instructor instance;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Instructor(){
-		
-	}
+    private static Instructor instance;
+
+    public Instructor() {
+
+    }
+
+    private Instructor(Instructor instance) {
+        super(); 
+        this.setInstance(instance);
+    }
     
-	public Instructor(Instructor instance) {
-		this();
-		this.instance = instance;
+    public void setInstance(Instructor instance) {
+		Instructor.instance = instance;
 	}
+    public static synchronized Instructor getInstance() {
+        if (instance == null) {
+            instance = new Instructor(null); 
+        }
+        return instance;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Instructor getInstance() {
-		// TODO implement me
-		return null;	
-	}
+    @Override
+    public void update(News news) {
+        System.out.println("Instructor received a news update: " + news);
+    }
+
+    @Override
+    public void update(Course course) {
+        System.out.println("Instructor received a course update: " + course);
+    }
+
+    @Override
+    public String toString() {
+        return "Instructor [instance=" + getInstance() + "]";
+    }
+
 	@Override
-	public void update(News news) {
+	public void sendMessage() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void update(Course course) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public String toString() {
-		return "Instructor [instance=" + instance + "]";
-	} 
-	
 	
 }
-

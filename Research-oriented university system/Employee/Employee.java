@@ -1,85 +1,61 @@
-package Employee ;
+/*НЕ ЗАКОНЧЕНА!!!*/
 
+package Employee;
 
-
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class Employee extends User implements Message
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+public abstract class Employee extends User implements Message{
 	
 	private String id;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public String fullName;
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public Employee(){
 		
 	}
 
-	public Employee(String id, String fullName) {
-		this();
+	public Employee(String id, String fullName,String userName, int password, Language language) {
+		super(userName, password, language);
 		this.id = id;
 		this.fullName = fullName;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+	public String getId() {
+            return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 	
-	public void sendMessage() {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void makeRequest() {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void makeOrder() {
-		// TODO implement me	
-	}
+    public void sendMessage(String message) {
+        System.out.println("Sending message: " + message);
+        /*Логика нужна*/
+    }
+
+    public void makeRequest(String request) {
+        System.out.println("Making request: " + request);
+        /*Логика нужна*/
+    }
+
+    public void makeOrder(String order) {
+        System.out.println("Making order: " + order);
+        /*Логика нужна*/
+    }
+
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", fullName=" + fullName + "]";
 	}
+
+
+
+	
 	
 }
-

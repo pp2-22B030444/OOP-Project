@@ -1,53 +1,41 @@
-package Employee ;
+package Employee;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+public class NewsPublisher {
+    private List<NewsObserver> observers;
 
-public class NewsPublisher
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public List<NewsObserver> observers;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public NewsPublisher(){
-		
-	}
+    public NewsPublisher() {
+        this.observers = new ArrayList<>();
+    }
 
-	public NewsPublisher(List<NewsObserver> observers) {
-		super();
-		this.observers = observers;
-	}
+    public NewsPublisher(List<NewsObserver> observers) {
+        this.observers = observers;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void notifyObservers() {
-		// TODO implement me	
-	}
+    public void addObserver(NewsObserver observer) {
+        observers.add(observer);
+    }
 
-	@Override
-	public String toString() {
-		return "NewsPublisher [observers=" + observers + "]";
-	}
-	
+    public void removeObserver(NewsObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(News news) {
+        for (NewsObserver observer : observers) {
+            observer.update(news);
+        }
+    }
+
+    public void publishNews(String topic, String text, Date date) {
+        News news = new News(topic, text, date);
+        notifyObservers(news);
+    }
+
+    @Override
+    public String toString() {
+        return "NewsPublisher [observers=" + observers + "]";
+    }
 }
-
