@@ -1,77 +1,38 @@
-package Employee ;
+package Employee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Department.Course;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+public class CoursePublisher {
+    private List<CourseObserver> observers;
 
-public class CoursePublisher
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public List<CourseObserver> observers;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public CoursePublisher(){
-		
-	}
+    public CoursePublisher() {
+        this.observers = new ArrayList<>();
+    }
 
-	public CoursePublisher(List<CourseObserver> observers) {
-		this();
-		this.observers = observers;
-	}
+    public CoursePublisher(List<CourseObserver> observers) {
+        this.observers = observers;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void notifyObservers(Course course ) {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void subscribe(CourseObserver observer ) {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void unsubscribe(CourseObserver observer ) {
-		// TODO implement me	
-	}
+    public void notifyObservers(Course course) {
+        for (CourseObserver observer : observers) {
+            observer.update(course);
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "CoursePublisher [observers=" + observers + "]";
-	}
-	
+    public void subscribe(CourseObserver observer) {
+        observers.add(observer);
+    }
+
+    public void unsubscribe(CourseObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public String toString() {
+        return "CoursePublisher [observers=" + observers + "]";
+    }
 }
 
