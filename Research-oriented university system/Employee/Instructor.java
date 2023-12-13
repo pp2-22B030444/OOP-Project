@@ -24,6 +24,7 @@ public class Instructor extends Employee implements CourseObserver {
         }
         return instance;
     }
+<<<<<<< HEAD
 
     @Override
     public void update(News news) {
@@ -48,3 +49,23 @@ public class Instructor extends Employee implements CourseObserver {
 
 	
 }
+=======
+
+    @Override
+    public void update(News news) {
+        System.out.println("Instructor received a news update: " + news);
+    }
+
+    @Override
+    public void update(Course course) {
+        System.out.println("Instructor received a course update: " + course);
+    }
+
+    @Override
+    public String toString() {
+        return "Instructor [instance=" + getInstance() + "]";
+    }
+
+	
+}
+>>>>>>> 9427334b2c9cd4b841d588820d7f6fd6ea69447a

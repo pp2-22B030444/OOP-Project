@@ -38,4 +38,8 @@ public class News implements NewsObserver
 		return "News [topic=" + topic + ", text=" + text + ", date=" + date + "]";
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9427334b2c9cd4b841d588820d7f6fd6ea69447a

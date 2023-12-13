@@ -7,5 +7,5 @@ package Employee ;
  */
 public enum ManagerType
 {
-	OR, DEPARMENTS;
+	OR, DEPARTMENTS;
 }
