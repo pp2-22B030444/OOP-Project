@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Vector;
 
 import javax.annotation.processing.SupportedSourceVersion;
@@ -17,7 +16,6 @@ import Department.Teacher;
 import Employee.Data;
 import Employee.Language;
 import Employee.User;
-
 
 public class Student extends User{
 	
@@ -29,15 +27,12 @@ public class Student extends User{
 	public Map<Course, Marks> marksMap;
 	public Map<Teacher, Integer> teacherRatings;
 	public Student(){
-		
+		super();
 	}
-	public Student(String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
-		super(name, surname, birthDate, phoneNumber, userName, password);
-		// TODO Auto-generated constructor stub
-	}
-	public Student(String id, School school, int yearOfStudy, GraduateStudent graduateStudent,
+	public Student(String name, String surname, String birthDate, String phoneNumber, String login, String password,String id, School school, int yearOfStudy, GraduateStudent graduateStudent,
 			Vector<Course> registeredCourses,Map<Course, Marks> marksMap,Map<Teacher, Integer> teacherRatings) {
-		this();
+		
+		super(name, surname, birthDate, phoneNumber, login, password);
 		this.id = id;
 		this.school = school;
 		this.yearOfStudy = yearOfStudy;
@@ -45,7 +40,9 @@ public class Student extends User{
 		this.registeredCourses = registeredCourses;
 		this.marksMap=marksMap;
 		this.teacherRatings = teacherRatings;
+		// TODO Auto-generated constructor stub
 	}
+
 	public void viewCourses() {
 	    // TODO implement me
 	    System.out.println("Registered Courses:");
