@@ -8,101 +8,31 @@ import Department.Course;
  * @generated
  */
 
-public class Marks
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Grade grade;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+public class Marks{
+
 	public Course course;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public double firstAtt;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public double   secountAtt;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public double finalGrade;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
+	private double firstAtt;
+	private double secountAtt;
+	private double finalGrade;
 	public Marks(){
 		
 	}
 
-	public Marks(Grade grade, Course course, double firstAtt, double secountAtt, double finalGrade) {
+	public Marks( Course course, double firstAtt, double secountAtt, double finalGrade) {
 		this();
-		this.grade = grade;
 		this.course = course;
 		this.firstAtt = firstAtt;
 		this.secountAtt = secountAtt;
 		this.finalGrade = finalGrade;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public String ShowMark(Course course) {
+	public String showMark() {
 		// TODO implement me
-		return course.getDisciplineСode() + course.getDisciplineName() + this.firstAtt + this.secountAtt + this.finalGrade ;	
+		return "Disipline code: "+ course.getDisciplineСode() + " Disipline name: "+ course.getDisciplineName() + " Fist attestation: "+this.firstAtt+"/30" + " Second attestation: "+this.secountAtt+"/30" +" Final exam: "+ this.finalGrade+"/40" ;	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Student getStudent() {
 		// TODO implement me
 		return null;	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	public double getResult() {
 		// TODO implement me
 		return  this.firstAtt+this.secountAtt+this.finalGrade;	
@@ -138,8 +68,8 @@ public class Marks
 		else if(50<=getResult() && getResult()<=54) {
 			return "D";
 		}
-		else( getResult()<50) {
-			return "C-";
+		else {
+			return "F";
 		}
 	}
 	public Double getGpa() {
@@ -173,13 +103,44 @@ public class Marks
 		else if(50<=getResult() && getResult()<=54) {
 			return 1.0;
 		}
-		else( getResult()<50) {
+		else {
 			return 0.0;
 		}
 	}
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public double getFirstAtt() {
+		return firstAtt;
+	}
+
+	public void setFirstAtt(double firstAtt) {
+		this.firstAtt = firstAtt;
+	}
+
+	public double getSecountAtt() {
+		return secountAtt;
+	}
+
+	public void setSecountAtt(double secountAtt) {
+		this.secountAtt = secountAtt;
+	}
+
+	public double getFinalGrade() {
+		return finalGrade;
+	}
+
+	public void setFinalGrade(double finalGrade) {
+		this.finalGrade = finalGrade;
+	}
 	@Override
 	public String toString() {
-		return "Marks [grade=" + grade + ", course=" + course + ", firstAtt=" + firstAtt + ", secountAtt=" + secountAtt
+		return "Marks ["+ "Course=" + course + ", firstAtt=" + firstAtt + ", secountAtt=" + secountAtt
 				+ ", finalGrade=" + finalGrade + "]";
 	}
 	

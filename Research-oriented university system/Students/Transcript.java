@@ -2,77 +2,22 @@ package Students ;
 
 import Department.Course;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class Transcript
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+public class Transcript{
 	
 	public Course course;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Marks marks;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public double result;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public  double gpa;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public Transcript(){
 		
 	}
-
-	public Transcript(Course course, Marks marks, double result, double gpa) {
+	public Transcript(Course course, Marks marks) {
 		this();
 		this.course = course;
-		this.marks = marks;
-		this.result = result;
-		this.gpa = gpa;
+		this.marks = marks;	
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public String ShowTranscript(Course course,Marks marks) {
-		return course.getDisciplineСode()+course.getDisciplineName()+course.getCredit()+course.getEcts()+marks.getResult() ;
-		// TODO implement me	
+	public String showTranscript() {
+		return " Disipline code: "+course.getDisciplineСode()+" Disipline name: "+course.getDisciplineName()+" Credits: "+course.getCredit()+" Ects: "+course.getEcts()+" Digit grade: "+marks.getResult()+" Grade: "+marks.getGrade()+" GPA: "+marks.getGpa() ;
+		// TODO implement me	 
 	}
 	
 }
