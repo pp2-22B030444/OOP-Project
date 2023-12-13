@@ -46,14 +46,7 @@ public class StudentOrganization{
 		else {
 	        System.out.println("Unknown organization: " + nameOrganization);
 	    }
-	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	}	
 	public void removeMember(Student student,NameOrganization o) {
 		// TODO implement me	
 		if(o.equals(NameOrganization.BCL)) {
@@ -68,8 +61,6 @@ public class StudentOrganization{
 		else {
 	        System.out.println("Unknown organization: " + nameOrganization);
 	    }
-	}
-	
-	
+	}	
 }
 
