@@ -11,8 +11,8 @@ public abstract class Employee extends User implements Message{
 	}
 	
 public Employee(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
-			Language language, String id) {
-		super(name, surname, birthDate, phoneNumber, userName, password, language);
+			 String id) {
+		super(name, surname, birthDate, phoneNumber, userName, password, chooseLanguage());
 		this.id = id;
 	}
 
@@ -26,9 +26,9 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
     }
 
 	
-    public void sendMessage(String message) {
-        System.out.println("Sending message: " + message);
-        /*Логика нужна*/
+    public void sendMessage(String messageFrom, String messageTo, String title, String text) {
+        Messages m = new Messages(messageFrom, messageTo, title, text);
+        Data.messages.add(m);
     }
 
     public void makeRequest(String request) {
