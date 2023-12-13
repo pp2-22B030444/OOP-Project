@@ -19,7 +19,7 @@ public class TechSupportOrder
 
 	
 	public void getDescription() {
-		"TechSupportOrder [description=" + description + ", accepted=" + accepted + ", typeOfRequest="
+		return "TechSupportOrder [description=" + description + ", accepted=" + accepted + ", typeOfRequest="
 				+ typeOfRequest + "]";	
 	}
 	
