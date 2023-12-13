@@ -2,8 +2,9 @@ package Employee ;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.io.*;
 
-public class User implements NewsObserver, Cloneable
+public class User implements NewsObserver, Cloneable,Serializable
 {
 	
 	private String userName;
@@ -36,27 +37,31 @@ public class User implements NewsObserver, Cloneable
 	
 	public Language chooseLanguage() {
 		System.out.println("Select your language:");
-        System.out.println("1. KZ");
-        System.out.println("2. EN");
-        System.out.println("3. RU");
+        	System.out.println("1. KZ");
+        	System.out.println("2. EN");
+        	System.out.println("3. RU");
 
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        try {
+            ObjectInputStream ois = new ObjectInputStream(System.in);
+            int choice = ois.readInt();
 
-        switch (choice) {
-            case 1:
-                language = Language.KZ;
-                break;
-            case 2:
-                language = Language.EN;
-                break;
-            case 3:
-                language = Language.RU;
-                break;
-            default:
-                System.out.println("Invalid choice. Using the default language.");
+            switch (choice) {
+                case 1:
+                    language = Language.KZ;
+                    break;
+                case 2:
+                    language = Language.EN;
+                    break;
+                case 3:
+                    language = Language.RU;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Using the default language.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        scanner.close();
+
         return language;
     }
 	
