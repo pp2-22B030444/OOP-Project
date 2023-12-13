@@ -1,10 +1,8 @@
 package Employee ;
 
 import java.util.List;
-
 import Department.Teacher;
 import Students.Student;
-
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -14,14 +12,9 @@ public class Admin extends User implements Serializable
 
 	private static final long serialVersionUID = -5128593308024813795L;
 
-
-
 	public Admin(){
 		
 	}
-
-	
-	
 	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
         Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR);
         Data.users.add(st);

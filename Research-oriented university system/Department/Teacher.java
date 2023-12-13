@@ -123,11 +123,7 @@ public class Teacher extends Employee implements CanViewStudent
 				+ taughtCourses + "]";
 	}
 
-	@Override
-	public void sendMessage() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }
 

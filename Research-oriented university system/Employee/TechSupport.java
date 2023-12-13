@@ -5,10 +5,21 @@ package Employee ;
 public class TechSupport extends Employee
 {
 
-	public TechSupport(String name, String surname, String birthDate, String phoneNumber, String login, String password) {
-        super(name, surname, birthDate, phoneNumber, login, password, password);
-    }
 	
+	
+	public TechSupport() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public TechSupport(String name, String surname, String birthDate, String phoneNumber, String userName,
+			String password, String id) {
+		super(name, surname, birthDate, phoneNumber, userName, password, id);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public void getOrder(TechSupportOrder order,) {
 		Data.newOrders.add(order);
 		System.out.println("New order received: " + order.getDescription());
@@ -55,4 +66,7 @@ public class TechSupport extends Employee
 		return "TechSupport ["+super.toString()+"]";
 	}
 	
+
+}
+
 }

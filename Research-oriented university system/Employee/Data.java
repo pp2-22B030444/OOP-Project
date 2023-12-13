@@ -70,26 +70,26 @@ public class Data implements Serializable {
         Data.marks = marks;
     }
 
-    public static Vector<String> getNewOrders() {
+    public static Vector<TechSupportOrder> getNewOrders() {
         return newOrders;
     }
 
-    public static void setNewOrders(Vector<String> newOrders) {
+    public static void setNewOrders(Vector<TechSupportOrder> newOrders) {
         Data.newOrders = newOrders;
     }
     
-    public static Vector<String> getAcceptedOrders() {
+    public static Vector<TechSupportOrder> getAcceptedOrders() {
         return acceptedOrders;
     }
 
-    public static void setAcceptedOrders(Vector<String> acceptedOrders) {
+    public static void setAcceptedOrders(Vector<TechSupportOrder> acceptedOrders) {
         Data.acceptedOrders = acceptedOrders;
     }
-    public static Vector<String> getDoneOrders() {
+    public static Vector<TechSupportOrder> getDoneOrders() {
         return doneOrders;
     }
 
-    public static void setDoneOrders(Vector<String> doneOrders) {
+    public static void setDoneOrders(Vector<TechSupportOrder> doneOrders) {
         Data.doneOrders = doneOrders;
     }
 
@@ -402,7 +402,7 @@ public class Data implements Serializable {
     	try {
         	fis = new FileInputStream("orders.txt");
         	oin = new ObjectInputStream(fis); 
-            doneOrders = (Vector<String>) oin.readObject();
+            doneOrders = (Vector<TechSupportOrder>) oin.readObject();
             oin.close();
             fis.close();
     	}
@@ -419,4 +419,7 @@ public class Data implements Serializable {
 
 
 
+
 }
+
+

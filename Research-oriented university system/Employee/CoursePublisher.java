@@ -1,6 +1,7 @@
 package Employee;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Department.Course;
@@ -28,6 +29,10 @@ public class CoursePublisher {
 
     public void unsubscribe(CourseObserver observer) {
         observers.remove(observer);
+    }
+    public void publishCourse(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
+        Course course = new Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents);
+        notifyObservers(course);
     }
 
     @Override

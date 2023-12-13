@@ -1,6 +1,6 @@
 package Employee;
 
-public abstract class Employee extends User implements Message{
+public abstract class Employee extends User{
 	
 	private String id;
 	
@@ -12,6 +12,7 @@ public abstract class Employee extends User implements Message{
 	
 public Employee(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
 			 String id) {
+
 		super(name, surname, birthDate, phoneNumber, userName, password);
 		this.id = id;
 	}
