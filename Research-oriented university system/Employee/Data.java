@@ -20,10 +20,10 @@ public class Data implements Serializable {
     protected static HashMap<String, Course> studentRegistration = new HashMap<>();
     protected static HashMap<String, Integer> teacherRatings = new HashMap<>();
     protected static Vector<Marks> marks = new Vector<>();
-    protected static Vector<String> newOrders = new Vector<>();
-    protected static Vector<String> acceptedOrders = new Vector<>();
-    protected static Vector<String> doneOrders = new Vector<>();
-    protected static Vector<Message> messages = new Vector<>();
+    protected static Vector<TechSupportOrder> newOrders = new Vector<>();
+    protected static Vector<TechSupportOrder> acceptedOrders = new Vector<>();
+    protected static Vector<TechSupportOrder> doneOrders = new Vector<>();
+    protected static Vector<Messages> messages = new Vector<>();
     protected static Vector<File> files = new Vector<>();
     protected static HashMap<String, String> logFiles = new HashMap<>();
     protected static Vector<News> news = new Vector<>();
@@ -93,11 +93,11 @@ public class Data implements Serializable {
         Data.doneOrders = doneOrders;
     }
 
-    public static Vector<Message> getMessages() {
+    public static Vector<Messages> getMessages() {
         return messages;
     }
 
-    public static void setMessages(Vector<Message> messages) {
+    public static void setMessages(Vector<Messages> messages) {
         Data.messages = messages;
     }
 
