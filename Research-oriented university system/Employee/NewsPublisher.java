@@ -38,8 +38,7 @@ public class NewsPublisher {
     public String toString() {
         return "NewsPublisher [observers=" + observers + "]";
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 9427334b2c9cd4b841d588820d7f6fd6ea69447a
+
+

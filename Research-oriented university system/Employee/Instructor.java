@@ -1,10 +1,13 @@
 package Employee;
 
+import java.io.Serializable;
+
 import Department.Course;
 
-public class Instructor extends Employee implements CourseObserver {
+public class Instructor extends Employee implements CourseObserver,Serializable {
 
-    private static Instructor instance;
+    
+	private static Instructor instance;
 
     public Instructor() {
 
@@ -25,10 +28,14 @@ public class Instructor extends Employee implements CourseObserver {
         return instance;
     }
 
-
     @Override
     public void update(News news) {
         System.out.println("Instructor received a news update: " + news);
+    }
+
+    @Override
+    public void update(Course course) {
+        System.out.println("Instructor received a course update: " + course);
     }
 
     @Override
@@ -36,19 +43,5 @@ public class Instructor extends Employee implements CourseObserver {
         return "Instructor [instance=" + getInstance() + "]";
     }
 
-	@Override
-	public void sendMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Course course) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }
-
-

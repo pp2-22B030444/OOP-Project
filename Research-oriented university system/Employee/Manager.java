@@ -33,11 +33,14 @@ public class Manager extends Employee implements CanViewStudent
 		
 	}
     
-	public Manager(String id, String fullName,ManagerType managerType) {
-		super(id, fullName);
+
+	public Manager(String name, String surname, String birthDate, String phoneNumber, String login, String password,
+			String id,ManagerType managerType) {
+		super(name, surname, birthDate, phoneNumber, login, password, id);
 		this.managerType=managerType;
 		// TODO Auto-generated constructor stub
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

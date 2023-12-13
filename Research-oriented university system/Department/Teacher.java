@@ -48,6 +48,11 @@ public class Teacher extends Employee implements CanViewStudent
 	public Teacher(){
 		
 	}
+	public Teacher(String name, String surname, String birthDate, String phoneNumber, String login, String password,
+			String id) {
+		super(name, surname, birthDate, phoneNumber, login, password, id);
+		// TODO Auto-generated constructor stub
+	}
 
 	public Teacher(TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
 		this();

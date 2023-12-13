@@ -1,66 +1,54 @@
 package Employee ;
 
+import java.util.List;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+import Department.Teacher;
+import Students.Student;
 
-public class Admin extends User
+import java.io.IOException;
+import java.io.Serializable;
+
+public class Admin extends User implements Serializable
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
+	
+
+	private static final long serialVersionUID = -5128593308024813795L;
+
+
+
 	public Admin(){
 		
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public void add() {
-		// TODO implement me	
-	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void remove() {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR);
+        Data.users.add(st);
+    }
+    public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
+        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName,password);
+        Data.users.add(t);
+    }
+    public void createManager(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,
+		ManagerType managerType) {
+        Manager m = new Manager(id, name, surname, birthDate, phoneNumber, userName,password, ManagerType.DEPARTMENTS );
+        Data.users.add(m);    
+    }
+    public boolean deleteUser(String userName) {
+        for(User u: Data.users){
+            if(u.getUserName().equals(userName)){
+                Data.users.remove(u);
+                return true;
+            }
+        }
+        return false;
+    }	
 	public void update() {
 		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	}	
 	public void seeLongFile() {
 		// TODO implement me	
 	}
 	
 }
-
