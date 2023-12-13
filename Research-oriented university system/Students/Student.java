@@ -31,8 +31,8 @@ public class Student extends User{
 	public Student(){
 		
 	}
-	public Student(String name, String surname, String birthDate, String phoneNumber, String login, String password) {
-		super(name, surname, birthDate, phoneNumber, login, password);
+	public Student(String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
+		super(name, surname, birthDate, phoneNumber, userName, password);
 		// TODO Auto-generated constructor stub
 	}
 	public Student(String id, School school, int yearOfStudy, GraduateStudent graduateStudent,
