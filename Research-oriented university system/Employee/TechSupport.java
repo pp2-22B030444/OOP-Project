@@ -1,70 +1,53 @@
 package Employee ;
 
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
 
 public class TechSupport extends Employee
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public TechSupport(){
-		
-	}
-    
-	public TechSupport(String id, String fullName) {
-		super(id, fullName);
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+	public TechSupport(String name, String surname, String birthDate, String phoneNumber, String login, String password) {
+        super(name, surname, birthDate, phoneNumber, login, password);
+    }
 	
-	public void getOrder() {
-		// TODO implement me	
+	public void getOrder(TechSupportOrder order) {
+		Data.newOrders.add(order);
+		System.out.println("New order received: " + order.getDescription());
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public void Accept() {
-		// TODO implement me	
+	public void Accept(TechSupport order) {
+		if(Data.newOrders.contains(order)) {
+			Data.acceptedOrders.add(order);
+			System.out.println("Order acceptede: " + order.getDescription());
+		}
+		else {
+			System.out.println("Order not found.");
+		}	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public void Reject() {
-		// TODO implement me	
+	public void rejectOrder(TechSupportOrder order) {
+        if (Data.newOrders.contains(order)) {
+            Data.newOrders.remove(order);
+            System.out.println("Order rejected: " + order.getDescription());
+        } else {
+            System.out.println("Order not found.");
+        }
+    }
+	
+	public void viewAcceptedOrders() {
+		System.out.println("Accepted orders: ");
+		for(TechSupportOrder.toString() order: Data.acceptedOrders) {	
+			System.out.println(order);
+		}
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void viewAccept() {
-		// TODO implement me	
+	public void viewDoneOrders() {
+		System.out.println("Done orders: ");
+		for(TechSupportOrder.toString() order: Data.doneOrders) {	
+			System.out.println(order);
+		}
+		
 	}
 
 	@Override
