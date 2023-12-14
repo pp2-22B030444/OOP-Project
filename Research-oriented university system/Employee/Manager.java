@@ -5,6 +5,9 @@ import java.util.List;
 import Department.Course;
 import Department.TypeOfCourse;
 import Students.Student;
+import proj.Database;
+import proj.Managers;
+import proj.User;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,40 +17,39 @@ import Students.Student;
 
 public class Manager extends Employee implements CanViewStudent
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public ManagerType managerType;
+	private ManagerType managerType;
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public Manager(){
 		super();
-		
 	}
     
+	 public Manager(String id,String name, String surname, String birthDate, String phoneNumber, String username,
+	            String password, ManagerType managerType) {
+	        super(id, name, surname, birthDate, phoneNumber, username, password);
+	        this.managerType = managerType;
+	    }
 
-	public Manager(String name, String surname, String birthDate, String phoneNumber, String login, String password,
-			String id,ManagerType managerType) {
-		super(name, surname, birthDate, phoneNumber, login, password, id);
-		this.managerType=managerType;
-		// TODO Auto-generated constructor stub
-	}
+	 public Managers getManagerType() {
+	        return this.managerType;
+	    }
 
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+	 public void setManagerType(Managers managerType) {
+	        this.managerType = managerType;
+	    }
+	 
+	 public void addCoursesForRegistration(TypeOfCourse major, int yearOfStudy, String name, int credits, String courseId) {
+		 Course newCourse = new Course(TypeOfCourse major, int yearOfStudy, String name, int credits, String courseId);
+	    	for (Course course: Data.courses) {
+	        	if (!course.getCourseId().equals(courseId)) {
+	        		Data.courses.add(newCourse);
+	        	}
+	    	}	
+		}
+	 public String viewRequestForRegistration() {
+	        return Data.studentRegistration.toString();
+	    }
+		
 	
 	public void approveStudentRegistration(Student student, Course parameter) {
 		// TODO implement me	
@@ -60,9 +62,6 @@ public class Manager extends Employee implements CanViewStudent
 	 * @ordered
 	 */
 	
-	public void addCoursesForRegistration(TypeOfCourse major, int yearOfStudy) {
-		// TODO implement me	
-	}
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,19 +70,32 @@ public class Manager extends Employee implements CanViewStudent
 	 * @ordered
 	 */
 	
-	public void assignCoursesToTeachers() {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+	public void assignCourseToTeachers(String courseId, String teacherName) {
+        for (Course course : Data.courses) {
+            if (course.getCourseId().equals(courseId)) {
+                course.teacher.add(teacherName);
+            }
+        }
+    }
 	
 	public void ViewStudentInfo () {
-		// TODO implement me	
+		 int i = 0;
+	        String ans = "";
+	        for (User user : Data.users) {
+	            if(user instanceof Student) {
+	                Student st = (Student) user;
+	                i ++;
+	                ans += i + ") Student Name: " + st.getName()
+	                + "\n    Student surname: " + st.getSurname() 
+	                + "\n    Birth Date: " + st.getBirthDate()
+	                + "\n    Email: " + st.getUserName()
+	                + "\n    ID: " + st.getId()
+	                + "\n    Year of Study: " + st.getYearOfStudy()
+	                + "\n    Faculty: " + st.getFaculty()
+	                + "\n    Degree: " + st.getDegree() + "\n\n";
+	            }
+	        }
+	        return ans;	
 	}
 	
 	/**
@@ -133,18 +145,10 @@ public class Manager extends Employee implements CanViewStudent
 	}
 	
 
-
-	@Override
-	public void viewStudentInfo() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public String toString() {
 		return "Manager [" + super.toString()+"managerType=" + managerType  + "]";
 	}
-
 	
 }
 
