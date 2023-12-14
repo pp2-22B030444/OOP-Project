@@ -18,6 +18,7 @@ public class Course
 	private int credit;
 	private String disciplineСode;
 	private int ects;
+	private String courseId;
 	public Vector<Student> enrolledStudents;
 	public int maxStudents;
 	public Course(){
@@ -52,6 +53,13 @@ public class Course
 
 	public String getDisciplineСode() {
 		return disciplineСode;
+	}
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getCourseId() {
+		return courseId;
 	}
 
 	public void setDisciplineСode(String disciplineСode) {
