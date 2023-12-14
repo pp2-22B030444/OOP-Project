@@ -2,6 +2,8 @@ package Employee ;
 
 import java.util.List;
 import Department.Teacher;
+import Students.GraduateStudent;
+import Students.School;
 import Students.Student;
 import java.io.IOException;
 import java.io.Serializable;

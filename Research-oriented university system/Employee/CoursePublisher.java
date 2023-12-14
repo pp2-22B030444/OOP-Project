@@ -3,8 +3,11 @@ package Employee;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import Department.Course;
+import Department.TypeOfCourse;
+import Students.Student;
 
 public class CoursePublisher {
     private List<CourseObserver> observers;
@@ -30,11 +33,10 @@ public class CoursePublisher {
     public void unsubscribe(CourseObserver observer) {
         observers.remove(observer);
     }
-    public void publishCourse(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
-        Course course = new Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents);
+    public void publishCourse(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineCode, int ects, Vector<Student> enrolledStudents, int maxStudents) {
+        Course course = new Course(typeOfCourse, disciplineName, credit, disciplineCode, ects, enrolledStudents, maxStudents);
         notifyObservers(course);
     }
-
     @Override
     public String toString() {
         return "CoursePublisher [observers=" + observers + "]";

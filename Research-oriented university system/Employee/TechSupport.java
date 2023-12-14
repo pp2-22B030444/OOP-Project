@@ -20,7 +20,7 @@ public class TechSupport extends Employee
 	}
 
 
-	public void getOrder(TechSupportOrder order,) {
+	public void getOrder(TechSupportOrder order) {
 		Data.newOrders.add(order);
 		System.out.println("New order received: " + order.getDescription());
 	}

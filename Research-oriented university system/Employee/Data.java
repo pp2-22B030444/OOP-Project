@@ -9,16 +9,17 @@ import Department.Course;
 import Department.Lesson;
 import Department.Teacher;
 import Students.Marks;
+import Students.Student;
 
 import java.io.*;
 
 public class Data implements Serializable {
     protected static Vector<Course> courses = new Vector<>();
     public static Vector<Teacher> teachers= new Vector<>();
-    public static Vector<Object> students= new Vector<>();
+    public static Vector<Student> students= new Vector<>();
     protected static Vector<User> users = new Vector<>();
-    protected static HashMap<String, Course> studentRegistration = new HashMap<>();
-    protected static HashMap<String, Integer> teacherRatings = new HashMap<>();
+    protected static HashMap<Student, Course> studentRegistration = new HashMap<>();
+    public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
     protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<TechSupportOrder> newOrders = new Vector<>();
     protected static Vector<TechSupportOrder> acceptedOrders = new Vector<>();
@@ -45,19 +46,19 @@ public class Data implements Serializable {
         Data.users = users;
     }
 
-    public static HashMap<String, Course> getStudentRegistration() {
+    public static HashMap<Student, Course> getStudentRegistration() {
         return studentRegistration;
     }
 
-    public static void setStudentRegistration(HashMap<String, Course> studentRegistration) {
+    public static void setStudentRegistration(HashMap<Student, Course> studentRegistration) {
         Data.studentRegistration = studentRegistration;
     }
 
-    public static HashMap<String, Integer> getTeacherRatings() {
+    public static HashMap<Teacher, Integer> getTeacherRatings() {
         return teacherRatings;
     }
 
-    public static void setTeacherRatings(HashMap<String, Integer> teacherRatings) {
+    public static void setTeacherRatings(HashMap<Teacher, Integer> teacherRatings) {
         Data.teacherRatings = teacherRatings;
     }
 
@@ -141,7 +142,7 @@ public class Data implements Serializable {
     }
 
     private Data() {
-        this.teacherRatings = new HashMap<String, Integer>();
+        this.teacherRatings = new HashMap<Teacher, Integer>();
     }
     
     
@@ -345,7 +346,7 @@ public class Data implements Serializable {
     	try {
         	fis = new FileInputStream("messages.txt");
         	oin = new ObjectInputStream(fis); 
-            messages = (Vector<Message>) oin.readObject();
+            messages = (Vector<Messages>) oin.readObject();
             oin.close();
             fis.close();
     	}
@@ -383,7 +384,7 @@ public class Data implements Serializable {
     	try {
         	fis = new FileInputStream("studentReg.txt");
         	oin = new ObjectInputStream(fis); 
-            studentRegistration = (HashMap<String, Course>) oin.readObject();
+            studentRegistration = (HashMap<Student, Course>) oin.readObject();
             oin.close();
             fis.close();
     	}

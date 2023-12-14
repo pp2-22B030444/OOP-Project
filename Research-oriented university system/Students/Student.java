@@ -1,16 +1,18 @@
 package Students ;
 
 import java.io.BufferedReader;
+import java.io.DataInput;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-<<<<<<< HEAD
 import java.util.Scanner;
-=======
->>>>>>> 7024d7b27f42574921a0754c6505fb48670ed095
 import java.util.Vector;
 
 import javax.annotation.processing.SupportedSourceVersion;
@@ -29,12 +31,11 @@ public class Student extends User{
 	public GraduateStudent graduateStudent;
 	public Vector<Course> registeredCourses;
 	public Map<Course, Marks> marksMap;
-	public Map<Teacher, Integer> teacherRatings;
 	public Student(){
 		super();
 	}
 	public Student(String name, String surname, String birthDate, String phoneNumber, String login, String password,String id, School school, int yearOfStudy, GraduateStudent graduateStudent,
-			Vector<Course> registeredCourses,Map<Course, Marks> marksMap,Map<Teacher, Integer> teacherRatings) {
+			Vector<Course> registeredCourses,Map<Course, Marks> marksMap) {
 		
 		super(name, surname, birthDate, phoneNumber, login, password);
 		this.id = id;
@@ -43,7 +44,6 @@ public class Student extends User{
 		this.graduateStudent = graduateStudent;
 		this.registeredCourses = registeredCourses;
 		this.marksMap=marksMap;
-		this.teacherRatings = teacherRatings;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -86,16 +86,41 @@ public class Student extends User{
     }
 
 
-	public void viewInfoAboutTeacher(Data data) {
+	public void viewInfoAboutTeacher() {
 		// TODO implement me
-		for(Teacher t : data.teachers) {
-			System.out.println(t);
+		for(Teacher t : Data.teachers) {
+			if (registeredCourses.equals(t.taughtCourses)) {
+				System.out.println(t);
+		    }
 		}
 	}
 
-	public void rateTeachers(Teacher teacher, int Rate ) {
-		// TODO implement me	
-	}
+	public void rateTeachers() {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("teacherRatings.ser"));
+             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("teacherRatings.ser"))) {
+
+           
+            try {
+                Data.teacherRatings = (HashMap<Teacher, Integer>) inputStream.readObject();
+            } catch (ClassNotFoundException | IOException e) {
+                
+            }
+            System.out.println("How do you rate your teachers?");
+            for (Teacher teacherName :  Data.teacherRatings.keySet()) {
+            	if (registeredCourses.contains(teacherName.taughtCourses)) {
+	                System.out.print("Rate for " + teacherName.getName() + ": ");
+	                int rating = Integer.parseInt(reader.readLine());
+	                Data.teacherRatings.put(teacherName, rating);
+                }
+            }
+            outputStream.writeObject(Data.teacherRatings);
+            System.out.println("Thank you for your ratings!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	public void exit() {
         System.out.println("Bye bye");
     }
@@ -159,7 +184,7 @@ public class Student extends User{
 		return  graduateStudent == other.graduateStudent
 				&& Objects.equals(id, other.id) && Objects.equals(marksMap, other.marksMap)
 				&& Objects.equals(registeredCourses, other.registeredCourses) && school == other.school
-				&& Objects.equals(teacherRatings, other.teacherRatings) && yearOfStudy == other.yearOfStudy;
+			    && yearOfStudy == other.yearOfStudy;
 	}
 
 	@Override
