@@ -1,85 +1,34 @@
-package Department ;
+package Teacher;
+import java.util.*;
 
 import Students.School;
 import Students.Student;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class Faculty
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+public class Faculty {
 	public School school;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Student students;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Course courses;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Faculty(){
-		
-	}
-
-	public Faculty(School school, Student students, Course courses) {
-		this();
+	public List<Student> students;
+	public Faculty(School school, List<Student> students) {
+		super();
 		this.school = school;
 		this.students = students;
-		this.courses = courses;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void getNameOfFaculty() {
-		// TODO implement me	
+	public School getSchool() {
+		return school;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void getStudents() {
-		// TODO implement me	
+	public void setSchool(School school) {
+		this.school = school;
 	}
-
-	@Override
-	public String toString() {
-		return "Faculty [school=" + school + ", students=" + students + ", courses=" + courses + "]";
+	public Student getStudents() {
+		return students;
+	}
+	public void setStudents(Student students) {
+		this.students = students;
 	}
 	
+	public String getFacultyName() {
+		return school.getName();
+	}
+	public Integer getStudents() {
+		return students.size();
+	}
 }
-

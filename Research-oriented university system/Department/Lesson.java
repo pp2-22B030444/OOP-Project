@@ -1,97 +1,38 @@
-package Department ;
+package Teacher;
 
-
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class Lesson
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+public class Lesson {
 	public TypeOfLesson type;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Teacher teacher;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Course course;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Lesson(){
-		
-	}
-
 	public Lesson(TypeOfLesson type, Teacher teacher, Course course) {
-		super();
 		this.type = type;
 		this.teacher = teacher;
 		this.course = course;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public String getLessonType() {
-		// TODO implement me
-		return "";	
+	public TypeOfLesson getType() {
+		return type;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	public void setType(TypeOfLesson type) {
+		this.type = type;
+	}
 	public Teacher getTeacher() {
-		// TODO implement me
-		return null;	
+		return teacher;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
 	public Course getCourse() {
-		// TODO implement me
-		return null;	
+		return course;
 	}
-
-	@Override
-	public String toString() {
-		return "Lesson [type=" + type + ", teacher=" + teacher + ", course=" + course + "]";
+	public void setCource(Course course) {
+		this.course = course;
 	}
 	
+	public TypeOfLesson getLessonType() {
+		return type;
+	}
+	
+	public Course getCource() {
+		return course;
+	}
 }
-

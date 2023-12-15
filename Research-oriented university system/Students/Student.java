@@ -186,12 +186,38 @@ public class Student extends User{
 				&& Objects.equals(registeredCourses, other.registeredCourses) && school == other.school
 			    && yearOfStudy == other.yearOfStudy;
 	}
-
+    
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public School getSchool() {
+		return school;
+	}
+	public void setSchool(School school) {
+		this.school = school;
+	}
+	public int getYearOfStudy() {
+		return yearOfStudy;
+	}
+	public void setYearOfStudy(int yearOfStudy) {
+		this.yearOfStudy = yearOfStudy;
+	}
+	
+	public GraduateStudent getGraduateStudent() {
+		return graduateStudent;
+	}
+	public void setGraduateStudent(GraduateStudent graduateStudent) {
+		this.graduateStudent = graduateStudent;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id +super.toString() + ", school=" + school + ", yearOfStudy=" + yearOfStudy
 				+ ", graduateStudent=" + graduateStudent +"]";
 	}
+	
 	
 }
 

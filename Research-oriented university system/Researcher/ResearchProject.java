@@ -1,87 +1,23 @@
-package Researcher ;
+package Researcher;
 
-import java.util.List;
+import java.util.*;
 
-import Employee.Employee;
-
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class ResearchProject
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+public class ResearchProject<User> {
+	private String topic;
+	private List<ResearchPaper> publishedPapers;
+	private List<User> participants;
 	
-	public String topic;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public List<ResearchPaper> publishedPapers;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public List<Researcher> participants;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public ResearchProject(){
-		
-	}
-    
-	public ResearchProject(String topic, List<ResearchPaper> publishedPapers, List<Researcher> participants) {
+	public ResearchProject(String topic, List<ResearchPaper> publishedPapers, List<User> participants) {
 		super();
 		this.topic = topic;
 		this.publishedPapers = publishedPapers;
 		this.participants = participants;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
-	public void addParticipant(Employee employee) {
-		// TODO implement me	
+	public void addParticipant(User u) {
+		participants.add(u);
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void addPublishedPaper(ResearchPaper paper ) {
-		// TODO implement me	
+	public void addPublishedPapers(ResearchPaper p) {
+		publishedPapers.add(p);
 	}
-
-	@Override
-	public String toString() {
-		return "ResearchProject [topic=" + topic + ", publishedPapers=" + publishedPapers + ", participants="
-				+ participants + "]";
-	}
-	
 }
-

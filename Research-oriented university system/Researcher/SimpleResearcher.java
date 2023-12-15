@@ -1,99 +1,58 @@
-package Researcher ;
+package Researcher;
 
 import java.util.Comparator;
 import java.util.List;
 
-import Employee.Instructor;
-
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class SimpleResearcher extends Instructor implements Researcher
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+public class SimpleResearcher implements Researcher{
+	private Researcher researcher;
+	private List<ResearchProject> researchProjects;
+	private List<ResearchPaper> researchPapers;
+	private Integer hindex;
 	
-	public List<ResearchProject> researchProjects;
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public List<ResearchPaper> researchPapers;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public int hIndex;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public SimpleResearcher(){
+	public SimpleResearcher(Researcher researcher, List<ResearchProject> researchProjects,
+			List<ResearchPaper> researchPapers, Integer hindex) {
 		super();
+		this.researcher = researcher;
+		this.researchProjects = researchProjects;
+		this.researchPapers = researchPapers;
+		this.hindex = hindex;
 	}
 
 	@Override
-	public void addResearchPaper(ResearchPaper paper2) {
+	public List<ResearchProject> getResearchProjects() {
 		// TODO Auto-generated method stub
-		
+		return researchProjects;
 	}
 
 	@Override
 	public void addResearchProject(ResearchProject project2) {
 		// TODO Auto-generated method stub
-		
+		researchProjects.add(project2);
 	}
 
 	@Override
-	public int calculateHIndex(LowHIndexSupervisorException parameter) {
+	public List<ResearchPaper> getResearchPapers() {
+		// TODO Auto-generated method stub
+		return researchPapers;
+	}
+
+	@Override
+	public void addResearchPaper(ResearchPaper paper2) {
+		// TODO Auto-generated method stub
+		researchPapers.add(paper2);
+	}
+
+	@Override
+	public int CalculateHIndex() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public String getCitation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
 	public void printPapers(Comparator<ResearchPaper> comparator2) {
 		// TODO Auto-generated method stub
-		
+		researchPapers.stream().sorted(comparator2).forEach(System.out::println);
 	}
-
-
-
-	@Override
-	public void getResearchPapers(List<ResearchPaper> l) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getResearchProjects(List<ResearchProject> l) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	
 }
-

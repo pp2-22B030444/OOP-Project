@@ -5,125 +5,61 @@ import Employee.CanViewStudent;
 import Employee.Employee;
 import Students.Student;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+package Teacher;
+import java.util.*;
 
-public class Teacher extends Employee implements CanViewStudent
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+public class Teacher {
 	public TeacherTitle teacherTitle;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public UrgencyLevel urgencyLevel;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public Vector<Course> taughtCourses;
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Teacher(){
-		
-	}
-	public Teacher(String name, String surname, String birthDate, String phoneNumber, String login, String password,
-			String id) {
-		super(name, surname, birthDate, phoneNumber, login, password, id);
-		// TODO Auto-generated constructor stub
-	}
-
 	public Teacher(TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
-		this();
 		this.teacherTitle = teacherTitle;
 		this.urgencyLevel = urgencyLevel;
 		this.taughtCourses = taughtCourses;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	public TeacherTitle getTeacherTitle() {
+		return teacherTitle;
+	}
+
+
+
+	public void setTeacherTitle(TeacherTitle teacherTitle) {
+		this.teacherTitle = teacherTitle;
+	}
+
+
+
+	public UrgencyLevel getUrgencyLevel() {
+		return urgencyLevel;
+	}
+
+
+
+	public void setUrgencyLevel(UrgencyLevel urgencyLevel) {
+		this.urgencyLevel = urgencyLevel;
+	}
+
+
+
+	public Vector<Course> getTaughtCourses() {
+		return taughtCourses;
+	}
+
+
+
+	public void setTaughtCourses(Vector<Course> taughtCourses) {
+		this.taughtCourses = taughtCourses;
+	}
+
+
+
 	public void viewCourses() {
-		// TODO implement me	
+		taughtCourses.forEach(System.out:: println);
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void viewStudentInfo() {
-		// TODO implement me	
+	public void studentInfo() {
+		taughtCourses.stream().map(n->n.getEnrolledStudents()).forEach(System.out::println);;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void sendComplaints() {
-		// TODO implement me	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Student putMarks() {
-		// TODO implement me
-		return null;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public void manageCourse() {
-		// TODO implement me	
-	}
-
-	@Override
-	public String toString() {
-		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle + ", taughtCourses="
-				+ taughtCourses + "]";
-	}
-
-	
-	
 }
-

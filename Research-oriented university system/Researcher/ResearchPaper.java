@@ -1,80 +1,17 @@
-package Researcher ;
+package Researcher;
 
-import java.sql.Date;
+import java.util.Date;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class ResearchPaper
-{
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+public class ResearchPaper {
+	private String journal;
+	private String author;
+	private Date date;
+	private Integer citations;
+	private Integer pages;
+	private String title;
 	
-	public String journal;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public String author;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Date date;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public int citations;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public int pages;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public String title;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public ResearchPaper(){
-		
-	}
-
-	public ResearchPaper(String journal, String author, Date date, int citations, int pages, String title) {
-		this();
+	public ResearchPaper(String journal, String author, Date date, Integer citations, Integer pages, String title) {
+		super();
 		this.journal = journal;
 		this.author = author;
 		this.date = date;
@@ -83,23 +20,55 @@ public class ResearchPaper
 		this.title = title;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public String getCitation(Format f ) {
-		// TODO implement me
-		return "";	
+	public String getJournal() {
+		return journal;
 	}
 
-	@Override
-	public String toString() {
-		return "ResearchPaper [journal=" + journal + ", author=" + author + ", date=" + date + ", citations="
-				+ citations + ", pages=" + pages + ", title=" + title + "]";
+	public void setJournal(String journal) {
+		this.journal = journal;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Integer getCitations() {
+		return citations;
+	}
+
+	public void setCitations(Integer citations) {
+		this.citations = citations;
+	}
+
+	public Integer getPages() {
+		return pages;
+	}
+
+	public void setPages(Integer pages) {
+		this.pages = pages;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
+	public String getCitation(Format f) {
+		return "Num of citations " + citations;
+	}
 }
-
