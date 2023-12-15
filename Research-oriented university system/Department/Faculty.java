@@ -1,4 +1,4 @@
-package Teacher;
+package Department;
 import java.util.*;
 
 import Students.School;

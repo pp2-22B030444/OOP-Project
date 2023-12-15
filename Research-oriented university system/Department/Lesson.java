@@ -1,4 +1,4 @@
-package Teacher;
+package Department;
 
 public class Lesson {
 	public TypeOfLesson type;

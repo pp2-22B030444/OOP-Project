@@ -34,14 +34,15 @@ public class Manager extends Employee implements CanViewStudent
 	        return this.managerType;
 	    }
 
-	 public void setManagerType(ManagerType managerType) {
+	 public void setManagerType(Manager managerType) {
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(String disciplineСode,String disciplineName,TypeOfCourse typeOfCourse,  int credit, int ects, int yearOfStudy) {
-		 Course newCourse = new Course(disciplineСode,disciplineName,typeOfCourse,credit,ects,yearOfStudy);
+	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects) {
+		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode,ects, null, ects);
 	    	for (Course course: Data.courses) {
-	        	if (!course.getDisciplineСode().equals(disciplineСode)) {
+	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
+
 	        		Data.courses.add(newCourse);
 	        	}
 	    	}	
@@ -73,12 +74,17 @@ public class Manager extends Employee implements CanViewStudent
 	public void assignCourseToTeachers(String courseId, String teacherName) {
         for (Course course : Data.courses) {
             if (course.getCourseId().equals(courseId)) {
+
                 Course.teacher.add(teacherName);
+
+                course.teacher.add(teacherName);
+
             }
         }
     }
 	
 	public String ViewStudentInfo () {
+
 		 int i = 0;
 	        String ans = "";
 	        for (User user : Data.users) {
@@ -91,8 +97,13 @@ public class Manager extends Employee implements CanViewStudent
 	                + "\n    Email: " + st.getUserName()
 	                + "\n    ID: " + st.getId()
 	                + "\n    Year of Study: " + st.getYearOfStudy()
+
 	                + "\n    Faculty: " + st.getSchool()
 	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n";
+
+	                + "\n    Faculty: " + st.getSchool()
+	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n";
+
 	            }
 	        }
 	        return ans;	
@@ -150,10 +161,12 @@ public class Manager extends Employee implements CanViewStudent
 		return "Manager [" + super.toString()+"managerType=" + managerType  + "]";
 	}
 
+
 	@Override
 	public void viewStudentInfo() {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

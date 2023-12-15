@@ -1,19 +1,24 @@
-package Teacher;
+package Department;
 
 import java.util.Vector;
 
 public class Course<Student> {
 	private TypeOfCourse typeOfCourse;
 	private String disciplineName;
+
 	private Integer credit;
 	private String disciplineCode;
 	private Integer ects;
 	private Vector<Student> enrolledStudents;
 	private Integer maxStudents;
 	
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, Integer credit, String disciplineCode, Integer ects,
-			Vector<Student> enrolledStudents, Integer maxStudents) {
-		super();
+	public Course(){
+		
+	}
+
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
+		this();
+
 		this.typeOfCourse = typeOfCourse;
 		this.disciplineName = disciplineName;
 		this.credit = credit;
@@ -39,7 +44,10 @@ public class Course<Student> {
 		this.disciplineName = disciplineName;
 	}
 
-	public Integer getCredit() {
+
+
+	public int getCredit() {
+
 		return credit;
 	}
 
