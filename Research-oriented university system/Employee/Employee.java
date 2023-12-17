@@ -1,6 +1,6 @@
 package Employee;
 
-public abstract class Employee extends User{
+public abstract class Employee extends User {
 	
 	private String id;
 	
@@ -32,13 +32,17 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
         Data.messages.add(m);
     }
 
-    public void makeRequest(String request) {
+    public void makeRequest(Employee request) {
         System.out.println("Making request: " + request);
+        
+        Data.request.add(request);
+        
         
     }
 
-    public void makeOrder(String order) {
+    public void makeOrder(TechSupportOrder order) {
         System.out.println("Making order: " + order);
+        Data.newOrders.add(order);
         
     }
 
