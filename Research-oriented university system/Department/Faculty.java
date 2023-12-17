@@ -19,14 +19,14 @@ public class Faculty {
 		this.school = school;
 	}
 	public Student getStudent() {
-		return students;
+		return (Student) students;
 	}
 	public void setStudents(Student students) {
-		this.students = students;
+		this.students = (List<Student>) students;
 	}
 	
-	public String getFacultyName() {
-		return school..;
+	public School getFacultyName() {
+		return school;
 	}
 	public Integer getStudents() {
 		return students.size();

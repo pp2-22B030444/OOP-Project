@@ -34,12 +34,12 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
 
     public void makeRequest(String request) {
         System.out.println("Making request: " + request);
-        /*Логика нужна*/
+        
     }
 
     public void makeOrder(String order) {
         System.out.println("Making order: " + order);
-        /*Логика нужна*/
+        
     }
 
 	@Override

@@ -47,7 +47,12 @@ public class Student extends User implements Comparable<Student>{
 		this.marksMap=marksMap;
 		// TODO Auto-generated constructor stub
 	}
-
+	public void registerForCourse(Course course) {
+		System.out.println();
+		
+	     
+		// TODO implement me	
+	}
 	public void viewCourses() {
 	    // TODO implement me
 	    System.out.println("Registered Courses:");
@@ -58,9 +63,7 @@ public class Student extends User implements Comparable<Student>{
 	                           ", ECTS: " + course.getEcts());
 	    }
 	}
-	public void RegisterForCourse(Course course) {
-		// TODO implement me	
-	}
+
 	public void  getTranscript() {
 		// TODO implement me	
 		

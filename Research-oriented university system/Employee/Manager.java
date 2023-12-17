@@ -3,17 +3,13 @@ package Employee ;
 import java.util.List;
 
 import Department.Course;
+import Department.Teacher;
 import Department.TypeOfCourse;
 import Students.Student;
 import proj.Database;
 import proj.Managers;
 import proj.User;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
 
 public class Manager extends Employee implements CanViewStudent
 {
@@ -24,8 +20,7 @@ public class Manager extends Employee implements CanViewStudent
 		super();
 	}
     
-	 public Manager(String id,String name, String surname, String birthDate, String phoneNumber, String username,
-	            String password, ManagerType managerType) {
+	 public Manager(String id,String name, String surname, String birthDate, String phoneNumber, String username,String password, ManagerType managerType) {
 	        super(id, name, surname, birthDate, phoneNumber, username, password);
 	        this.managerType = managerType;
 	    }
@@ -38,8 +33,8 @@ public class Manager extends Employee implements CanViewStudent
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects) {
-		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode,ects, null, ects);
+	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yerOfStudy ) {
+		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode,ects, null, ects,yerOfStudy);
 	    	for (Course course: Data.courses) {
 	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
 
@@ -58,13 +53,10 @@ public class Manager extends Employee implements CanViewStudent
 	
 
 	
-	public void assignCourseToTeachers(String courseId, String teacherName) {
+	public void assignCourseToTeachers(Course c, Teacher t) {
         for (Course course : Data.courses) {
-            if (course.getDisciplineCode().equals(courseId)) {
-
-                Course.teacher.add(teacherName);
-
-                course.teacher.add(teacherName);
+            if (course.getDisciplineCode().equals(c)) {
+                t.taughtCourses.add(c);    
 
             }
         }
@@ -96,47 +88,25 @@ public class Manager extends Employee implements CanViewStudent
 	        return ans;	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	public void createCourses() {
+		
+	}
 	public void ViewRequestsFromEmployees () {
 		// TODO implement me	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+
 	
 	public void createAcademicReport(List<Student> students) {
 		// TODO implement me	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public boolean registerForCourse(Student student , Course course ) {
 		// TODO implement me
 		return false;	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+
 	public boolean isEligibleForCourse(Student student , Course course) {
 		// TODO implement me
 		return false;	

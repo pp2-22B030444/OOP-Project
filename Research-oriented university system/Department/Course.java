@@ -11,8 +11,9 @@ public class Course<Student> {
 	private Integer ects;
 	private Vector<Student> enrolledStudents;
 	private Integer maxStudents;
-	
+	int yearOfStudy;
 	public Course(){
+	
 		
 	}
 
@@ -27,7 +28,18 @@ public class Course<Student> {
 		this.enrolledStudents = enrolledStudents;
 		this.maxStudents = maxStudents;
 	}
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy) {
+		this();
 
+		this.typeOfCourse = typeOfCourse;
+		this.disciplineName = disciplineName;
+		this.credit = credit;
+		this.disciplineCode = disciplineCode;
+		this.ects = ects;
+		this.enrolledStudents = enrolledStudents;
+		this.maxStudents = maxStudents;
+		this.yearOfStudy=yearOfStudy;
+	}
 	public TypeOfCourse getTypeOfCourse() {
 		return typeOfCourse;
 	}
@@ -93,5 +105,13 @@ public class Course<Student> {
 		}
 		enrolledStudents.add(student);
 	}
+
+	@Override
+	public String toString() {
+		return "Course [typeOfCourse=" + typeOfCourse + ", disciplineName=" + disciplineName + ", credit=" + credit
+				+ ", disciplineCode=" + disciplineCode + ", ects=" + ects + ", enrolledStudents=" + enrolledStudents
+				+ ", maxStudents=" + maxStudents + ", yearOfStudy=" + yearOfStudy + "]";
+	}
+	
 	
 }
