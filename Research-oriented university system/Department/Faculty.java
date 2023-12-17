@@ -18,7 +18,7 @@ public class Faculty {
 	public void setSchool(School school) {
 		this.school = school;
 	}
-	public Student getStudents() {
+	public Student getStudent() {
 		return students;
 	}
 	public void setStudents(Student students) {
@@ -26,7 +26,7 @@ public class Faculty {
 	}
 	
 	public String getFacultyName() {
-		return school.getName();
+		return school..;
 	}
 	public Integer getStudents() {
 		return students.size();

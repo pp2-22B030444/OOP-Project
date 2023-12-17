@@ -34,7 +34,7 @@ public class Manager extends Employee implements CanViewStudent
 	        return this.managerType;
 	    }
 
-	 public void setManagerType(Manager managerType) {
+	 public void setManagerType(ManagerType managerType) {
 	        this.managerType = managerType;
 	    }
 	 
@@ -56,24 +56,11 @@ public class Manager extends Employee implements CanViewStudent
 		// TODO implement me	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+
 	
 	public void assignCourseToTeachers(String courseId, String teacherName) {
         for (Course course : Data.courses) {
-            if (course.getCourseId().equals(courseId)) {
+            if (course.getDisciplineCode().equals(courseId)) {
 
                 Course.teacher.add(teacherName);
 
@@ -83,7 +70,7 @@ public class Manager extends Employee implements CanViewStudent
         }
     }
 	
-	public String ViewStudentInfo () {
+	public String viewStudentInfo () {
 
 		 int i = 0;
 	        String ans = "";
@@ -99,7 +86,7 @@ public class Manager extends Employee implements CanViewStudent
 	                + "\n    Year of Study: " + st.getYearOfStudy()
 
 	                + "\n    Faculty: " + st.getSchool()
-	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n";
+	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n"
 
 	                + "\n    Faculty: " + st.getSchool()
 	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n";
@@ -162,11 +149,6 @@ public class Manager extends Employee implements CanViewStudent
 	}
 
 
-	@Override
-	public void viewStudentInfo() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }

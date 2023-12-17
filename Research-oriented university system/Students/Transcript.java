@@ -16,7 +16,7 @@ public class Transcript{
 	}
 	
 	public String showTranscript() {
-		return " Disipline code: "+course.getDisciplineСode()+" Disipline name: "+course.getDisciplineName()+" Credits: "+course.getCredit()+" Ects: "+course.getEcts()+" Digit grade: "+marks.getResult()+" Grade: "+marks.getGrade()+" GPA: "+marks.getGpa() ;
+		return " Disipline code: "+course.getDisciplineCode()+" Disipline name: "+course.getDisciplineName()+" Credits: "+course.getCredit()+" Ects: "+course.getEcts()+" Digit grade: "+marks.getResult()+" Grade: "+marks.getGrade()+" GPA: "+marks.getGpa() ;
 		// TODO implement me	 
 	}
 	

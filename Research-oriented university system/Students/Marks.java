@@ -26,7 +26,7 @@ public class Marks{
 	}
 	public String showMark() {
 		// TODO implement me
-		return "Disipline code: "+ course.getDisciplineСode() + " Disipline name: "+ course.getDisciplineName() + " Fist attestation: "+this.firstAtt+"/30" + " Second attestation: "+this.secountAtt+"/30" +" Final exam: "+ this.finalGrade+"/40" ;	
+		return "Disipline code: "+ course.getDisciplineCode() + " Disipline name: "+ course.getDisciplineName() + " Fist attestation: "+this.firstAtt+"/30" + " Second attestation: "+this.secountAtt+"/30" +" Final exam: "+ this.finalGrade+"/40" ;	
 	}
 	
 	public double getResult() {

@@ -18,11 +18,11 @@ public class Admin extends User implements Serializable
 		
 	}
 	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR);
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR, null, null);
         Data.users.add(st);
     }
     public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
-        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName,password);
+        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName,password, null, null, null);
         Data.users.add(t);
     }
     public void createManager(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,

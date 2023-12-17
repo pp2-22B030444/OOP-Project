@@ -165,7 +165,7 @@ public class User implements NewsObserver, Cloneable,Serializable
 	
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", surname=" + surname + ", birthDate=" + birthDate + ", phoneNumber="
+		return "[Name=" + name + ", Surname=" + surname + ", BirthDate=" + birthDate + ", Phone Number="
 				+ phoneNumber  + "]";
 	}
 	

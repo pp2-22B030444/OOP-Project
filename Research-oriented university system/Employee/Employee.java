@@ -44,9 +44,7 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", getPassword()=" + getPassword() + ", getUserName()=" + getUserName()
-				+ ", getName()=" + getName() + ", getSurname()=" + getSurname() + ", getBirthDate()=" + getBirthDate()
-				+ ", getPhoneNumber()=" + getPhoneNumber() + ", chooseLanguage()=" + chooseLanguage() + "]";
+		return "[Id=" + id + super.toString() + "]";
 	}
 
 }

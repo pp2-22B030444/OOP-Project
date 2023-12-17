@@ -16,7 +16,9 @@ public  interface CanViewStudent
 	 * @ordered
 	 */
 	
-	public void viewStudentInfo() ;
+	public String viewStudentInfo() ;
+
+	
 	
 	
 }

@@ -23,8 +23,9 @@ import Employee.Data;
 import Employee.Language;
 import Employee.User;
 
-public class Student extends User{
+public class Student extends User implements Comparable<Student>{
 	
+	Marks mark;
 	private String id;
 	public School school;
 	public int yearOfStudy;	
@@ -51,7 +52,7 @@ public class Student extends User{
 	    // TODO implement me
 	    System.out.println("Registered Courses:");
 	    for (Course course : registeredCourses) {
-	        System.out.println("Course Code: " + course.getDisciplineСode() +
+	        System.out.println("Course Code: " + course.getDisciplineCode() +
 	                           ", Course Name: " + course.getDisciplineName() +
 	                           ", Credits: " + course.getCredit() +
 	                           ", ECTS: " + course.getEcts());
@@ -109,7 +110,7 @@ public class Student extends User{
             System.out.println("How do you rate your teachers?");
             for (Teacher teacherName :  Data.teacherRatings.keySet()) {
             	if (registeredCourses.contains(teacherName.taughtCourses)) {
-	                System.out.print("Rate for " + teacherName.getName() + ": ");
+	                System.out.print("Rate for " + ((User) teacherName).getName() + ": ");
 	                int rating = Integer.parseInt(reader.readLine());
 	                Data.teacherRatings.put(teacherName, rating);
                 }
@@ -215,7 +216,38 @@ public class Student extends User{
 	@Override
 	public String toString() {
 		return "Student [id=" + id +super.toString() + ", school=" + school + ", yearOfStudy=" + yearOfStudy
-				+ ", graduateStudent=" + graduateStudent +"]";
+				+ ", graduateStudent=" + graduateStudent +"]";}
+	
+	public Double calculateGpa() {
+	    Double gradePoints = 0.0;
+	    Double credit =0.0;
+	    for (Course course : registeredCourses) {
+	        // Assuming getCredit() and getGpa() are methods in the Course interface
+	        if (course != null ) {
+	        	Marks marksForCourse = getMarksForCourse(course);
+	        	gradePoints += course.getCredit() * marksForCourse.getGpa();
+	        	credit+=course.getCredit();
+	        	
+	        }else {
+                // Handle the case where marksForCourse is null
+                // You might want to log a warning or take some other action
+                System.out.println("Warning: Marks for course is null");
+            }
+	    }
+
+	    return gradePoints/credit;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		// TODO Auto-generated method stub
+		if(this.calculateGpa()>o.calculateGpa()) {
+			return 1;
+		}
+		if(this.calculateGpa()<o.calculateGpa()) {
+			return -1;
+		}
+		return 0;
 	}
 	
 	
