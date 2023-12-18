@@ -3,12 +3,12 @@ package Department;
 import java.util.Vector;
 
 public class Course<Student> {
-	private TypeOfCourse typeOfCourse;
-	private String disciplineName;
-
-	private Integer credit;
+	
 	private String disciplineCode;
+	private String disciplineName;
+	private Integer credit;
 	private Integer ects;
+	private TypeOfCourse typeOfCourse;
 	private Vector<Student> enrolledStudents;
 	private Integer maxStudents;
 	int yearOfStudy;
@@ -17,7 +17,7 @@ public class Course<Student> {
 		
 	}
 
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents) {
+	public Course(String disciplineСode, String disciplineName,  int credit, int ects,TypeOfCourse typeOfCourse, Vector<Student> enrolledStudents, int maxStudents) {
 		this();
 
 		this.typeOfCourse = typeOfCourse;
@@ -55,9 +55,7 @@ public class Course<Student> {
 	public void setDisciplineName(String disciplineName) {
 		this.disciplineName = disciplineName;
 	}
-
-
-
+	
 	public int getCredit() {
 
 		return credit;
@@ -108,10 +106,13 @@ public class Course<Student> {
 
 	@Override
 	public String toString() {
-		return "Course [typeOfCourse=" + typeOfCourse + ", disciplineName=" + disciplineName + ", credit=" + credit
-				+ ", disciplineCode=" + disciplineCode + ", ects=" + ects + ", enrolledStudents=" + enrolledStudents
-				+ ", maxStudents=" + maxStudents + ", yearOfStudy=" + yearOfStudy + "]";
+		return "Course [disciplineCode=" + disciplineCode + ", disciplineName=" + disciplineName + ", credit=" + credit
+				+ ", ects=" + ects + ", typeOfCourse=" + typeOfCourse + "]";
 	}
+
+	
+    
+	
 	
 	
 }

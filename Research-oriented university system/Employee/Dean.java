@@ -7,9 +7,11 @@ public class Dean extends Employee {
 	        System.out.println(requestData);
 	    }
 	}
-	public boolean signToRequest() {
-		return false;
-		
+	public boolean signToRequest(Employee request) {
+		if(request!=null) {
+			return true;
+		}
+		return false;	
 	}
     public void viewComplaints() {
     	

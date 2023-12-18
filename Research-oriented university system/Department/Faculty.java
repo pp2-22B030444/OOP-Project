@@ -7,8 +7,11 @@ import Students.Student;
 public class Faculty {
 	public School school;
 	public List<Student> students;
+	public Faculty() {
+		
+	}
 	public Faculty(School school, List<Student> students) {
-		super();
+		
 		this.school = school;
 		this.students = students;
 	}
@@ -25,9 +28,6 @@ public class Faculty {
 		this.students = (List<Student>) students;
 	}
 	
-	public School getFacultyName() {
-		return school;
-	}
 	public Integer getStudents() {
 		return students.size();
 	}

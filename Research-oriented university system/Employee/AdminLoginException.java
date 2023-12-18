@@ -2,7 +2,9 @@
 package Employee;
 
 public class AdminLoginException extends LoginException {
-    public AdminLoginException(String message) {
+    private static final long serialVersionUID = 1L;
+
+	public AdminLoginException(String message) {
         super(message);
     }
 }

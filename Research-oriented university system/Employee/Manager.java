@@ -1,5 +1,6 @@
 package Employee ;
 
+import java.util.HashMap;
 import java.util.List;
 
 import Department.Course;
@@ -42,15 +43,24 @@ public class Manager extends Employee implements CanViewStudent
 	        	}
 	    	}	
 		}
-	 public String viewRequestForRegistration() {
-	        return Data.studentRegistration.toString();
+	 public HashMap<Student, Course> viewRequestForRegistration() {
+	        return Data.studentRegistration;
 	    }
 		
 	
-	public void approveStudentRegistration(Student student, Course parameter) {
-		// TODO implement me	
-	}
-	
+	 public void approveStudentRegistration(Student student) {
+		    int credits = 0;
+
+		    // Calculate total credits for courses the student is registered for
+		    for (Course course : student.getRegisteredCourses()) {
+		        credits += course.getCredit();
+		    }
+		    if (credits <= 21) {
+		        System.out.println("Registration for the courses is approved");
+		    } else {
+		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
+		    }
+		}
 
 	
 	public void assignCourseToTeachers(Course c, Teacher t) {
@@ -61,38 +71,63 @@ public class Manager extends Employee implements CanViewStudent
             }
         }
     }
-	
-	public String viewStudentInfo () {
+	public String viewTeacherInfo() {
+		StringBuilder ans = new StringBuilder();
+	    int i = 0;
 
-		 int i = 0;
-	        String ans = "";
-	        for (User user : Data.users) {
-	            if(user instanceof Student) {
-	                Student st = (Student) user;
-	                i ++;
-	                ans += i + ") Student Name: " + st.getName()
-	                + "\n    Student surname: " + st.getSurname() 
-	                + "\n    Birth Date: " + st.getBirthDate()
-	                + "\n    Email: " + st.getUserName()
-	                + "\n    ID: " + st.getId()
-	                + "\n    Year of Study: " + st.getYearOfStudy()
+	    for (User user : Data.users) {
+	        if (user instanceof Teacher) {
+	            Teacher st = (Teacher) user;
+	            i++;
 
-	                + "\n    Faculty: " + st.getSchool()
-	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n"
-
-	                + "\n    Faculty: " + st.getSchool()
-	                + "\n    Degree: " + st.getGraduateStudent() + "\n\n";
-
-	            }
+	            ans.append(i).append(") Teacher Name: ").append(st.getName())
+	                    .append("\n    Tiacher Surname: ").append(st.getSurname())
+	                    .append("\n    Birth Date: ").append(st.getBirthDate())
+	                    .append("\n    Email: ").append(st.getUserName())
+	                    .append("\n    ID: ").append(st.getId())
+	                    .append("\n    Title: ").append(st.getTeacherTitle())
+	                    .append("\n    Taught Courses: ").append(st.getTaughtCourses())
+	                    .append("\n\n");
 	        }
-	        return ans;	
+	    }
+
+	    return ans.toString();
+		
+		
 	}
-	
+	public String viewStudentInfo() {
+	    StringBuilder ans = new StringBuilder();
+	    int i = 0;
+
+	    for (User user : Data.users) {
+	        if (user instanceof Student) {
+	            Student st = (Student) user;
+	            i++;
+
+	            ans.append(i).append(") Student Name: ").append(st.getName())
+	                    .append("\n    Student surname: ").append(st.getSurname())
+	                    .append("\n    Birth Date: ").append(st.getBirthDate())
+	                    .append("\n    Email: ").append(st.getUserName())
+	                    .append("\n    ID: ").append(st.getId())
+	                    .append("\n    Year of Study: ").append(st.getYearOfStudy())
+	                    .append("\n    Faculty: ").append(st.getSchool())
+	                    .append("\n    Degree: ").append(st.getGraduateStudent())
+	                    .append("\n\n");
+	        }
+	    }
+
+	    return ans.toString();
+	}
+
 	public void createCourses() {
 		
 	}
 	public void ViewRequestsFromEmployees () {
-		// TODO implement me	
+		// TODO implement me
+		System.out.println("Here is the list of requests");
+		for(Employee e :Data.request) {
+			System.out.println(e);
+		}
 	}
 	
 
@@ -102,15 +137,15 @@ public class Manager extends Employee implements CanViewStudent
 	}
 	
 	
-	public boolean registerForCourse(Student student , Course course ) {
-		// TODO implement me
-		return false;	
-	}
-
-	public boolean isEligibleForCourse(Student student , Course course) {
-		// TODO implement me
-		return false;	
-	}
+//	public boolean registerForCourse(Student student , Course course ) {
+//		// TODO implement me
+//		return false;	
+//	}
+//
+//	public boolean isEligibleForCourse(Student student , Course course) {
+//		// TODO implement me
+//		return false;	
+//	}
 	
 
 	@Override

@@ -28,11 +28,5 @@ public class Lesson {
 		this.course = course;
 	}
 	
-	public TypeOfLesson getLessonType() {
-		return type;
-	}
 	
-	public Course getCource() {
-		return course;
-	}
 }

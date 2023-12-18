@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,12 +48,76 @@ public class Student extends User implements Comparable<Student>{
 		this.marksMap=marksMap;
 		// TODO Auto-generated constructor stub
 	}
-	public void registerForCourse(Course course) {
-		System.out.println();
-		
-	     
-		// TODO implement me	
-	}
+	public void registerForCourse() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // Display available courses
+        System.out.println("Available Courses:");
+        System.out.println("1. Major Courses");
+        displayCourses(Data.major);
+        System.out.println("2. Minor Courses");
+        displayCourses(Data.minor);
+        System.out.println("3. Free Courses");
+        displayCourses(Data.free);
+
+        int totalCredits = 0;
+        try {
+            while (totalCredits <= 21) {
+                System.out.println("Enter the course number to register (or enter 0 to finish):");
+                int courseNumber = Integer.parseInt(reader.readLine());
+
+                if (courseNumber == 0) {
+                    break; // Exit the loop if the student enters 0
+                }
+
+                Vector<Course> chosenCourses = getChosenCourses(courseNumber);
+
+                if (chosenCourses != null) {
+                    System.out.println("Enter the number of courses to register:");
+                    int numCourses = Integer.parseInt(reader.readLine());
+
+                    for (int i = 0; i < numCourses && i < chosenCourses.size(); i++) {
+                        Course course = chosenCourses.get(i);
+                        if (totalCredits + course.getCredit() <= 21) {
+                            registeredCourses.add(course);
+                            totalCredits += course.getCredit();
+                            System.out.println("Registered for course: " + course.getDisciplineName());
+                        } else {
+                            System.out.println("Cannot register. Exceeds credit limit.");
+                            break; // Exit the loop if the credit limit is exceeded
+                        }
+                    }
+                } else {
+                    System.out.println("Invalid course number. Please choose a valid course.");
+                }
+            }
+            System.out.println("Registration completed. Total credits: " + totalCredits);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Vector<Course> getChosenCourses(int courseNumber) {
+        switch (courseNumber) {
+            case 1:
+                return Data.major;
+            case 2:
+                return Data.minor;
+            case 3:
+                return Data.free;
+            default:
+                return null;
+        }
+    }
+
+    private void displayCourses(Vector<Course> courses) {
+        int index = 1;
+        for (Course course : courses) {
+            System.out.println(index + ". " + course.getDisciplineName() + " - Credits: " + course.getCredit());
+            index++;
+        }
+    }
+
 	public void viewCourses() {
 	    // TODO implement me
 	    System.out.println("Registered Courses:");
@@ -64,18 +129,37 @@ public class Student extends User implements Comparable<Student>{
 	    }
 	}
 
-	public void  getTranscript() {
-		// TODO implement me	
-		
+//	public void  getTranscript() {
+//		// TODO implement me	
+//		
+//	}
+//	public void viewTranscript() {
+//        // TODO implement me
+//        for (Course course : registeredCourses) {
+//            Marks marksForCourse = getMarksForCourse(course);
+//            Transcript t = new Transcript(course, marksForCourse);
+//            System.out.println(t.showTranscript());
+//        }
+//    }
+	
+	public List<Transcript> getTranscript() {
+	    List<Transcript> transcripts = new ArrayList<>();
+
+	    for (Course course : registeredCourses) {
+	        Marks marksForCourse = getMarksForCourse(course);
+	        Transcript transcript = new Transcript(course, marksForCourse);
+	        transcripts.add(transcript);
+	    }
+
+	    return transcripts;
 	}
 	public void viewTranscript() {
-        // TODO implement me
-        for (Course course : registeredCourses) {
-            Marks marksForCourse = getMarksForCourse(course);
-            Transcript t = new Transcript(course, marksForCourse);
-            System.out.println(t.showTranscript());
-        }
-    }
+	    List<Transcript> transcripts = getTranscript();
+
+	    for (Transcript transcript : transcripts) {
+	        System.out.println(transcript.showTranscript());
+	    }
+	}
 
     public void viewMarks() {
         // TODO implement me
@@ -173,7 +257,7 @@ public class Student extends User implements Comparable<Student>{
     
 	@Override
 	public int hashCode() {
-		return Objects.hash( graduateStudent, id, marksMap, registeredCourses, school, teacherRatings,
+		return Objects.hash( graduateStudent, id, marksMap, registeredCourses, school, Data.teacherRatings,
 				yearOfStudy);
 	}
 	@Override
@@ -216,6 +300,13 @@ public class Student extends User implements Comparable<Student>{
 	public void setGraduateStudent(GraduateStudent graduateStudent) {
 		this.graduateStudent = graduateStudent;
 	}
+	
+	public Vector<Course> getRegisteredCourses() {
+		return registeredCourses;
+	}
+	public void setRegisteredCourses(Vector<Course> registeredCourses) {
+		this.registeredCourses = registeredCourses;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id +super.toString() + ", school=" + school + ", yearOfStudy=" + yearOfStudy
@@ -225,22 +316,21 @@ public class Student extends User implements Comparable<Student>{
 	    Double gradePoints = 0.0;
 	    Double credit =0.0;
 	    for (Course course : registeredCourses) {
-	        // Assuming getCredit() and getGpa() are methods in the Course interface
+	        
 	        if (course != null ) {
 	        	Marks marksForCourse = getMarksForCourse(course);
 	        	gradePoints += course.getCredit() * marksForCourse.getGpa();
 	        	credit+=course.getCredit();
 	        	
 	        }else {
-                // Handle the case where marksForCourse is null
-                // You might want to log a warning or take some other action
+               
                 System.out.println("Warning: Marks for course is null");
             }
 	    }
 
 	    return gradePoints/credit;
 	}
-
+    
 	@Override
 	public int compareTo(Student o) {
 		// TODO Auto-generated method stub

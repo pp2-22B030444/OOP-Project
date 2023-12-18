@@ -62,8 +62,6 @@ public class Teacher extends Employee implements CanViewStudent{
 		this.taughtCourses = taughtCourses;
 	}
 
-
-
 	public void viewCourses() {
 		taughtCourses.forEach(System.out:: println);
 	}

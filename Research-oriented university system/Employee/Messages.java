@@ -6,7 +6,8 @@ import java.util.Date;
 
 public class Messages implements Serializable {
     
-    private String messageFrom;
+	private static final long serialVersionUID = 1L;
+	private String messageFrom;
     private String messageTo;
     private String title;
     private String text;
