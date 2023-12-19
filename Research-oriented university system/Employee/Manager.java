@@ -2,6 +2,7 @@ package Employee ;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import Department.Course;
 import Department.Teacher;
@@ -14,7 +15,7 @@ import proj.User;
 
 public class Manager extends Employee implements CanViewStudent
 {
-	
+	Scanner in = new Scanner(System.in);
 	private ManagerType managerType;
 	
 	public Manager(){
@@ -34,8 +35,8 @@ public class Manager extends Employee implements CanViewStudent
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yerOfStudy ) {
-		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode,ects, null, ects,yerOfStudy);
+	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy ) {
+		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode, ects,yearOfStudy);
 	    	for (Course course: Data.courses) {
 	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
 
