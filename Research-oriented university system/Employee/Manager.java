@@ -2,6 +2,7 @@ package Employee ;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import Department.Course;
@@ -49,19 +50,45 @@ public class Manager extends Employee implements CanViewStudent
 	    }
 		
 	
-	 public void approveStudentRegistration(Student student) {
-		    int credits = 0;
+	 public String approveStudentRegistration(String studentId, String DisciplineCode, String approve) {
+		 	Student st = new Student();
+		 	for(Student s : Data.getStudentsList()) {
+		 		if(s.getId().equals(studentId)) {
+		 			st = s;
+		 		}
+		 	}
+		    Course c = new Course();
+	        for (Course course : Data.courses) {
+	            if(course.getDisciplineCode().equals(DisciplineCode)) {
+	                c = course;
+	            }
+	        }
 
+	        for(Entry<Student, Course> item : Data.studentRegistration.entrySet()) {
+	            if(item.getKey().equals(studentId) && item.getValue().equals(c)) {
+	                if(approve.equals("ACCEPT")) {
+	                    Data.studentRegistration.remove(studentId, c);
+	                    st.increaseCredits(c.getCredit());
+	                    st.registeredCourses.add(c);
+	                    return "Student's registration is accepted";
+	                } else if(approve.equals("REJECT")) {
+	                    return "Student's registration is rejected";
+	                }
+	            } else return "This order does not exist";
+	        }
+	        return "Orders does not exist";
+	    }
+	 
 		    // Calculate total credits for courses the student is registered for
-		    for (Course course : student.getRegisteredCourses()) {
-		        credits += course.getCredit();
-		    }
-		    if (credits <= 21) {
-		        System.out.println("Registration for the courses is approved");
-		    } else {
-		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
-		    }
-		}
+//		    for (Course course : student.getRegisteredCourses()) {
+//		        credits += course.getCredit();
+//		    }
+//		    if (credits <= 21) {
+//		        System.out.println("Registration for the courses is approved");
+//		    } else {
+//		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
+//		    }
+//		}
 
 	
 	public void assignCourseToTeachers(Course c, Teacher t) {
