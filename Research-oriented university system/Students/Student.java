@@ -32,6 +32,7 @@ public class Student extends User implements Comparable<Student>{
 	public int yearOfStudy;	
 	public GraduateStudent graduateStudent;
 	public Vector<Course> registeredCourses;
+	private Integer chosenCredits = 0;
 	public Map<Course, Marks> marksMap;
 	public Student(){
 		super();
@@ -342,7 +343,6 @@ public class Student extends User implements Comparable<Student>{
 		}
 		return 0;
 	}
-	
-	
-}
-
+	public void increaseCredits(int creditCount) {
+        this.chosenCredits += creditCount;
+    }
