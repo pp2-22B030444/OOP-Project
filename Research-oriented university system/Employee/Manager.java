@@ -1,5 +1,6 @@
 package Employee ;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -14,10 +15,11 @@ import proj.Managers;
 import proj.User;
 
 
-public class Manager extends Employee implements CanViewStudent
+public class Manager extends Employee implements CanViewStudent, NewsObserver
 {
 	Scanner in = new Scanner(System.in);
 	private ManagerType managerType;
+	private NewsPublisher newsPublisher;
 	
 	public Manager(){
 		super();
@@ -26,6 +28,8 @@ public class Manager extends Employee implements CanViewStudent
 	 public Manager(String id,String name, String surname, String birthDate, String phoneNumber, String username,String password, ManagerType managerType) {
 	        super(id, name, surname, birthDate, phoneNumber, username, password);
 	        this.managerType = managerType;
+	        this.newsPublisher = new NewsPublisher();
+	        this.newsPublisher.addObserver(this);
 	    }
 
 	 public ManagerType getManagerType() {
@@ -175,6 +179,26 @@ public class Manager extends Employee implements CanViewStudent
 //		return false;	
 //	}
 	
+	public void addNews(String topic, String text, Date date) {
+        newsPublisher.publishNews(topic, text, date);
+    }
+	
+	public void removeNews(News news) {
+        newsPublisher.removeNews(news);
+        
+    }
+	
+	public void updateNews(News oldNews, News newNews) {
+        
+        newsPublisher.removeNews(oldNews);
+        newsPublisher.publishNews(newNews.getTopic(), newNews.getText(), newNews.getDate()); 
+        
+    }
+	
+	public void update(News news) {
+        System.out.println("Manager received a news update:");
+        System.out.println(news);
+    }
 
 	@Override
 	public String toString() {
