@@ -196,8 +196,8 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
     }
 	
 	public void update(News news) {
-        System.out.println("Manager received a news update:");
-        System.out.println(news);
+            return "Manager received a news update:" + " " news;
+            
     }
 
 	@Override
