@@ -1,7 +1,6 @@
 package Students ;
 
 import java.io.BufferedReader;
-import java.io.DataInput;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,15 +12,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Vector;
-
-import javax.annotation.processing.SupportedSourceVersion;
 
 import Department.Course;
 import Department.Teacher;
 import Employee.Data;
-import Employee.Language;
 import Employee.User;
 
 public class Student extends User implements Comparable<Student>{
@@ -344,6 +339,10 @@ public class Student extends User implements Comparable<Student>{
 	public void increaseCredits(int creditCount) {
         this.chosenCredits += creditCount;
     }
-
+	public double getResult(Course course) {
+        Marks marksForCourse = getMarksForCourse(course);  
+        return (marksForCourse != null) ? marksForCourse.getResult() : 0.0;
+    }
+    
 }
 

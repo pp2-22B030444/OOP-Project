@@ -72,12 +72,12 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	@Override
 	public String toString() {
-		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle + ", urgencyLevel=" + urgencyLevel + ", taughtCourses="
+		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle  + ", taughtCourses="
 				+ taughtCourses + "]";
 	}
 
 	@Override
-	public String viewStudentInfo () {
+	public void viewStudentInfo () {
 
 		 int i = 0;
 	        String ans = "";
@@ -100,7 +100,7 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	            }
 	        }
-	        return ans;	
+	        return;	
 	}
 
 

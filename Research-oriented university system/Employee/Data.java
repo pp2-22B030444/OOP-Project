@@ -67,7 +67,16 @@ public class Data implements Serializable {
         }
         return s;
     }
-   
+    public static ArrayList<Teacher> getTeacherList() {
+    	ArrayList<Teacher> s = new ArrayList<>();
+        for (User user: users) {
+            if (user instanceof Teacher) {
+                Teacher teacher = (Teacher) user;
+                s.add(teacher);
+            }
+        }
+        return s;
+    }
     public static ArrayList<Student> getStudentsListByName() {
     	ArrayList<Student> s = new ArrayList<>();
         for (User user: users) {

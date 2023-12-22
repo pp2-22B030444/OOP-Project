@@ -2,6 +2,7 @@ package Employee;
 
 public abstract class Employee extends User {
 	
+	
 	private String id;
 	public Employee(){
 		
@@ -39,7 +40,7 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
 
 	@Override
 	public String toString() {
-		return "[Id=" + id + super.toString() + "]";
+		return "Id=" + id + super.toString() ;
 	}
 
 }

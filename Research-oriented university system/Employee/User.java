@@ -145,10 +145,8 @@ public class User implements NewsObserver, Cloneable,Serializable
 	  @Override
 		public void update(News news) {
 		        System.out.println("Received a news update:");
-		        System.out.println(news);
-		    
+		        System.out.println(news);   
 		}
-
 		public boolean equals(Object o) {
 			if(this == o) return true;
 			if(o == null) return false;
@@ -157,16 +155,15 @@ public class User implements NewsObserver, Cloneable,Serializable
 			User user = (User)o;
 			 return Objects.equals(userName, user.userName) && Objects.equals(language, user.language) && Objects.equals(getPassword(), user.getPassword());
 		}
-			
-
+		
 		protected Object clone() throws CloneNotSupportedException {
 			return super.clone();
 		}
 	
 	@Override
 	public String toString() {
-		return "[Name=" + name + ", Surname=" + surname + ", BirthDate=" + birthDate + ", Phone Number="
-				+ phoneNumber  + "]";
+		return "Name=" + name + ", Surname=" + surname + ", BirthDate=" + birthDate + ", Phone Number="
+				+ phoneNumber ;
 	}
 	
 

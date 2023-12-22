@@ -2,7 +2,7 @@ package Employee;
 
 import java.util.Comparator;
 
-public class UserSureNameComparator implements Comparator<User> {
+public class UserSurNameComparator implements Comparator<User> {
 
 	@Override
 	public int compare(User o1, User o2) {

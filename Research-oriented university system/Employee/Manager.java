@@ -1,5 +1,10 @@
 package Employee ;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +15,7 @@ import Department.Course;
 import Department.Teacher;
 import Department.TypeOfCourse;
 import Students.Student;
+import Students.StudentIdComparator;
 
 
 
@@ -87,53 +93,101 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
             }
         }
     }
-	public String viewTeacherInfo() {
-		StringBuilder ans = new StringBuilder();
-	    int i = 0;
+	public void viewTeacherInfo() {
+		List<Teacher> teacherList = Data.getTeacherList();
+		System.out.println("Select how to sort Students:"); 
+        System.out.println("1. By Name."); 
+        System.out.println("2. By Surname."); 
+        System.out.println("3. By ID.");  
+        System.out.println("4. Exit."); 
 
-	    for (User user : Data.users) {
-	        if (user instanceof Teacher) {
-	            Teacher st = (Teacher) user;
-	            i++;
+       
+		try { 
+           ObjectInputStream ois = new ObjectInputStream(System.in); 
+           int choice = ois.readInt(); 
 
-	            ans.append(i).append(") Teacher Name: ").append(st.getName())
-	                    .append("\n    Tiacher Surname: ").append(st.getSurname())
-	                    .append("\n    Birth Date: ").append(st.getBirthDate())
-	                    .append("\n    Email: ").append(st.getUserName())
-	                    .append("\n    ID: ").append(st.getId())
-	                    .append("\n    Title: ").append(st.getTeacherTitle())
-	                    .append("\n    Taught Courses: ").append(st.getTaughtCourses())
-	                    .append("\n\n");
-	        }
-	    }
+           switch (choice) { 
+               case 1: 
+            	   Collections.sort(teacherList, new UserNameComparator());
+                   break; 
+               case 2: 
+            	   Collections.sort(teacherList, new UserSurNameComparator());
+                   break; 
+               case 3: 
+            	   Collections.sort(teacherList, new TeacherIdComparator()); 
+                   break;
+               case 5: 
+                   break;    
+               default: 
+                   System.out.println("Invalid choice..."); 
+           } 
+       } catch (IOException e) { 
+           e.printStackTrace(); 
+       } 
 
-	    return ans.toString();
-		
-		
-	}
-	public String viewStudentInfo() {
-	    StringBuilder ans = new StringBuilder();
-	    int i = 0;
+		System.out.println(teacherList);
+   } 
+	
+	public void viewStudentInfo() {
+		List<Student> studentsList = Data.getStudentsList();
+		System.out.println("Select how to sort Students:"); 
+        System.out.println("1. By Name."); 
+        System.out.println("2. By Surname."); 
+        System.out.println("3. By ID."); 
+        System.out.println("4. By GPA."); 
+        System.out.println("5. Exit."); 
 
-	    for (User user : Data.users) {
-	        if (user instanceof Student) {
-	            Student st = (Student) user;
-	            i++;
+       
+		try { 
+           ObjectInputStream ois = new ObjectInputStream(System.in); 
+           int choice = ois.readInt(); 
 
-	            ans.append(i).append(") Student Name: ").append(st.getName())
-	                    .append("\n    Student surname: ").append(st.getSurname())
-	                    .append("\n    Birth Date: ").append(st.getBirthDate())
-	                    .append("\n    Email: ").append(st.getUserName())
-	                    .append("\n    ID: ").append(st.getId())
-	                    .append("\n    Year of Study: ").append(st.getYearOfStudy())
-	                    .append("\n    Faculty: ").append(st.getSchool())
-	                    .append("\n    Degree: ").append(st.getGraduateStudent())
-	                    .append("\n\n");
-	        }
-	    }
+           switch (choice) { 
+               case 1: 
+            	   Collections.sort(studentsList, new UserNameComparator());
+                   break; 
+               case 2: 
+            	   Collections.sort(studentsList, new UserSurNameComparator());
+                   break; 
+               case 3: 
+            	   Collections.sort(studentsList, new StudentIdComparator()); 
+                   break;
+               case 4: 
+            	   Collections.sort(studentsList); 
+                   break;
+               case 5: 
+                   break;    
+               default: 
+                   System.out.println("Invalid choice..."); 
+           } 
+       } catch (IOException e) { 
+           e.printStackTrace(); 
+       } 
 
-	    return ans.toString();
-	}
+		System.out.println(studentsList);
+   } 
+	    	
+//	    StringBuilder ans = new StringBuilder();
+//	    int i = 0;
+//
+//	    for (User user : Data.users) {
+//	        if (user instanceof Student) {
+//	            Student st = (Student) user;
+//	            i++;
+//
+//	            ans.append(i).append(") Student Name: ").append(st.getName())
+//	                    .append("\n    Student surname: ").append(st.getSurname())
+//	                    .append("\n    Birth Date: ").append(st.getBirthDate())
+//	                    .append("\n    Email: ").append(st.getUserName())
+//	                    .append("\n    ID: ").append(st.getId())
+//	                    .append("\n    Year of Study: ").append(st.getYearOfStudy())
+//	                    .append("\n    Faculty: ").append(st.getSchool())
+//	                    .append("\n    Degree: ").append(st.getGraduateStudent())
+//	                    .append("\n\n");
+//	        }
+//	    }
+//
+//	    return ans.toString();
 
 	public void createCourses() {
 		
@@ -146,28 +200,51 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 		}
 	}
 	
-	public void createAcademicReport(List<Student> students) {
-		// TODO implement me	
-	}
+	
+	public void createAcademicReport() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter the course name:");
 
-	public boolean registerForCourse() {
-		// TODO implement me
-		
-		return false;	
-	}
+        Course selectedCourse = null;
+
+        try {
+            String courseName = reader.readLine();
+
+            for (Course course : Data.courses) {
+                if (course.getDisciplineName().equals(courseName)) {
+                    selectedCourse = course;
+                    break;
+                }
+            }
+
+            if (selectedCourse == null) {
+                System.out.println("Invalid course selected. Exiting...");
+                return;
+            }
+
+            GradeBook gradeBook = new GradeBook(selectedCourse);
+            
+            StringBuilder report = new StringBuilder();
+            
+            report.append("Welcome message:\n").append(gradeBook.displayMessage()).append("\n");
+
+            report.append("Grade report:\n").append(gradeBook.displayGradeReport());
+
+
+            System.out.println(report.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	
-	
-//	public boolean registerForCourse(Student student , Course course ) {
+//	public boolean registerForCourse() {
 //		// TODO implement me
+//		
 //		return false;	
 //	}
-//
-//	public boolean isEligibleForCourse(Student student , Course course) {
-//		// TODO implement me
-//		return false;	
-//	}
-	
+
 	public void addNews(String topic, String text, Date date) {
         newsPublisher.publishNews(topic, text, date);
     }
