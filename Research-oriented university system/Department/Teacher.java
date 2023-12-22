@@ -1,12 +1,10 @@
 package Department ;
 
 import java.util.Vector;
-import Employee.CanViewStudent;
-import Employee.Data;
-import Employee.Employee;
-import Employee.User;
-import Students.Student;
+import Employee.*;
+import Students.*;
 
+package Teacher;
 import java.util.*;
 
 public class Teacher extends Employee implements CanViewStudent{
@@ -20,11 +18,9 @@ public class Teacher extends Employee implements CanViewStudent{
 	}
 
 	public Teacher(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
-			String id,TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
+			String id,TeacherTitle teacherTitle) {
 		super(name, surname, birthDate, phoneNumber, userName, password, id);
 		this.teacherTitle = teacherTitle;
-		this.urgencyLevel = urgencyLevel;
-		this.taughtCourses = taughtCourses;
 		// TODO Auto-generated constructor stub
 	}
 	public TeacherTitle getTeacherTitle() {
@@ -71,12 +67,12 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	@Override
 	public String toString() {
-		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle  + ", taughtCourses="
+		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle + ", urgencyLevel=" + urgencyLevel + ", taughtCourses="
 				+ taughtCourses + "]";
 	}
 
 	@Override
-	public void viewStudentInfo () {
+	public String viewStudentInfo () {
 
 		 int i = 0;
 	        String ans = "";
@@ -99,7 +95,7 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	            }
 	        }
-	        return;	
+	        return ans;	
 	}
 
 
