@@ -1,19 +1,23 @@
 package Researcher;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import Employee.User;
 
 public class SimpleResearcher implements Researcher{
-	private Researcher researcher;
+	private User user;
 	private List<ResearchProject> researchProjects;
 	private List<ResearchPaper> researchPapers;
 	private Integer hindex;
-	
-	
-	public SimpleResearcher(Researcher researcher, List<ResearchProject> researchProjects,
+
+
+	public SimpleResearcher(User user, List<ResearchProject> researchProjects,
 			List<ResearchPaper> researchPapers, Integer hindex) {
 		super();
-		this.researcher = researcher;
+		this.user = user;
 		this.researchProjects = researchProjects;
 		this.researchPapers = researchPapers;
 		this.hindex = hindex;
@@ -46,7 +50,17 @@ public class SimpleResearcher implements Researcher{
 	@Override
 	public int CalculateHIndex() {
 		// TODO Auto-generated method stub
-		return 0;
+		List<Integer> citations = researchPapers.stream().map(n->n.getCitations()).sorted().collect(Collectors.toList());
+        int n = citations.size();
+
+        for (int i = 0; i < n; i++) {
+            int hIndex = n - i;
+            if (citations.get(i) >= hIndex) {
+                return hIndex;
+            }
+        }
+
+        return 0;
 	}
 
 	@Override
@@ -54,5 +68,5 @@ public class SimpleResearcher implements Researcher{
 		// TODO Auto-generated method stub
 		researchPapers.stream().sorted(comparator2).forEach(System.out::println);
 	}
-	
+
 }

@@ -2,6 +2,8 @@ package Employee ;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Scanner;
 
 import Department.Course;
 import Department.Teacher;
@@ -14,7 +16,7 @@ import proj.User;
 
 public class Manager extends Employee implements CanViewStudent
 {
-	
+	Scanner in = new Scanner(System.in);
 	private ManagerType managerType;
 	
 	public Manager(){
@@ -34,8 +36,8 @@ public class Manager extends Employee implements CanViewStudent
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yerOfStudy ) {
-		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode,ects, null, ects,yerOfStudy);
+	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy ) {
+		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode, ects,yearOfStudy);
 	    	for (Course course: Data.courses) {
 	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
 
@@ -45,24 +47,37 @@ public class Manager extends Employee implements CanViewStudent
 		}
 	 public HashMap<Student, Course> viewRequestForRegistration() {
 	        return Data.studentRegistration;
+	 }
+	 public String approveStudentRegistration(String studentId, String DisciplineCode, String approve) {
+		 	Student st = new Student();
+		 	for(Student s : Data.getStudentsList()) {
+		 		if(s.getId().equals(studentId)) {
+		 			st = s;
+		 		}
+		 	}
+		    Course c = new Course();
+	        for (Course course : Data.courses) {
+	            if(course.getDisciplineCode().equals(DisciplineCode)) {
+	                c = course;
+	            }
+	        }
+
+	        for(Entry<Student, Course> item : Data.studentRegistration.entrySet()) {
+	            if(item.getKey().equals(studentId) && item.getValue().equals(c)) {
+	                if(approve.equals("ACCEPT")) {
+	                    Data.studentRegistration.remove(studentId, c);
+	                    st.increaseCredits(c.getCredit());
+	                    st.registeredCourses.add(c);
+	                    return "Student's registration is accepted";
+	                } else if(approve.equals("REJECT")) {
+	                    return "Student's registration is rejected";
+	                }
+	            } else return "This order does not exist";
+	        }
+	        return "Orders does not exist";
 	    }
-		
-	
-	 public void approveStudentRegistration(Student student) {
-		    int credits = 0;
-
-		    // Calculate total credits for courses the student is registered for
-		    for (Course course : student.getRegisteredCourses()) {
-		        credits += course.getCredit();
-		    }
-		    if (credits <= 21) {
-		        System.out.println("Registration for the courses is approved");
-		    } else {
-		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
-		    }
-		}
-
-	
+	 
+	 
 	public void assignCourseToTeachers(Course c, Teacher t) {
         for (Course course : Data.courses) {
             if (course.getDisciplineCode().equals(c)) {
@@ -130,30 +145,19 @@ public class Manager extends Employee implements CanViewStudent
 		}
 	}
 	
-
-	
 	public void createAcademicReport(List<Student> students) {
 		// TODO implement me	
 	}
-	
-	
-//	public boolean registerForCourse(Student student , Course course ) {
-//		// TODO implement me
-//		return false;	
-//	}
-//
-//	public boolean isEligibleForCourse(Student student , Course course) {
-//		// TODO implement me
-//		return false;	
-//	}
-	
+		
+	public boolean registerForCourse() {
+		// TODO implement me
+		
+		return false;	
+	}
 
 	@Override
 	public String toString() {
 		return "Manager [" + super.toString()+"managerType=" + managerType  + "]";
 	}
-
-
-
 	
 }

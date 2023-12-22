@@ -34,7 +34,7 @@ public class CoursePublisher {
         observers.remove(observer);
     }
     public void publishCourse(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineCode, int ects, Vector<Student> enrolledStudents, int maxStudents) {
-        Course course = new Course(typeOfCourse, disciplineName, credit, disciplineCode, ects, enrolledStudents, maxStudents);
+        Course course = new Course(typeOfCourse, disciplineName, credit, disciplineCode, ects, maxStudents);
         notifyObservers(course);
     }
     @Override

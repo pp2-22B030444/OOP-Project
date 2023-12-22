@@ -9,7 +9,7 @@ public class ResearchPaper {
 	private Integer citations;
 	private Integer pages;
 	private String title;
-	
+
 	public ResearchPaper(String journal, String author, Date date, Integer citations, Integer pages, String title) {
 		super();
 		this.journal = journal;
@@ -67,7 +67,7 @@ public class ResearchPaper {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getCitation(Format f) {
 		return "Num of citations " + citations;
 	}

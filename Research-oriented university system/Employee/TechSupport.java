@@ -5,8 +5,6 @@ package Employee ;
 public class TechSupport extends Employee
 {
 
-	
-	
 	public TechSupport() {
 		super();
 		// TODO Auto-generated constructor stub

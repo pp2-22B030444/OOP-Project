@@ -32,6 +32,7 @@ public class Student extends User implements Comparable<Student>{
 	public int yearOfStudy;	
 	public GraduateStudent graduateStudent;
 	public Vector<Course> registeredCourses;
+	private Integer chosenCredits = 0;
 	public Map<Course, Marks> marksMap;
 	public Student(){
 		super();
@@ -53,12 +54,12 @@ public class Student extends User implements Comparable<Student>{
 
         // Display available courses
         System.out.println("Available Courses:");
-        System.out.println("1. Major Courses");
-        displayCourses(Data.major);
-        System.out.println("2. Minor Courses");
-        displayCourses(Data.minor);
-        System.out.println("3. Free Courses");
-        displayCourses(Data.free);
+        System.out.println("1. Courses");
+        displayCourses(Data.getCourses());
+//        System.out.println("2. Minor Courses");
+//        displayCourses(Data.minor);
+//        System.out.println("3. Free Courses");
+//        displayCourses(Data.free);
 
         int totalCredits = 0;
         try {
@@ -100,11 +101,11 @@ public class Student extends User implements Comparable<Student>{
     private Vector<Course> getChosenCourses(int courseNumber) {
         switch (courseNumber) {
             case 1:
-                return Data.major;
-            case 2:
-                return Data.minor;
-            case 3:
-                return Data.free;
+                return Data.getCourses();
+//            case 2:
+//                return Data.minor;
+//            case 3:
+//                return Data.free;
             default:
                 return null;
         }
@@ -172,17 +173,17 @@ public class Student extends User implements Comparable<Student>{
     private Marks getMarksForCourse(Course course) {
         return marksMap.get(course);
     }
-
-
+    
 	public void viewInfoAboutTeacher() {
 		// TODO implement me
-		for(Teacher t : Data.teachers) {
-			if (registeredCourses.equals(t.taughtCourses)) {
-				System.out.println(t);
+		for(User t : Data.users) {
+			if(t instanceof Teacher) {
+				if (registeredCourses.equals(((Teacher) t).getTaughtCourses())) {
+					System.out.println(t);
+			    }
 		    }
-		}
+	    }
 	}
-
 	public void rateTeachers() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
              ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("teacherRatings.ser"));
@@ -274,7 +275,24 @@ public class Student extends User implements Comparable<Student>{
 				&& Objects.equals(registeredCourses, other.registeredCourses) && school == other.school
 			    && yearOfStudy == other.yearOfStudy;
 	}
-    
+	public Double calculateGpa() {
+	    Double gradePoints = 0.0;
+	    Double credit =0.0;
+	    for (Course course : registeredCourses) {
+	        
+	        if (course != null ) {
+	        	Marks marksForCourse = getMarksForCourse(course);
+	        	gradePoints += course.getCredit() * marksForCourse.getGpa();
+	        	credit+=course.getCredit();
+	        	
+	        }else {
+               
+                System.out.println("Warning: Marks for course is null");
+            }
+	    }
+
+	    return gradePoints/credit;
+	}
 	public String getId() {
 		return id;
 	}
@@ -312,25 +330,6 @@ public class Student extends User implements Comparable<Student>{
 		return "Student [id=" + id +super.toString() + ", school=" + school + ", yearOfStudy=" + yearOfStudy
 				+ ", graduateStudent=" + graduateStudent +"]";}
 	
-	public Double calculateGpa() {
-	    Double gradePoints = 0.0;
-	    Double credit =0.0;
-	    for (Course course : registeredCourses) {
-	        
-	        if (course != null ) {
-	        	Marks marksForCourse = getMarksForCourse(course);
-	        	gradePoints += course.getCredit() * marksForCourse.getGpa();
-	        	credit+=course.getCredit();
-	        	
-	        }else {
-               
-                System.out.println("Warning: Marks for course is null");
-            }
-	    }
-
-	    return gradePoints/credit;
-	}
-    
 	@Override
 	public int compareTo(Student o) {
 		// TODO Auto-generated method stub
@@ -342,7 +341,7 @@ public class Student extends User implements Comparable<Student>{
 		}
 		return 0;
 	}
-	
-	
+	public void increaseCredits(int creditCount) {
+        this.chosenCredits += creditCount;
+    }
 }
-

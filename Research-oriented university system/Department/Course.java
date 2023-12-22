@@ -2,7 +2,9 @@ package Department;
 
 import java.util.Vector;
 
-public class Course<Student> {
+import Students.Student;
+
+public class Course {
 	
 	private String disciplineCode;
 	private String disciplineName;
@@ -14,6 +16,15 @@ public class Course<Student> {
 	int yearOfStudy;
 	public Course(){
 	
+		
+	}
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy) {
+		this.typeOfCourse = typeOfCourse;
+		this.disciplineName = disciplineName;
+		this.credit = credit;
+		this.disciplineCode = disciplineCode;
+		this.ects = ects;
+		this.yearOfStudy = yearOfStudy;
 		
 	}
 

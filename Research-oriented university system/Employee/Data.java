@@ -2,6 +2,7 @@ package Employee ;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
@@ -15,12 +16,12 @@ import java.io.*;
 
 public class Data implements Serializable {
     protected static Vector<Course> courses = new Vector<>();
-    public static Vector<Teacher> teachers= new Vector<>();
-    public static Vector<Student> students= new Vector<>();
+//    public static Vector<Teacher> teachers= new Vector<>();
+//    public static Vector<Student> students= new Vector<>();
     public static Vector<User> users = new Vector<>();
-    public static Vector<Course> free  = new Vector<>();
-    public static Vector<Course> major  = new Vector<>();
-    public static Vector<Course> minor  = new Vector<>();
+//    public static Vector<Course> free  = new Vector<>();
+//    public static Vector<Course> major  = new Vector<>();
+//    public static Vector<Course> minor  = new Vector<>();
     protected static HashMap<Student, Course> studentRegistration = new HashMap<>();
     public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
     protected static Vector<Marks> marks = new Vector<>();
@@ -33,7 +34,84 @@ public class Data implements Serializable {
     protected static HashMap<String, String> logFiles = new HashMap<>();
     protected static Vector<News> news = new Vector<>();
     protected static Vector<Lesson> lessons = new Vector<>();
-
+    
+    public static String getTeachers() {
+        StringBuilder s = new StringBuilder();
+        for (User user: users) {
+            if (user instanceof Teacher) {
+                Teacher teacher = (Teacher) user;
+                s.append(teacher.toString()).append("\n");
+            }
+        }
+        return s.toString();
+    }
+   
+    public static String getStudents() {
+        StringBuilder s = new StringBuilder();
+        for (User user: users) {
+            if (user instanceof Student) {
+                Student student = (Student) user;
+                s.append(student.toString()).append("\n");
+            }
+        }
+        return s.toString();
+    }
+    
+    public static ArrayList<Student> getStudentsList() {
+    	ArrayList<Student> s = new ArrayList<>();
+        for (User user: users) {
+            if (user instanceof Student) {
+                Student student = (Student) user;
+                s.add(student);
+            }
+        }
+        return s;
+    }
+   
+    public static ArrayList<Student> getStudentsListByName() {
+    	ArrayList<Student> s = new ArrayList<>();
+        for (User user: users) {
+            if (user instanceof Student) {
+                Student student = (Student) user;
+                s.add(student);
+            }
+        }
+        s.sort(new UserNameComparator());
+        return s;
+    }
+   
+    public static String getEmployees() {
+        StringBuilder s = new StringBuilder();
+        for (User user: users) {
+            if (user instanceof Employee) {
+                Employee student = (Employee) user;
+                s.append(student.toString()).append("\n");
+            }
+        }
+        return s.toString();
+    }
+   
+    public static String getManagers() {
+        StringBuilder s = new StringBuilder();
+        for (User user: users) {
+            if (user instanceof Manager) {
+                Manager student = (Manager) user;
+                s.append(student.toString()).append("\n");
+            }
+        }
+        return s.toString();
+    }
+    
+    public static String getAdmins() {
+        StringBuilder s = new StringBuilder();
+        for (User user: users) {
+            if (user instanceof Admin) {
+                Admin student = (Admin) user;
+                s.append(student.toString()).append("\n");
+            }
+        }
+        return s.toString();
+    }
     public static Vector<Course> getCourses() {
         return courses;
     }
@@ -426,5 +504,3 @@ public class Data implements Serializable {
 
 
 }
-
-
