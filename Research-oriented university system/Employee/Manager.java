@@ -10,9 +10,7 @@ import Department.Course;
 import Department.Teacher;
 import Department.TypeOfCourse;
 import Students.Student;
-import proj.Database;
-import proj.Managers;
-import proj.User;
+
 
 
 public class Manager extends Employee implements CanViewStudent, NewsObserver
