@@ -79,21 +79,6 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        return "Orders does not exist";
 	    }
 
-	
-
-		    // Calculate total credits for courses the student is registered for
-//		    for (Course course : student.getRegisteredCourses()) {
-//		        credits += course.getCredit();
-//		    }
-//		    if (credits <= 21) {
-//		        System.out.println("Registration for the courses is approved");
-//		    } else {
-//		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
-//		    }
-//		}
-
-	
-
 	public void assignCourseToTeachers(Course c, Teacher t) {
         for (Course course : Data.courses) {
             if (course.getDisciplineCode().equals(c)) {
