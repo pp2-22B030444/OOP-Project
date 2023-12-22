@@ -51,6 +51,13 @@ public class Course {
 		this.maxStudents = maxStudents;
 		this.yearOfStudy=yearOfStudy;
 	}
+	public Course(String disciplineName, int credit, String disciplineCode) {
+		this.disciplineName = disciplineName;
+		this.credit = credit;
+		this.disciplineCode = disciplineCode;
+		
+		// TODO Auto-generated constructor stub
+	}
 	public TypeOfCourse getTypeOfCourse() {
 		return typeOfCourse;
 	}
