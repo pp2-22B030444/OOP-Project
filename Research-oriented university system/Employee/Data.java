@@ -6,24 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
-import Department.Course;
-import Department.Lesson;
-import Department.Teacher;
-import Students.Marks;
-import Students.Student;
+import Department.*;
+import Students.*;
 
 import java.io.*;
 
 public class Data implements Serializable {
-    protected static Vector<Course> courses = new Vector<>();
-//    public static Vector<Teacher> teachers= new Vector<>();
-//    public static Vector<Student> students= new Vector<>();
+    public static Vector<Course> courses = new Vector<>();
     public static Vector<User> users = new Vector<>();
-//    public static Vector<Course> free  = new Vector<>();
-//    public static Vector<Course> major  = new Vector<>();
-//    public static Vector<Course> minor  = new Vector<>();
-    protected static HashMap<Student, Course> studentRegistration = new HashMap<>();
-    public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
+    public static HashMap<String, Course> studentRegistration = new HashMap<>();
+    public static HashMap<String, Integer> teacherRatings = new HashMap<>();
     protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<Employee> request = new Vector<>();
     protected static Vector<TechSupportOrder> newOrders = new Vector<>();
