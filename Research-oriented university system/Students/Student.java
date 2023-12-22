@@ -344,4 +344,6 @@ public class Student extends User implements Comparable<Student>{
 	public void increaseCredits(int creditCount) {
         this.chosenCredits += creditCount;
     }
+
 }
+

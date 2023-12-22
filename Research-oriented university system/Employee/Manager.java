@@ -1,5 +1,6 @@
 package Employee ;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -9,15 +10,14 @@ import Department.Course;
 import Department.Teacher;
 import Department.TypeOfCourse;
 import Students.Student;
-import proj.Database;
-import proj.Managers;
-import proj.User;
 
 
-public class Manager extends Employee implements CanViewStudent
+
+public class Manager extends Employee implements CanViewStudent, NewsObserver
 {
 	Scanner in = new Scanner(System.in);
 	private ManagerType managerType;
+	private NewsPublisher newsPublisher;
 	
 	public Manager(){
 		super();
@@ -26,6 +26,8 @@ public class Manager extends Employee implements CanViewStudent
 	 public Manager(String id,String name, String surname, String birthDate, String phoneNumber, String username,String password, ManagerType managerType) {
 	        super(id, name, surname, birthDate, phoneNumber, username, password);
 	        this.managerType = managerType;
+	        this.newsPublisher = new NewsPublisher();
+	        this.newsPublisher.addObserver(this);
 	    }
 
 	 public ManagerType getManagerType() {
@@ -76,8 +78,22 @@ public class Manager extends Employee implements CanViewStudent
 	        }
 	        return "Orders does not exist";
 	    }
-	 
-	 
+
+	
+
+		    // Calculate total credits for courses the student is registered for
+//		    for (Course course : student.getRegisteredCourses()) {
+//		        credits += course.getCredit();
+//		    }
+//		    if (credits <= 21) {
+//		        System.out.println("Registration for the courses is approved");
+//		    } else {
+//		        System.out.println("Registration for the courses is denied. Exceeds credit limit.");
+//		    }
+//		}
+
+	
+
 	public void assignCourseToTeachers(Course c, Teacher t) {
         for (Course course : Data.courses) {
             if (course.getDisciplineCode().equals(c)) {
@@ -148,12 +164,45 @@ public class Manager extends Employee implements CanViewStudent
 	public void createAcademicReport(List<Student> students) {
 		// TODO implement me	
 	}
-		
+
 	public boolean registerForCourse() {
 		// TODO implement me
 		
 		return false;	
 	}
+
+	
+	
+//	public boolean registerForCourse(Student student , Course course ) {
+//		// TODO implement me
+//		return false;	
+//	}
+//
+//	public boolean isEligibleForCourse(Student student , Course course) {
+//		// TODO implement me
+//		return false;	
+//	}
+	
+	public void addNews(String topic, String text, Date date) {
+        newsPublisher.publishNews(topic, text, date);
+    }
+	
+	public void removeNews(News news) {
+        newsPublisher.removeNews(news);
+        
+    }
+	
+	public void updateNews(News oldNews, News newNews) {
+        
+        newsPublisher.removeNews(oldNews);
+        newsPublisher.publishNews(newNews.getTopic(), newNews.getText(), newNews.getDate()); 
+        
+    }
+	
+	public void update(News news) {
+        System.out.println("Manager received a news update:");
+        System.out.println(news);
+    }
 
 	@Override
 	public String toString() {
