@@ -39,8 +39,9 @@ public class Admin extends User implements Serializable
         }
         return false;
     }	
-	public void update() {
-		// TODO implement me	
+public void update(String oldUserName, User newUser) {
+	deleteUser(oldUserName);
+	Data.users.add(newUser);	
 	}	
 	public void seeLongFile() {
 		// TODO implement me	
