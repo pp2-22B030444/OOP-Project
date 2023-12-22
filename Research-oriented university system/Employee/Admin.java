@@ -14,11 +14,20 @@ public class Admin extends User implements Serializable
 
 	private static final long serialVersionUID = -5128593308024813795L;
 
-	public Admin(){
+	public Admin(String name, String surname, String birthDate, String phoneNumber, String userName, String password){
+		super(name, surname,  birthDate,  phoneNumber, userName, password);
 		
 	}
-	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR, null, null);
+	public void createBachelorStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR);
+        Data.users.add(st);
+    }
+	public void createMasterStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.MASTER);
+        Data.users.add(st);
+    }
+	public void createPHDStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.PHD);
         Data.users.add(st);
     }
     public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
@@ -39,9 +48,8 @@ public class Admin extends User implements Serializable
         }
         return false;
     }	
-public void update(String oldUserName, User newUser) {
-	deleteUser(oldUserName);
-	Data.users.add(newUser);	
+	public void update() {
+		// TODO implement me	
 	}	
 	public void seeLongFile() {
 		// TODO implement me	
