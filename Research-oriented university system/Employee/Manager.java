@@ -11,11 +11,9 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import Department.Course;
-import Department.Teacher;
-import Department.TypeOfCourse;
-import Students.Student;
-import Students.StudentIdComparator;
+import Department.*;
+
+import Students.*;
 
 
 
@@ -44,8 +42,8 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy ) {
-		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode, ects,yearOfStudy);
+	 public void addCoursesForRegistration(String disciplineName, int credit, String disciplineCode) {
+		 Course newCourse = new Course(disciplineName,credit, disciplineCode);
 	    	for (Course course: Data.courses) {
 	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
 
@@ -53,7 +51,7 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        	}
 	    	}	
 		}
-	 public HashMap<Student, Course> viewRequestForRegistration() {
+	 public HashMap<String, Course> viewRequestForRegistration() {
 	        return Data.studentRegistration;
 	 }
 	 public String approveStudentRegistration(String studentId, String DisciplineCode, String approve) {
@@ -70,7 +68,7 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	            }
 	        }
 
-	        for(Entry<Student, Course> item : Data.studentRegistration.entrySet()) {
+	        for(Entry<String, Course> item : Data.studentRegistration.entrySet()) {
 	            if(item.getKey().equals(studentId) && item.getValue().equals(c)) {
 	                if(approve.equals("ACCEPT")) {
 	                    Data.studentRegistration.remove(studentId, c);
@@ -128,7 +126,7 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 		System.out.println(teacherList);
    } 
 	
-	public void viewStudentInfo() {
+	public String viewStudentInfo() {
 		List<Student> studentsList = Data.getStudentsList();
 		System.out.println("Select how to sort Students:"); 
         System.out.println("1. By Name."); 
