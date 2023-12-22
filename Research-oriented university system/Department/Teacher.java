@@ -7,7 +7,6 @@ import Employee.Employee;
 import Employee.User;
 import Students.Student;
 
-package Teacher;
 import java.util.*;
 
 public class Teacher extends Employee implements CanViewStudent{
