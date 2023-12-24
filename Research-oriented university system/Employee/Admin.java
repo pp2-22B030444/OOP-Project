@@ -1,11 +1,10 @@
 package Employee ;
 
-import java.util.List;
 import Department.Teacher;
+import Department.TeacherTitle;
 import Students.GraduateStudent;
 import Students.School;
 import Students.Student;
-import java.io.IOException;
 import java.io.Serializable;
 
 public class Admin extends User implements Serializable
@@ -14,15 +13,17 @@ public class Admin extends User implements Serializable
 
 	private static final long serialVersionUID = -5128593308024813795L;
 
-	public Admin(){
+	public Admin(String name, String surname, String birthDate, String phoneNumber, String userName, String password){
+		super(name, surname,  birthDate,  phoneNumber, userName, password);
 		
 	}
 	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR, null, null);
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, graduateStudent);
         Data.users.add(st);
     }
-    public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
-        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName,password, null, null, null);
+
+    public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password, TeacherTitle title) {
+        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName, password, title);
         Data.users.add(t);
     }
     public void createManager(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,
@@ -39,8 +40,11 @@ public class Admin extends User implements Serializable
         }
         return false;
     }	
-	public void update() {
-		// TODO implement me	
+	public void update(String oldUserName, User newUser) {
+		deleteUser(oldUserName);
+
+	    
+	    Data.users.add(newUser);	
 	}	
 	public void seeLongFile() {
 		// TODO implement me	

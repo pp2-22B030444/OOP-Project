@@ -2,7 +2,7 @@ package Department;
 
 import java.util.Vector;
 
-import Students.Student;
+import Students.*;
 
 public class Course {
 	
@@ -12,23 +12,25 @@ public class Course {
 	private Integer ects;
 	private TypeOfCourse typeOfCourse;
 	private Vector<Student> enrolledStudents;
+	private Vector<String> courseTeachers;
 	private Integer maxStudents;
 	int yearOfStudy;
 	public Course(){
 	
 		
 	}
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy) {
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit,String disciplineCode,int yearOfStudy, int ects) {
 		this.typeOfCourse = typeOfCourse;
+		this.disciplineCode = disciplineCode;
 		this.disciplineName = disciplineName;
 		this.credit = credit;
-		this.disciplineCode = disciplineCode;
+		
 		this.ects = ects;
 		this.yearOfStudy = yearOfStudy;
 		
 	}
 
-	public Course(String disciplineСode, String disciplineName,  int credit, int ects,TypeOfCourse typeOfCourse, Vector<Student> enrolledStudents, int maxStudents) {
+	public Course(String disciplineСode, String disciplineName,  int credit, int ects,TypeOfCourse typeOfCourse, Vector<Student> enrolledStudents, int maxStudents, String disciplineCode) {
 		this();
 
 		this.typeOfCourse = typeOfCourse;
@@ -39,7 +41,7 @@ public class Course {
 		this.enrolledStudents = enrolledStudents;
 		this.maxStudents = maxStudents;
 	}
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy) {
+	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy, String disciplineCode) {
 		this();
 
 		this.typeOfCourse = typeOfCourse;
@@ -50,6 +52,13 @@ public class Course {
 		this.enrolledStudents = enrolledStudents;
 		this.maxStudents = maxStudents;
 		this.yearOfStudy=yearOfStudy;
+	}
+	public Course(String disciplineName, int credit, String disciplineCode) {
+		this.disciplineName = disciplineName;
+		this.credit = credit;
+		this.disciplineCode = disciplineCode;
+		
+		// TODO Auto-generated constructor stub
 	}
 	public TypeOfCourse getTypeOfCourse() {
 		return typeOfCourse;
@@ -120,6 +129,13 @@ public class Course {
 		return "Course [disciplineCode=" + disciplineCode + ", disciplineName=" + disciplineName + ", credit=" + credit
 				+ ", ects=" + ects + ", typeOfCourse=" + typeOfCourse + "]";
 	}
+	public Vector<String> getCourseTeachers() {
+		return courseTeachers;
+	}
+	public void setCourseTeachers(Vector<String> courseTeachers) {
+		this.courseTeachers = courseTeachers;
+	}
+	
 
 	
     

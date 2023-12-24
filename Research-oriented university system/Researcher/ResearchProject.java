@@ -9,7 +9,7 @@ public class ResearchProject<User> {
 
 	public ResearchProject(String topic, List<ResearchPaper> publishedPapers, List<User> participants) {
 		super();
-		this.topic = topic;
+		this.setTopic(topic);
 		this.publishedPapers = publishedPapers;
 		this.participants = participants;
 	}
@@ -19,5 +19,13 @@ public class ResearchProject<User> {
 	}
 	public void addPublishedPapers(ResearchPaper p) {
 		publishedPapers.add(p);
+	}
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 }

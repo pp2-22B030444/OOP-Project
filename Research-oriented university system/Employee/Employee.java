@@ -3,6 +3,10 @@ package Employee;
 public abstract class Employee extends User {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	public Employee(){
 		

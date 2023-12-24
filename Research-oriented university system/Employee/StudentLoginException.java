@@ -2,7 +2,9 @@
 package Employee;
 
 public class StudentLoginException extends LoginException {
-    public StudentLoginException(String message) {
+    private static final long serialVersionUID = 1L;
+
+	public StudentLoginException(String message) {
         super(message);
     }
 }

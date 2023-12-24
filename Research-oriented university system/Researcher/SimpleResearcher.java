@@ -1,6 +1,7 @@
 package Researcher;
 
 import java.util.Arrays;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class SimpleResearcher implements Researcher{
 		this.user = user;
 		this.researchProjects = researchProjects;
 		this.researchPapers = researchPapers;
-		this.hindex = hindex;
+		this.setHindex(hindex);
 	}
 
 	@Override
@@ -67,6 +68,14 @@ public class SimpleResearcher implements Researcher{
 	public void printPapers(Comparator<ResearchPaper> comparator2) {
 		// TODO Auto-generated method stub
 		researchPapers.stream().sorted(comparator2).forEach(System.out::println);
+	}
+
+	public Integer getHindex() {
+		return hindex;
+	}
+
+	public void setHindex(Integer hindex) {
+		this.hindex = hindex;
 	}
 
 }

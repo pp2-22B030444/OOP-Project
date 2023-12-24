@@ -14,13 +14,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Vector;
 
-import Department.Course;
-import Department.Teacher;
-import Employee.Data;
-import Employee.User;
+import Department.*;
+import Employee.*;
 
 public class Student extends User implements Comparable<Student>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Marks mark;
 	private String id;
 	public School school;
@@ -28,72 +30,92 @@ public class Student extends User implements Comparable<Student>{
 	public GraduateStudent graduateStudent;
 	public Vector<Course> registeredCourses;
 	private Integer chosenCredits = 0;
+	private Integer creditLimit;
+	private Double GPA;
 	public Map<Course, Marks> marksMap;
 	public Student(){
 		super();
 	}
-	public Student(String name, String surname, String birthDate, String phoneNumber, String login, String password,String id, School school, int yearOfStudy, GraduateStudent graduateStudent,
-			Vector<Course> registeredCourses,Map<Course, Marks> marksMap) {
+	public Student(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password, School school, int yearOfStudy, GraduateStudent graduateStudent) {
 		
-		super(name, surname, birthDate, phoneNumber, login, password);
+		super(name, surname, birthDate, phoneNumber, userName, password);
 		this.id = id;
 		this.school = school;
 		this.yearOfStudy = yearOfStudy;
 		this.graduateStudent = graduateStudent;
-		this.registeredCourses = registeredCourses;
-		this.marksMap=marksMap;
+		this.setGPA(0.0);
+		this.creditLimit = 21;
+		this.registeredCourses = new Vector<Course>();
+		
+		
 		// TODO Auto-generated constructor stub
 	}
-	public void registerForCourse() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        // Display available courses
-        System.out.println("Available Courses:");
-        System.out.println("1. Courses");
-        displayCourses(Data.getCourses());
-//        System.out.println("2. Minor Courses");
-//        displayCourses(Data.minor);
-//        System.out.println("3. Free Courses");
-//        displayCourses(Data.free);
-
-        int totalCredits = 0;
-        try {
-            while (totalCredits <= 21) {
-                System.out.println("Enter the course number to register (or enter 0 to finish):");
-                int courseNumber = Integer.parseInt(reader.readLine());
-
-                if (courseNumber == 0) {
-                    break; // Exit the loop if the student enters 0
-                }
-
-                Vector<Course> chosenCourses = getChosenCourses(courseNumber);
-
-                if (chosenCourses != null) {
-                    System.out.println("Enter the number of courses to register:");
-                    int numCourses = Integer.parseInt(reader.readLine());
-
-                    for (int i = 0; i < numCourses && i < chosenCourses.size(); i++) {
-                        Course course = chosenCourses.get(i);
-                        if (totalCredits + course.getCredit() <= 21) {
-                            registeredCourses.add(course);
-                            totalCredits += course.getCredit();
-                            System.out.println("Registered for course: " + course.getDisciplineName());
-                        } else {
-                            System.out.println("Cannot register. Exceeds credit limit.");
-                            break; // Exit the loop if the credit limit is exceeded
-                        }
-                    }
+	
+	public void registerToCourse(String courseID) throws CreditsExceeded {
+        Course newCourse = null;
+        for (Course course : Data.courses) {
+            if (course.getDisciplineCode().equals(courseID)) {
+                newCourse = course;
+                if (this.chosenCredits <= this.creditLimit) {
+                    Data.studentRegistration.put(this.id, newCourse);
                 } else {
-                    System.out.println("Invalid course number. Please choose a valid course.");
+                    throw new CreditsExceeded("Number of credits exceeded or Course is not available!!!");
                 }
             }
-            System.out.println("Registration completed. Total credits: " + totalCredits);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-    }
+     }
+	
+//	public void registerForCourse() {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//
+//        // Display available courses
+//        System.out.println("Available Courses:");
+//        System.out.println("1. Courses");
+//        displayCourses(Data.getCourses());
+////        System.out.println("2. Minor Courses");
+////        displayCourses(Data.minor);
+////        System.out.println("3. Free Courses");
+////        displayCourses(Data.free);
+//
+//        int totalCredits = 0;
+//        try {
+//            while (totalCredits <= 21) {
+//                System.out.println("Enter the course number to register (or enter 0 to finish):");
+//                int courseNumber = Integer.parseInt(reader.readLine());
+//
+//                if (courseNumber == 0) {
+//                    break; // Exit the loop if the student enters 0
+//                }
+//
+//                Vector<Course> chosenCourses = getChosenCourses(courseNumber);
+//
+//                if (chosenCourses != null) {
+//                    System.out.println("Enter the number of courses to register:");
+//                    int numCourses = Integer.parseInt(reader.readLine());
+//
+//                    for (int i = 0; i < numCourses && i < chosenCourses.size(); i++) {
+//                        Course course = chosenCourses.get(i);
+//                        if (totalCredits + course.getCredit() <= 21) {
+//                            registeredCourses.add(course);
+//                            totalCredits += course.getCredit();
+//                            System.out.println("Registered for course: " + course.getDisciplineName());
+//                        } else {
+//                            System.out.println("Cannot register. Exceeds credit limit.");
+//                            break; // Exit the loop if the credit limit is exceeded
+//                        }
+//                    }
+//                } else {
+//                    System.out.println("Invalid course number. Please choose a valid course.");
+//                }
+//            }
+//            System.out.println("Registration completed. Total credits: " + totalCredits);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    private Vector<Course> getChosenCourses(int courseNumber) {
+    @SuppressWarnings("unused")
+	private Vector<Course> getChosenCourses(int courseNumber) {
         switch (courseNumber) {
             case 1:
                 return Data.getCourses();
@@ -106,7 +128,8 @@ public class Student extends User implements Comparable<Student>{
         }
     }
 
-    private void displayCourses(Vector<Course> courses) {
+    @SuppressWarnings("unused")
+	private void displayCourses(Vector<Course> courses) {
         int index = 1;
         for (Course course : courses) {
             System.out.println(index + ". " + course.getDisciplineName() + " - Credits: " + course.getCredit());
@@ -208,48 +231,49 @@ public class Student extends User implements Comparable<Student>{
 	public void exit() {
         System.out.println("Bye bye");
     }
-    public void joinToOrganization(Student student, StudentOrganization o) {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Welcome!");
+    
+	public void joinToOrganization(Student student) {
+	    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+	        System.out.println("Welcome!");
 
-            menu: while (true) {
-                int choice = -1;
+	        menu: while (true) {
+	            int choice = -1;
 
-                while (choice < 1 || choice > 4) {
-                    try {
-                        System.out.println("Which organization do you want to join?\n1. OSIT\n2. BSL\n3. K2L\n4. Exit");
-                        choice = Integer.parseInt(br.readLine());
+	            while (choice < 1 || choice > 4) {
+	                try {
+	                    System.out.println("Which organization do you want to join?\n1. OSIT\n2. BSL\n3. K2L\n4. Exit");
+	                    choice = Integer.parseInt(br.readLine());
 
-                        if (choice < 1 || choice > 4) {
-                            System.out.println("Invalid choice. Please choose again.");
-                        }
-                    } catch (IOException | NumberFormatException e) {
-                        System.out.println("Invalid input. Please enter a number.");
-                    }
-                }
+	                    if (choice < 1 || choice > 4) {
+	                        System.out.println("Invalid choice. Please choose again.");
+	                    }
+	                } catch (IOException | NumberFormatException e) {
+	                    System.out.println("Invalid input. Please enter a number.");
+	                }
+	            }
 
-                switch (choice) {
-                    case 1:
-                        o.addMember(student, NameOrganization.OSIT);
-                        break;
-                    case 2:
-                        o.addMember(student, NameOrganization.BCL);
-                        break;
-                    case 3:
-                        o.addMember(student, NameOrganization.K2L);
-                        break;
-                    case 4:
-                        exit();
-                        break menu;
-                    default:
-                        System.out.println("Invalid choice. Please choose again.");
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Something bad happened! Saving resources");
-            exit();
-        }
-    }
+	            switch (choice) {
+	                case 1:
+	                    StudentOrganization.addMember(student, NameOrganization.OSIT);
+	                    break;
+	                case 2:
+	                    StudentOrganization.addMember(student, NameOrganization.BCL);
+	                    break;
+	                case 3:
+	                    StudentOrganization.addMember(student, NameOrganization.K2L);
+	                    break;
+	                case 4:
+	                    exit();
+	                    break menu;
+	                default:
+	                    System.out.println("Invalid choice. Please choose again.");
+	            }
+	        }
+	    } catch (IOException e) {
+	        System.out.println("Something bad happened! Saving resources");
+	        exit();
+	    }
+	}
     
 	@Override
 	public int hashCode() {
@@ -343,6 +367,11 @@ public class Student extends User implements Comparable<Student>{
         Marks marksForCourse = getMarksForCourse(course);  
         return (marksForCourse != null) ? marksForCourse.getResult() : 0.0;
     }
+	public Double getGPA() {
+		return GPA;
+	}
+	public void setGPA(Double gPA) {
+		GPA = gPA;
+	}
     
 }
-

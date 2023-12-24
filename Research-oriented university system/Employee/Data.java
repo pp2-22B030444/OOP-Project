@@ -1,28 +1,20 @@
-package Employee ;
-
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Vector;
-import Department.Course;
-import Department.Lesson;
-import Department.Teacher;
-import Students.Marks;
-import Students.Student;
+package Employee;
 
 import java.io.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+import Department.*;
+import Students.*;
+
 public class Data implements Serializable {
-    protected static Vector<Course> courses = new Vector<>();
-//    public static Vector<Teacher> teachers= new Vector<>();
-//    public static Vector<Student> students= new Vector<>();
+
+    private static final long serialVersionUID = -8455265768402870876L;
+
+    public static Vector<Course> courses = new Vector<>();
     public static Vector<User> users = new Vector<>();
-//    public static Vector<Course> free  = new Vector<>();
-//    public static Vector<Course> major  = new Vector<>();
-//    public static Vector<Course> minor  = new Vector<>();
-    protected static HashMap<Student, Course> studentRegistration = new HashMap<>();
+    public static HashMap<String, Course> studentRegistration = new HashMap<>();
     public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
     protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<Employee> request = new Vector<>();
@@ -34,10 +26,10 @@ public class Data implements Serializable {
     protected static HashMap<String, String> logFiles = new HashMap<>();
     protected static Vector<News> news = new Vector<>();
     protected static Vector<Lesson> lessons = new Vector<>();
-    
+
     public static String getTeachers() {
         StringBuilder s = new StringBuilder();
-        for (User user: users) {
+        for (User user : users) {
             if (user instanceof Teacher) {
                 Teacher teacher = (Teacher) user;
                 s.append(teacher.toString()).append("\n");
@@ -45,10 +37,10 @@ public class Data implements Serializable {
         }
         return s.toString();
     }
-   
+
     public static String getStudents() {
         StringBuilder s = new StringBuilder();
-        for (User user: users) {
+        for (User user : users) {
             if (user instanceof Student) {
                 Student student = (Student) user;
                 s.append(student.toString()).append("\n");
@@ -56,10 +48,10 @@ public class Data implements Serializable {
         }
         return s.toString();
     }
-    
+
     public static ArrayList<Student> getStudentsList() {
-    	ArrayList<Student> s = new ArrayList<>();
-        for (User user: users) {
+        ArrayList<Student> s = new ArrayList<>();
+        for (User user : users) {
             if (user instanceof Student) {
                 Student student = (Student) user;
                 s.add(student);
@@ -67,9 +59,10 @@ public class Data implements Serializable {
         }
         return s;
     }
+
     public static ArrayList<Teacher> getTeacherList() {
-    	ArrayList<Teacher> s = new ArrayList<>();
-        for (User user: users) {
+        ArrayList<Teacher> s = new ArrayList<>();
+        for (User user : users) {
             if (user instanceof Teacher) {
                 Teacher teacher = (Teacher) user;
                 s.add(teacher);
@@ -77,9 +70,10 @@ public class Data implements Serializable {
         }
         return s;
     }
+
     public static ArrayList<Student> getStudentsListByName() {
-    	ArrayList<Student> s = new ArrayList<>();
-        for (User user: users) {
+        ArrayList<Student> s = new ArrayList<>();
+        for (User user : users) {
             if (user instanceof Student) {
                 Student student = (Student) user;
                 s.add(student);
@@ -88,39 +82,40 @@ public class Data implements Serializable {
         s.sort(new UserNameComparator());
         return s;
     }
-   
+
     public static String getEmployees() {
         StringBuilder s = new StringBuilder();
-        for (User user: users) {
+        for (User user : users) {
             if (user instanceof Employee) {
-                Employee student = (Employee) user;
-                s.append(student.toString()).append("\n");
+                Employee employee = (Employee) user;
+                s.append(employee.toString()).append("\n");
             }
         }
         return s.toString();
     }
-   
+
     public static String getManagers() {
         StringBuilder s = new StringBuilder();
-        for (User user: users) {
+        for (User user : users) {
             if (user instanceof Manager) {
-                Manager student = (Manager) user;
-                s.append(student.toString()).append("\n");
+                Manager manager = (Manager) user;
+                s.append(manager.toString()).append("\n");
             }
         }
         return s.toString();
     }
-    
+
     public static String getAdmins() {
         StringBuilder s = new StringBuilder();
-        for (User user: users) {
+        for (User user : users) {
             if (user instanceof Admin) {
-                Admin student = (Admin) user;
-                s.append(student.toString()).append("\n");
+                Admin admin = (Admin) user;
+                s.append(admin.toString()).append("\n");
             }
         }
         return s.toString();
     }
+
     public static Vector<Course> getCourses() {
         return courses;
     }
@@ -137,23 +132,6 @@ public class Data implements Serializable {
         Data.users = users;
     }
 
-    public static HashMap<Student, Course> getStudentRegistration() {
-        return studentRegistration;
-    }
-
-    public static void setStudentRegistration(HashMap<Student, Course> studentRegistration) {
-        Data.studentRegistration = studentRegistration;
-    }
-
-    public static HashMap<Teacher, Integer> getTeacherRatings() {
-        return teacherRatings;
-    }
-
-    public static void setTeacherRatings(HashMap<Teacher, Integer> teacherRatings) {
-        Data.teacherRatings = teacherRatings;
-    }
-
-
     public static Vector<Marks> getMarks() {
         return marks;
     }
@@ -169,7 +147,7 @@ public class Data implements Serializable {
     public static void setNewOrders(Vector<TechSupportOrder> newOrders) {
         Data.newOrders = newOrders;
     }
-    
+
     public static Vector<TechSupportOrder> getAcceptedOrders() {
         return acceptedOrders;
     }
@@ -177,6 +155,7 @@ public class Data implements Serializable {
     public static void setAcceptedOrders(Vector<TechSupportOrder> acceptedOrders) {
         Data.acceptedOrders = acceptedOrders;
     }
+
     public static Vector<TechSupportOrder> getDoneOrders() {
         return doneOrders;
     }
@@ -209,7 +188,6 @@ public class Data implements Serializable {
         Data.logFiles = logFiles;
     }
 
-
     public static Vector<News> getNews() {
         return news;
     }
@@ -226,82 +204,67 @@ public class Data implements Serializable {
         Data.lessons = lessons;
     }
 
-    public static final Data instance; 
-   
+    public static final Data instance;
+
     static {
-        instance = new Data(); 
+        instance = new Data();
     }
 
     private Data() {
-        this.teacherRatings = new HashMap<Teacher, Integer>();
+        Data.teacherRatings = new HashMap<>();
     }
-    
-    
+
     public static FileInputStream fis;
-	public static FileOutputStream fos;
-	public static ObjectOutputStream oos;
-	public static ObjectInputStream oin;
-	
-	
-	
-	
-	
-    //Operations                                  
-    
-	
-	public static void save() {
-		saveCourses();
-		saveFiles();
-		saveMarks();
-		saveMessages();
-		saveNews();
-		saveUsers();
+    public static FileOutputStream fos;
+    public static ObjectOutputStream oos;
+    public static ObjectInputStream oin;
+
+    // Operations
+
+    public static void save() {
+        saveCourses();
+        saveFiles();
+        saveMarks();
+        saveMessages();
+        saveNews();
+        saveUsers();
         saveOrders();
         saveStudentReg();
-        
-	}
-	
-	public static void load() {
-		loadCourses();
-		loadFiles();
-		loadMarks();
-		loadMessages();
-		loadNews();
-		loadUsers();
+    }
+
+    public static void load() {
+        loadCourses();
+        loadMarks();
+        loadMessages();
+        loadNews();
+        loadUsers();
         loadOrders();
         loadStudentReg();
-	}
-	
-	
-    
-    
+    }
+
     private static void saveUsers() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("users.txt"))) {
             oot.writeObject(users);
-            oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("users.txt: IOException");
+            e.printStackTrace();
         }
     }
-    
+
     private static void saveMarks() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("marks.txt"))) {
             oot.writeObject(marks);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("marks.txt: IOException");
         }
     }
-    
 
     private static void saveCourses() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("courses.txt"))) {
             oot.writeObject(courses);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("courses.txt: IOException");
         }
     }
@@ -310,206 +273,185 @@ public class Data implements Serializable {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("news.txt"))) {
             oot.writeObject(news);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("news.txt: IOException");
         }
     }
-    
+
     private static void saveMessages() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("messages.txt"))) {
             oot.writeObject(messages);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("messages.txt: IOException");
         }
     }
-    
-    
+
     private static void saveFiles() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("files.txt"))) {
             oot.writeObject(files);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("files.txt: IOException");
         }
     }
-
 
     private static void saveStudentReg() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("studentReg.txt"))) {
             oot.writeObject(studentRegistration);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("studentReg.txt: IOException");
         }
     }
-    
 
     private static void saveOrders() {
         try (ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream("orders.txt"))) {
             oot.writeObject(doneOrders);
             oot.flush();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("orders.txt: IOException");
         }
     }
 
-    
+    @SuppressWarnings("unchecked")
     private static void loadUsers() {
-    	try {
-        	fis = new FileInputStream("users.txt");
-        	oin = new ObjectInputStream(fis); 
+        try {
+            fis = new FileInputStream("users.txt");
+            oin = new ObjectInputStream(fis);
             users = (Vector<User>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             users = new Vector<>();
             System.err.println("users.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             users = new Vector<>();
             System.err.println("users.txt: ClassNotFoundException");
-        }   
+        }
     }
-    
+
+    @SuppressWarnings("unchecked")
     private static void loadMarks() {
-    	try {
-        	fis = new FileInputStream("marks.txt");
-        	oin = new ObjectInputStream(fis); 
+        try {
+            fis = new FileInputStream("marks.txt");
+            oin = new ObjectInputStream(fis);
             marks = (Vector<Marks>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             marks = new Vector<>();
             System.err.println("marks.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
-        	marks = new Vector<>();
+        } catch (ClassNotFoundException e) {
+            marks = new Vector<>();
             System.err.println("marks.txt: ClassNotFoundException");
         }
-        
     }
-    
-    private static void loadCourses(){
-    	try {
-        	fis = new FileInputStream("courses.txt");
-        	oin = new ObjectInputStream(fis); 
+
+    @SuppressWarnings("unchecked")
+    private static void loadCourses() {
+        try {
+            fis = new FileInputStream("courses.txt");
+            oin = new ObjectInputStream(fis);
             courses = (Vector<Course>) oin.readObject();
             oin.close();
             fis.close();
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             courses = new Vector<>();
             System.err.println("courses.txt: ClassNotFoundException");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             courses = new Vector<>();
             System.err.println("courses.txt: IOException");
         }
     }
-    
+
+    @SuppressWarnings("unchecked")
     private static void loadNews() {
         try {
-        	fis = new FileInputStream("news.txt");
-        	oin = new ObjectInputStream(fis); 
+            fis = new FileInputStream("news.txt");
+            oin = new ObjectInputStream(fis);
             news = (Vector<News>) oin.readObject();
             oin.close();
             fis.close();
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             news = new Vector<>();
             System.err.println("news.txt: ClassNotFoundException");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             news = new Vector<>();
             System.err.println("news.txt: IOException");
         }
     }
-    
+
+    @SuppressWarnings("unchecked")
     private static void loadMessages() {
-    	try {
-        	fis = new FileInputStream("messages.txt");
-        	oin = new ObjectInputStream(fis); 
+        try {
+            fis = new FileInputStream("messages.txt");
+            oin = new ObjectInputStream(fis);
             messages = (Vector<Messages>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             messages = new Vector<>();
             System.err.println("messages.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             messages = new Vector<>();
             System.err.println("messages.txt: ClassNotFoundException");
         }
     }
-    
-    
+
+    @SuppressWarnings({ "unchecked", "unused" })
     private static void loadFiles() {
-    	try {
-        	fis = new FileInputStream("files.txt");
-        	oin = new ObjectInputStream(fis); 
+        try {
+            fis = new FileInputStream("files.txt");
+            oin = new ObjectInputStream(fis);
             files = (Vector<File>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             files = new Vector<>();
             System.err.println("files.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             files = new Vector<>();
             System.err.println("files.txt: ClassNotFoundException");
         }
     }
 
-
+    @SuppressWarnings("unchecked")
     private static void loadStudentReg() {
-    	try {
-        	fis = new FileInputStream("studentReg.txt");
-        	oin = new ObjectInputStream(fis); 
-            studentRegistration = (HashMap<Student, Course>) oin.readObject();
+        try {
+            fis = new FileInputStream("studentReg.txt");
+            oin = new ObjectInputStream(fis);
+            studentRegistration = (HashMap<String, Course>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             studentRegistration = new HashMap<>();
             System.err.println("studentReg.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             studentRegistration = new HashMap<>();
             System.err.println("studentReg.txt: ClassNotFoundException");
         }
     }
 
-    
+    @SuppressWarnings("unchecked")
     private static void loadOrders() {
-    	try {
-        	fis = new FileInputStream("orders.txt");
-        	oin = new ObjectInputStream(fis); 
+        try {
+            fis = new FileInputStream("orders.txt");
+            oin = new ObjectInputStream(fis);
             doneOrders = (Vector<TechSupportOrder>) oin.readObject();
             oin.close();
             fis.close();
-    	}
-        catch (IOException e) {
+        } catch (IOException e) {
             doneOrders = new Vector<>();
             System.err.println("orders.txt: IOException");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             doneOrders = new Vector<>();
             System.err.println("orders.txt: ClassNotFoundException");
         }
     }
-    
-
-
-
-
+    @SuppressWarnings("unused")
+	private static void logError(String file, Exception e) {
+        System.err.println(file + ": " + e.getClass().getSimpleName());
+        e.printStackTrace();
+    }
 }

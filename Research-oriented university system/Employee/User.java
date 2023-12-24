@@ -1,7 +1,6 @@
 package Employee ; 
  
 import java.util.Objects; 
-import java.util.Scanner;
 
 import Department.Teacher;
 import Students.Student;
@@ -11,7 +10,11 @@ import java.io.*;
 public class User implements NewsObserver, Cloneable,Serializable 
 { 
   
-     private String name; 
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String name; 
      private String surname; 
      private String birthDate; 
      private String phoneNumber; 
@@ -66,7 +69,7 @@ public class User implements NewsObserver, Cloneable,Serializable
  
  
      public String getUserName() { 
-         return this.userName; 
+         return userName; 
      } 
  
      public void setUserName(String userName) { 

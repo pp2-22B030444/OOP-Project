@@ -1,6 +1,7 @@
 package Employee ;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -11,16 +12,18 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import Department.Course;
-import Department.Teacher;
-import Department.TypeOfCourse;
-import Students.Student;
-import Students.StudentIdComparator;
+import Department.*;
+
+import Students.*;
 
 
 
 public class Manager extends Employee implements CanViewStudent, NewsObserver
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5041651171246292389L;
 	Scanner in = new Scanner(System.in);
 	private ManagerType managerType;
 	private NewsPublisher newsPublisher;
@@ -44,16 +47,16 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects,int yearOfStudy ) {
-		 Course newCourse = new Course(typeOfCourse,disciplineName,credit, disciplineСode, ects,yearOfStudy);
+	 public void addCoursesForRegistration(String disciplineName, int credit, String disciplineCode) {
+		 Course newCourse = new Course(disciplineName,credit, disciplineCode);
 	    	for (Course course: Data.courses) {
-	        	if (!course.getDisciplineCode().equals(disciplineСode)) {
+	        	if (!course.getDisciplineCode().equals(newCourse.getDisciplineCode())) {
 
 	        		Data.courses.add(newCourse);
 	        	}
 	    	}	
 		}
-	 public HashMap<Student, Course> viewRequestForRegistration() {
+	 public HashMap<String, Course> viewRequestForRegistration() {
 	        return Data.studentRegistration;
 	 }
 	 public String approveStudentRegistration(String studentId, String DisciplineCode, String approve) {
@@ -70,7 +73,7 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	            }
 	        }
 
-	        for(Entry<Student, Course> item : Data.studentRegistration.entrySet()) {
+	        for(Entry<String, Course> item : Data.studentRegistration.entrySet()) {
 	            if(item.getKey().equals(studentId) && item.getValue().equals(c)) {
 	                if(approve.equals("ACCEPT")) {
 	                    Data.studentRegistration.remove(studentId, c);
@@ -85,17 +88,17 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        return "Orders does not exist";
 	    }
 
-	public void assignCourseToTeachers(Course c, Teacher t) {
+	public void assignCourseToTeachers(String disciplineCode , String teacher) {
         for (Course course : Data.courses) {
-            if (course.getDisciplineCode().equals(c)) {
-                t.taughtCourses.add(c);    
+            if (course.getDisciplineCode().equals(disciplineCode)) {
+                course.getCourseTeachers().add(teacher);    
 
             }
         }
     }
 	public void viewTeacherInfo() {
 		List<Teacher> teacherList = Data.getTeacherList();
-		System.out.println("Select how to sort Students:"); 
+		System.out.println("Select how to sort Teachers:"); 
         System.out.println("1. By Name."); 
         System.out.println("2. By Surname."); 
         System.out.println("3. By ID.");  
@@ -167,27 +170,6 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 		System.out.println(studentsList);
    } 
 	    	
-//	    StringBuilder ans = new StringBuilder();
-//	    int i = 0;
-//
-//	    for (User user : Data.users) {
-//	        if (user instanceof Student) {
-//	            Student st = (Student) user;
-//	            i++;
-//
-//	            ans.append(i).append(") Student Name: ").append(st.getName())
-//	                    .append("\n    Student surname: ").append(st.getSurname())
-//	                    .append("\n    Birth Date: ").append(st.getBirthDate())
-//	                    .append("\n    Email: ").append(st.getUserName())
-//	                    .append("\n    ID: ").append(st.getId())
-//	                    .append("\n    Year of Study: ").append(st.getYearOfStudy())
-//	                    .append("\n    Faculty: ").append(st.getSchool())
-//	                    .append("\n    Degree: ").append(st.getGraduateStudent())
-//	                    .append("\n\n");
-//	        }
-//	    }
-//
-//	    return ans.toString();
 
 	public void createCourses() {
 		
@@ -239,11 +221,6 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
     }
 
 	
-//	public boolean registerForCourse() {
-//		// TODO implement me
-//		
-//		return false;	
-//	}
 
 	public void addNews(String topic, String text, Date date) {
         newsPublisher.publishNews(topic, text, date);

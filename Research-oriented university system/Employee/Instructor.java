@@ -7,6 +7,10 @@ import Department.Course;
 public class Instructor extends Employee implements CourseObserver,Serializable {
 
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Instructor instance;
 
     public Instructor() {

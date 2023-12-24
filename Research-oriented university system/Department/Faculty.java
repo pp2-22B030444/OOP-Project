@@ -24,7 +24,7 @@ public class Faculty {
 	public Student getStudent() {
 		return (Student) students;
 	}
-	public void setStudents(Student students) {
+	public void setStudents(List<Student> students) {
 		this.students = (List<Student>) students;
 	}
 	

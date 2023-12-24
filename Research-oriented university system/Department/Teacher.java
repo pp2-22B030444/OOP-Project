@@ -7,9 +7,12 @@ import Employee.Employee;
 import Employee.User;
 import Students.Student;
 
-import java.util.*;
-
 public class Teacher extends Employee implements CanViewStudent{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public TeacherTitle teacherTitle;
 	public UrgencyLevel urgencyLevel;
 	public Vector<Course> taughtCourses;
@@ -19,12 +22,19 @@ public class Teacher extends Employee implements CanViewStudent{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Teacher(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
-			String id,TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
+	public Teacher(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password,
+			TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
 		super(name, surname, birthDate, phoneNumber, userName, password, id);
 		this.teacherTitle = teacherTitle;
 		this.urgencyLevel = urgencyLevel;
 		this.taughtCourses = taughtCourses;
+		// TODO Auto-generated constructor stub
+	}
+	public Teacher(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password,
+			TeacherTitle teacherTitle) {
+		super(name, surname, birthDate, phoneNumber, userName, password, id);
+		this.teacherTitle = teacherTitle;
+		
 		// TODO Auto-generated constructor stub
 	}
 	public TeacherTitle getTeacherTitle() {
