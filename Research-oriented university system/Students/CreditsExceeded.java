@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package Students;
 
+=======
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 public class CreditsExceeded extends Exception {
 	/**
 	 * 

@@ -1,18 +1,26 @@
 package Department ;
 
 import java.util.Vector;
-import Employee.CanViewStudent;
-import Employee.Data;
-import Employee.Employee;
-import Employee.User;
-import Students.Student;
 
+<<<<<<< HEAD
 public class Teacher extends Employee implements CanViewStudent{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+=======
+import Employee.*;
+import Students.*;
+
+
+
+public class Teacher extends Employee implements CanViewStudent{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1500694357215587513L;
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 	public TeacherTitle teacherTitle;
 	public UrgencyLevel urgencyLevel;
 	public Vector<Course> taughtCourses;
@@ -22,12 +30,15 @@ public class Teacher extends Employee implements CanViewStudent{
 		// TODO Auto-generated constructor stub
 	}
 
+<<<<<<< HEAD
 	public Teacher(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password,
 			TeacherTitle teacherTitle, UrgencyLevel urgencyLevel, Vector<Course> taughtCourses) {
+=======
+	public Teacher(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
+			String id,TeacherTitle teacherTitle) {
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 		super(name, surname, birthDate, phoneNumber, userName, password, id);
 		this.teacherTitle = teacherTitle;
-		this.urgencyLevel = urgencyLevel;
-		this.taughtCourses = taughtCourses;
 		// TODO Auto-generated constructor stub
 	}
 	public Teacher(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password,
@@ -81,7 +92,7 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	@Override
 	public String toString() {
-		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle  + ", taughtCourses="
+		return "Teacher ["+super.toString()+"teacherTitle=" + teacherTitle + ", urgencyLevel=" + urgencyLevel + ", taughtCourses="
 				+ taughtCourses + "]";
 	}
 
@@ -109,7 +120,7 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	            }
 	        }
-	        return;	
+	       System.out.println( ans);	
 	}
 
 

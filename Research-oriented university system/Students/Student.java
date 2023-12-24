@@ -36,14 +36,22 @@ public class Student extends User implements Comparable<Student>{
 	public Student(){
 		super();
 	}
+<<<<<<< HEAD
 	public Student(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password, School school, int yearOfStudy, GraduateStudent graduateStudent) {
+=======
+	public Student(String name, String surname, String birthDate, String phoneNumber, String login, String password,String id, School school, int yearOfStudy, GraduateStudent graduateStudent) {
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 		
 		super(name, surname, birthDate, phoneNumber, userName, password);
 		this.id = id;
 		this.school = school;
 		this.yearOfStudy = yearOfStudy;
 		this.graduateStudent = graduateStudent;
+<<<<<<< HEAD
 		this.setGPA(0.0);
+=======
+		this.GPA = 0.0;
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 		this.creditLimit = 21;
 		this.registeredCourses = new Vector<Course>();
 		
@@ -63,7 +71,10 @@ public class Student extends User implements Comparable<Student>{
                 }
             }
         }
+<<<<<<< HEAD
      }
+=======
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 	
 //	public void registerForCourse() {
 //        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

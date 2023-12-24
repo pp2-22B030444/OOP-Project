@@ -1,4 +1,17 @@
+<<<<<<< HEAD
 package Employee;
+=======
+package Employee ;
+
+
+import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+import Department.*;
+import Students.*;
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 
 import java.io.*;
 
@@ -9,6 +22,7 @@ import Department.*;
 import Students.*;
 
 public class Data implements Serializable {
+<<<<<<< HEAD
 
     private static final long serialVersionUID = -8455265768402870876L;
 
@@ -16,6 +30,16 @@ public class Data implements Serializable {
     public static Vector<User> users = new Vector<>();
     public static HashMap<String, Course> studentRegistration = new HashMap<>();
     public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
+=======
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8455265768402870876L;
+	public static Vector<Course> courses = new Vector<>();
+    public static Vector<User> users = new Vector<>();
+    public static HashMap<String, Course> studentRegistration = new HashMap<>();
+    public static HashMap<String, Integer> teacherRatings = new HashMap<>();
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
     protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<Employee> request = new Vector<>();
     protected static Vector<TechSupportOrder> newOrders = new Vector<>();
@@ -132,6 +156,10 @@ public class Data implements Serializable {
         Data.users = users;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
     public static Vector<Marks> getMarks() {
         return marks;
     }
@@ -211,7 +239,11 @@ public class Data implements Serializable {
     }
 
     private Data() {
+<<<<<<< HEAD
         Data.teacherRatings = new HashMap<>();
+=======
+        this.teacherRatings = new HashMap<String, Integer>();
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
     }
 
     public static FileInputStream fis;
@@ -230,6 +262,7 @@ public class Data implements Serializable {
         saveUsers();
         saveOrders();
         saveStudentReg();
+<<<<<<< HEAD
     }
 
     public static void load() {
@@ -238,6 +271,17 @@ public class Data implements Serializable {
         loadMessages();
         loadNews();
         loadUsers();
+=======
+        
+	}
+	
+	public static void load() {
+		loadCourses();
+		loadMarks();
+		loadMessages();
+		loadNews();
+		loadUsers();
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
         loadOrders();
         loadStudentReg();
     }
@@ -314,11 +358,20 @@ public class Data implements Serializable {
         }
     }
 
+<<<<<<< HEAD
     @SuppressWarnings("unchecked")
     private static void loadUsers() {
         try {
             fis = new FileInputStream("users.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadUsers() {
+    	try {
+        	fis = new FileInputStream("users.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             users = (Vector<User>) oin.readObject();
             oin.close();
             fis.close();
@@ -330,12 +383,21 @@ public class Data implements Serializable {
             System.err.println("users.txt: ClassNotFoundException");
         }
     }
+<<<<<<< HEAD
 
     @SuppressWarnings("unchecked")
     private static void loadMarks() {
         try {
             fis = new FileInputStream("marks.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadMarks() {
+    	try {
+        	fis = new FileInputStream("marks.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             marks = (Vector<Marks>) oin.readObject();
             oin.close();
             fis.close();
@@ -347,12 +409,21 @@ public class Data implements Serializable {
             System.err.println("marks.txt: ClassNotFoundException");
         }
     }
+<<<<<<< HEAD
 
     @SuppressWarnings("unchecked")
     private static void loadCourses() {
         try {
             fis = new FileInputStream("courses.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadCourses(){
+    	try {
+        	fis = new FileInputStream("courses.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             courses = (Vector<Course>) oin.readObject();
             oin.close();
             fis.close();
@@ -364,9 +435,15 @@ public class Data implements Serializable {
             System.err.println("courses.txt: IOException");
         }
     }
+<<<<<<< HEAD
 
     @SuppressWarnings("unchecked")
     private static void loadNews() {
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadNews() {
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
         try {
             fis = new FileInputStream("news.txt");
             oin = new ObjectInputStream(fis);
@@ -381,12 +458,21 @@ public class Data implements Serializable {
             System.err.println("news.txt: IOException");
         }
     }
+<<<<<<< HEAD
 
     @SuppressWarnings("unchecked")
     private static void loadMessages() {
         try {
             fis = new FileInputStream("messages.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadMessages() {
+    	try {
+        	fis = new FileInputStream("messages.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             messages = (Vector<Messages>) oin.readObject();
             oin.close();
             fis.close();
@@ -398,12 +484,22 @@ public class Data implements Serializable {
             System.err.println("messages.txt: ClassNotFoundException");
         }
     }
+<<<<<<< HEAD
 
     @SuppressWarnings({ "unchecked", "unused" })
     private static void loadFiles() {
         try {
             fis = new FileInputStream("files.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    
+    @SuppressWarnings("unchecked")
+	private static void loadFiles() {
+    	try {
+        	fis = new FileInputStream("files.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             files = (Vector<File>) oin.readObject();
             oin.close();
             fis.close();
@@ -416,11 +512,20 @@ public class Data implements Serializable {
         }
     }
 
+<<<<<<< HEAD
     @SuppressWarnings("unchecked")
     private static void loadStudentReg() {
         try {
             fis = new FileInputStream("studentReg.txt");
             oin = new ObjectInputStream(fis);
+=======
+
+    @SuppressWarnings("unchecked")
+	private static void loadStudentReg() {
+    	try {
+        	fis = new FileInputStream("studentReg.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             studentRegistration = (HashMap<String, Course>) oin.readObject();
             oin.close();
             fis.close();
@@ -433,11 +538,20 @@ public class Data implements Serializable {
         }
     }
 
+<<<<<<< HEAD
     @SuppressWarnings("unchecked")
     private static void loadOrders() {
         try {
             fis = new FileInputStream("orders.txt");
             oin = new ObjectInputStream(fis);
+=======
+    
+    @SuppressWarnings("unchecked")
+	private static void loadOrders() {
+    	try {
+        	fis = new FileInputStream("orders.txt");
+        	oin = new ObjectInputStream(fis); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
             doneOrders = (Vector<TechSupportOrder>) oin.readObject();
             oin.close();
             fis.close();
@@ -449,9 +563,17 @@ public class Data implements Serializable {
             System.err.println("orders.txt: ClassNotFoundException");
         }
     }
+<<<<<<< HEAD
     @SuppressWarnings("unused")
 	private static void logError(String file, Exception e) {
         System.err.println(file + ": " + e.getClass().getSimpleName());
         e.printStackTrace();
     }
+=======
+    
+
+
+
+
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
 }

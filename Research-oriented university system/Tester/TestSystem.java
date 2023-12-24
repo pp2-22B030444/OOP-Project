@@ -16,16 +16,25 @@ public class TestSystem {
 	public static void main(String[] args)  throws IOException, ClassNotFoundException, CreditsExceeded{
 		Admin a1 = new Admin("Admin", "Head", "22/02/1985", "8 747-777-55-66", "admin", "11111"); 
         Data.users.add(a1); 
+<<<<<<< HEAD
         Teacher t1 = new Teacher("16BD0419","Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan", "12001",  TeacherTitle.LECTURER); 
         Data.users.add(t1); 
         Manager m1 = new Manager("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias", "12222", ManagerType.DEPARTMENTS); 
         Data.users.add(m1);
         Student s1 = new Student("22B030729","Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek", "123456", School.SITE,2, GraduateStudent.BACHELOR);
+=======
+        Teacher t1 = new Teacher("Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan", "12001", "16BD0419", TeacherTitle.LECTURER); 
+        Data.users.add(t1); 
+        Manager m1 = new Manager("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias", "12222", ManagerType.DEPARTMENTS); 
+        Data.users.add(m1);
+        Student s1 = new Student("Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek", "123456", "22B030729", School.SITE,2, GraduateStudent.BACHELOR);
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
         Data.users.add(s1);
         Course c1 = new Course(TypeOfCourse.MINOR, "Databases", 3, "CSCI2104", 2, 5); 
         Data.courses.add(c1); 
         
         Data.studentRegistration.put("22B030729", c1);
+<<<<<<< HEAD
         Data.teacherRatings.put(t1, 5);
         Data.save();
 //        Data.load();
@@ -46,11 +55,31 @@ public class TestSystem {
             if(input.equals(u.getUserName())) {
             	System.out.println("Entered username: " + input);
 //                System.out.println("Manager username: " + u.getUserName());
+=======
+        Data.teacherRatings.put("Kaster", 5);
+       
+       Data.load();
+        
+        System.out.println("Press q to quit.");
+        System.out.println("Enter your login: ");
+        String input = reader.readLine();
+        if(input.equals("q")) {
+            System.exit(0);
+        }
+        for(User u : Data.users) {
+            if(u.getUserName().equals(input)) {
+            	System.out.println("Entered username: " + input);
+                System.out.println("Manager username: " + u.getUserName());
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
                 System.out.println("Enter password: ");
                 String input1 = reader.readLine();
                 if(u.getPassword().equals(input1)) {
                     System.out.println("Successfully authorized.");
+<<<<<<< HEAD
                     System.out.println("Welcome " + u.getName() + "!.");
+=======
+                    System.out.println("Welcome " + u.getName() + ".");
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
                     if(u instanceof Manager) {
                         boolean flag = true;
                         while (flag) {
@@ -96,6 +125,7 @@ public class TestSystem {
                                 case 4: 
                                     m.ViewRequestsFromEmployees(); 
                                     break; 
+<<<<<<< HEAD
                                 case 5:
                                     System.out.println("Enter student's ID: ");
                                     String studentId1 = reader.readLine();
@@ -103,10 +133,20 @@ public class TestSystem {
                                     String courseId1 = reader.readLine();
                                     System.out.println("Enter REJECT or ACCEPT: ");
                                     String courseApprove = reader.readLine();
+=======
+                                case 5: 
+                                    System.out.println("Enter student's ID: "); 
+                                    String studentId1 = reader.readLine(); 
+                                    System.out.println("Enter course's id: "); 
+                                    String courseId1 = reader.readLine(); 
+                                    System.out.println("Enter REJECT or ACCEPT: "); 
+                                    String courseApprove = reader.readLine(); 
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
                                     m.approveStudentRegistration(studentId1, courseId1, courseApprove);
                                     Data.save();
                                     break;
                                 case 6:
+<<<<<<< HEAD
                                     m.createAcademicReport();
                                     break;  // Add this break statement
                                 case 7:
@@ -181,3 +221,15 @@ public class TestSystem {
                 else {
                     System.out.println("Incorrect password. Authorization failed.");
                 }}}}}
+=======
+                                	m.createAcademicReport();
+                                case 7: 
+                                    System.out.println("Enter course's ID: "); 
+                                    String courseId2 = reader.readLine(); 
+                                    System.out.println("Enter teacher's name: ");
+                                    String teacherName1 = reader.readLine(); 
+                                    m.assignCourseToTeachers(courseId2, teacherName1); 
+                                    Data.save();
+                                    System.out.println("Teacher was assigned to course"); 
+                                    break; }}}}}}}}
+>>>>>>> 6619478bd9cccee1fcbd5d074d2c20a1eeea3d3d
