@@ -2,9 +2,9 @@ package Employee ;
 
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Vector;
 import Department.*;
 import Students.*;
@@ -12,7 +12,11 @@ import Students.*;
 import java.io.*;
 
 public class Data implements Serializable {
-    public static Vector<Course> courses = new Vector<>();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8455265768402870876L;
+	public static Vector<Course> courses = new Vector<>();
     public static Vector<User> users = new Vector<>();
     public static HashMap<String, Course> studentRegistration = new HashMap<>();
     public static HashMap<String, Integer> teacherRatings = new HashMap<>();
@@ -129,22 +133,6 @@ public class Data implements Serializable {
         Data.users = users;
     }
 
-    public static HashMap<Student, Course> getStudentRegistration() {
-        return studentRegistration;
-    }
-
-    public static void setStudentRegistration(HashMap<Student, Course> studentRegistration) {
-        Data.studentRegistration = studentRegistration;
-    }
-
-    public static HashMap<Teacher, Integer> getTeacherRatings() {
-        return teacherRatings;
-    }
-
-    public static void setTeacherRatings(HashMap<Teacher, Integer> teacherRatings) {
-        Data.teacherRatings = teacherRatings;
-    }
-
 
     public static Vector<Marks> getMarks() {
         return marks;
@@ -225,7 +213,7 @@ public class Data implements Serializable {
     }
 
     private Data() {
-        this.teacherRatings = new HashMap<Teacher, Integer>();
+        this.teacherRatings = new HashMap<String, Integer>();
     }
     
     
@@ -255,7 +243,6 @@ public class Data implements Serializable {
 	
 	public static void load() {
 		loadCourses();
-		loadFiles();
 		loadMarks();
 		loadMessages();
 		loadNews();
@@ -352,7 +339,8 @@ public class Data implements Serializable {
     }
 
     
-    private static void loadUsers() {
+    @SuppressWarnings("unchecked")
+	private static void loadUsers() {
     	try {
         	fis = new FileInputStream("users.txt");
         	oin = new ObjectInputStream(fis); 
@@ -370,7 +358,8 @@ public class Data implements Serializable {
         }   
     }
     
-    private static void loadMarks() {
+    @SuppressWarnings("unchecked")
+	private static void loadMarks() {
     	try {
         	fis = new FileInputStream("marks.txt");
         	oin = new ObjectInputStream(fis); 
@@ -389,7 +378,8 @@ public class Data implements Serializable {
         
     }
     
-    private static void loadCourses(){
+    @SuppressWarnings("unchecked")
+	private static void loadCourses(){
     	try {
         	fis = new FileInputStream("courses.txt");
         	oin = new ObjectInputStream(fis); 
@@ -407,7 +397,8 @@ public class Data implements Serializable {
         }
     }
     
-    private static void loadNews() {
+    @SuppressWarnings("unchecked")
+	private static void loadNews() {
         try {
         	fis = new FileInputStream("news.txt");
         	oin = new ObjectInputStream(fis); 
@@ -425,7 +416,8 @@ public class Data implements Serializable {
         }
     }
     
-    private static void loadMessages() {
+    @SuppressWarnings("unchecked")
+	private static void loadMessages() {
     	try {
         	fis = new FileInputStream("messages.txt");
         	oin = new ObjectInputStream(fis); 
@@ -444,7 +436,8 @@ public class Data implements Serializable {
     }
     
     
-    private static void loadFiles() {
+    @SuppressWarnings("unchecked")
+	private static void loadFiles() {
     	try {
         	fis = new FileInputStream("files.txt");
         	oin = new ObjectInputStream(fis); 
@@ -463,11 +456,12 @@ public class Data implements Serializable {
     }
 
 
-    private static void loadStudentReg() {
+    @SuppressWarnings("unchecked")
+	private static void loadStudentReg() {
     	try {
         	fis = new FileInputStream("studentReg.txt");
         	oin = new ObjectInputStream(fis); 
-            studentRegistration = (HashMap<Student, Course>) oin.readObject();
+            studentRegistration = (HashMap<String, Course>) oin.readObject();
             oin.close();
             fis.close();
     	}
@@ -482,7 +476,8 @@ public class Data implements Serializable {
     }
 
     
-    private static void loadOrders() {
+    @SuppressWarnings("unchecked")
+	private static void loadOrders() {
     	try {
         	fis = new FileInputStream("orders.txt");
         	oin = new ObjectInputStream(fis); 
