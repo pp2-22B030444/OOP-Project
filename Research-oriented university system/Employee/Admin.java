@@ -1,11 +1,10 @@
 package Employee ;
 
-import java.util.List;
 import Department.Teacher;
+import Department.TeacherTitle;
 import Students.GraduateStudent;
 import Students.School;
 import Students.Student;
-import java.io.IOException;
 import java.io.Serializable;
 
 public class Admin extends User implements Serializable
@@ -18,20 +17,13 @@ public class Admin extends User implements Serializable
 		super(name, surname,  birthDate,  phoneNumber, userName, password);
 		
 	}
-	public void createBachelorStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.BACHELOR);
+	public void createStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
+        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, graduateStudent);
         Data.users.add(st);
     }
-	public void createMasterStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.MASTER);
-        Data.users.add(st);
-    }
-	public void createPHDStudent(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,School school, int yearOfStudy, GraduateStudent graduateStudent) {
-        Student st = new Student(id,name, surname, birthDate, phoneNumber, userName, password, school,yearOfStudy, GraduateStudent.PHD);
-        Data.users.add(st);
-    }
-    public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
-        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName,password, null, null, null);
+
+    public void createTeacher(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password, TeacherTitle title) {
+        Teacher t = new Teacher(id, name, surname, birthDate, phoneNumber, userName, password, title);
         Data.users.add(t);
     }
     public void createManager(String id, String name, String surname, String birthDate, String phoneNumber, String userName, String password,
@@ -56,3 +48,4 @@ public class Admin extends User implements Serializable
 	}
 	
 }
+
