@@ -1,13 +1,17 @@
 package Department ;
 
 import java.util.Vector;
+
 import Employee.*;
 import Students.*;
 
-package Teacher;
-import java.util.*;
+
 
 public class Teacher extends Employee implements CanViewStudent{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1500694357215587513L;
 	public TeacherTitle teacherTitle;
 	public UrgencyLevel urgencyLevel;
 	public Vector<Course> taughtCourses;
@@ -72,7 +76,7 @@ public class Teacher extends Employee implements CanViewStudent{
 	}
 
 	@Override
-	public String viewStudentInfo () {
+	public void viewStudentInfo () {
 
 		 int i = 0;
 	        String ans = "";
@@ -95,7 +99,7 @@ public class Teacher extends Employee implements CanViewStudent{
 
 	            }
 	        }
-	        return ans;	
+	       System.out.println( ans);	
 	}
 
 
