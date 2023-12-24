@@ -2,6 +2,7 @@ package Tester;
 
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -13,19 +14,21 @@ import Department.*;
 public class TestSystem {
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	public static void main(String[] args)  throws IOException, ClassNotFoundException, CreditsExceeded{
-		Admin a1 = new Admin("Admin", "Head", "22/02/1985", "8 747-777-55-66", "admin@kbtu.kz", "11111"); 
+		Admin a1 = new Admin("Admin", "Head", "22/02/1985", "8 747-777-55-66", "admin", "11111"); 
         Data.users.add(a1); 
-        Teacher t1 = new Teacher("Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan@kbtu.kz", "12001", "16BD0419", TeacherTitle.LECTURER); 
+        Teacher t1 = new Teacher("Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan", "12001", "16BD0419", TeacherTitle.LECTURER); 
         Data.users.add(t1); 
-        Manager m1 = new Manager("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias@kbtu.kz", "12222", ManagerType.DEPARTMENTS); 
+        Manager m1 = new Manager("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias", "12222", ManagerType.DEPARTMENTS); 
         Data.users.add(m1);
-        Student s1 = new Student("Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek@kbtu.kz", "123456", "22B030729", School.SITE,2, GraduateStudent.BACHELOR);
+        Student s1 = new Student("Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek", "123456", "22B030729", School.SITE,2, GraduateStudent.BACHELOR);
         Data.users.add(s1);
         Course c1 = new Course(TypeOfCourse.MINOR, "Databases", 3, "CSCI2104", 2, 5); 
         Data.courses.add(c1); 
         
         Data.studentRegistration.put("22B030729", c1);
         Data.teacherRatings.put("Kaster", 5);
+       
+       Data.load();
         
         System.out.println("Press q to quit.");
         System.out.println("Enter your login: ");
@@ -35,6 +38,8 @@ public class TestSystem {
         }
         for(User u : Data.users) {
             if(u.getUserName().equals(input)) {
+            	System.out.println("Entered username: " + input);
+                System.out.println("Manager username: " + u.getUserName());
                 System.out.println("Enter password: ");
                 String input1 = reader.readLine();
                 if(u.getPassword().equals(input1)) {
@@ -49,15 +54,16 @@ public class TestSystem {
                                 "    [2]          View info about students\n" + 
                                 "    [3]          View info about teachers\n" + 
                                 "    [4]          View requests about registration\n" + 
-                                "    [5]          Approve registration\n" + 
-                                "    [6]          Assign course to teachers\n" + 
-                                "    [7]          Add news\n" + 
-                                "    [8]          Remove news\n" + 
-                                "    [9]          Update news\n" + 
-                                "    [10]         View news\n" + 
-                                "    [11]         View messages\n" + 
-                                "    [12]         Send message\n" + 
-                                "    [13]         Quit\n" + 
+                                "    [5]          Approve registration\n" +
+                                "    [6]          Create academic report\n" +
+                                "    [7]          Assign course to teachers\n" + 
+                                "    [8]          Add news\n" + 
+                                "    [9]          Remove news\n" + 
+                                "    [10]          Update news\n" + 
+                                "    [11]         View news\n" + 
+                                "    [12]         View messages\n" + 
+                                "    [13]         Send message\n" + 
+                                "    [14]         Quit\n" + 
                                 "    [0]          Change password"); 
     
                             int chosen = Integer.parseInt(reader.readLine()); 
@@ -75,10 +81,9 @@ public class TestSystem {
                                     System.out.println("New course is created."); 
                                     break; 
                                 case 2: 
-                                    System.out.println(m.viewStudentInfo()); 
+                                    m.viewStudentInfo(); 
                                     break; 
                                 case 3: 
-      
                                     
                                     m.viewTeacherInfo(); 
                                     break; 
@@ -94,4 +99,15 @@ public class TestSystem {
                                     String courseApprove = reader.readLine(); 
                                     m.approveStudentRegistration(studentId1, courseId1, courseApprove);
                                     Data.save();
-                                    break; 
+                                    break;
+                                case 6:
+                                	m.createAcademicReport();
+                                case 7: 
+                                    System.out.println("Enter course's ID: "); 
+                                    String courseId2 = reader.readLine(); 
+                                    System.out.println("Enter teacher's name: ");
+                                    String teacherName1 = reader.readLine(); 
+                                    m.assignCourseToTeachers(courseId2, teacherName1); 
+                                    Data.save();
+                                    System.out.println("Teacher was assigned to course"); 
+                                    break; }}}}}}}}
