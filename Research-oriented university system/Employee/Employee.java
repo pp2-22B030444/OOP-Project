@@ -26,7 +26,7 @@ public abstract class Employee extends User {
     public void setId(String id) {
         this.id = id;
     }
-    public void sendMessage() {
+    public void sendMessage() throws IOException {
     	
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -76,6 +76,13 @@ public abstract class Employee extends User {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void updateDetails(String name, String surname, String birthDate, String phoneNumber) {
+        this.setName(name);
+        this.setSurname(surname);
+        this.setBirthDate(birthDate);
+        this.setPhoneNumber(phoneNumber);
     }
 
 	@Override
