@@ -7,7 +7,7 @@ public class Dean extends Employee {
 	 */
 	private static final long serialVersionUID = 1L;
 	public void viewRequest() {
-	    for (Employee requestData : Data.request) {
+	    for (String requestData : Data.request) {
 	        System.out.println(requestData);
 	    }
 	}

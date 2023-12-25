@@ -28,7 +28,7 @@ public class Data implements Serializable {
     public static HashMap<Teacher, Integer> teacherRatings = new HashMap<>();
 
     protected static Vector<Marks> marks = new Vector<>();
-    protected static Vector<Employee> request = new Vector<>();
+    protected static Vector<String> request = new Vector<>();
     protected static Vector<TechSupportOrder> newOrders = new Vector<>();
     protected static Vector<TechSupportOrder> acceptedOrders = new Vector<>();
     protected static Vector<TechSupportOrder> doneOrders = new Vector<>();

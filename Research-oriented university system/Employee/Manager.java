@@ -47,10 +47,10 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	        this.managerType = managerType;
 	    }
 	 
-	 public void addCoursesForRegistration(String disciplineName, int credit, String disciplineCode) {
-		 Course newCourse = new Course(disciplineName,credit, disciplineCode);
+	 public void addCoursesForRegistration(String disciplineCode,String disciplineName, int credit,int ect, String type) {
+		 Course newCourse = new Course(disciplineCode,disciplineName,credit,ect, type);
 	    	for (Course course: Data.courses) {
-	        	if (!course.getDisciplineCode().equals(newCourse.getDisciplineCode())) {
+	        	if (course.getDisciplineCode().equals(newCourse.getDisciplineCode())) {
 
 	        		Data.courses.add(newCourse);
 	        	}
@@ -177,7 +177,7 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	public void ViewRequestsFromEmployees () {
 		// TODO implement me
 		System.out.println("Here is the list of requests");
-		for(Employee e :Data.request) {
+		for(String e :Data.request) {
 			System.out.println(e);
 		}
 	}
@@ -227,8 +227,9 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
     }
 	
 	public void removeNews(News news) {
-        newsPublisher.removeNews(news);
-        
+		if(news.getTopic().contains((CharSequence) Data.news)) {
+			newsPublisher.removeNews(news);
+		}
     }
 	
 	public void updateNews(News oldNews, News newNews) {

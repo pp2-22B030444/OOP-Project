@@ -70,65 +70,14 @@ public class Student extends User implements Comparable<Student>{
             }
         }
 	}
-	
-//	public void registerForCourse() {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//
-//        // Display available courses
-//        System.out.println("Available Courses:");
-//        System.out.println("1. Courses");
-//        displayCourses(Data.getCourses());
-////        System.out.println("2. Minor Courses");
-////        displayCourses(Data.minor);
-////        System.out.println("3. Free Courses");
-////        displayCourses(Data.free);
-//
-//        int totalCredits = 0;
-//        try {
-//            while (totalCredits <= 21) {
-//                System.out.println("Enter the course number to register (or enter 0 to finish):");
-//                int courseNumber = Integer.parseInt(reader.readLine());
-//
-//                if (courseNumber == 0) {
-//                    break; // Exit the loop if the student enters 0
-//                }
-//
-//                Vector<Course> chosenCourses = getChosenCourses(courseNumber);
-//
-//                if (chosenCourses != null) {
-//                    System.out.println("Enter the number of courses to register:");
-//                    int numCourses = Integer.parseInt(reader.readLine());
-//
-//                    for (int i = 0; i < numCourses && i < chosenCourses.size(); i++) {
-//                        Course course = chosenCourses.get(i);
-//                        if (totalCredits + course.getCredit() <= 21) {
-//                            registeredCourses.add(course);
-//                            totalCredits += course.getCredit();
-//                            System.out.println("Registered for course: " + course.getDisciplineName());
-//                        } else {
-//                            System.out.println("Cannot register. Exceeds credit limit.");
-//                            break; // Exit the loop if the credit limit is exceeded
-//                        }
-//                    }
-//                } else {
-//                    System.out.println("Invalid course number. Please choose a valid course.");
-//                }
-//            }
-//            System.out.println("Registration completed. Total credits: " + totalCredits);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+ 
 
     @SuppressWarnings("unused")
 	private Vector<Course> getChosenCourses(int courseNumber) {
         switch (courseNumber) {
             case 1:
                 return Data.getCourses();
-//            case 2:
-//                return Data.minor;
-//            case 3:
-//                return Data.free;
+
             default:
                 return null;
         }
@@ -154,18 +103,6 @@ public class Student extends User implements Comparable<Student>{
 	    }
 	}
 
-//	public void  getTranscript() {
-//		// TODO implement me	
-//		
-//	}
-//	public void viewTranscript() {
-//        // TODO implement me
-//        for (Course course : registeredCourses) {
-//            Marks marksForCourse = getMarksForCourse(course);
-//            Transcript t = new Transcript(course, marksForCourse);
-//            System.out.println(t.showTranscript());
-//        }
-//    }
 	
 	public List<Transcript> getTranscript() {
 	    List<Transcript> transcripts = new ArrayList<>();
@@ -260,13 +197,16 @@ public class Student extends User implements Comparable<Student>{
 
 	            switch (choice) {
 	                case 1:
-	                    StudentOrganization.addMember(student, NameOrganization.OSIT);
+	                    StudentOrganization.addMember(student);
+	                    System.out.println("You are join to organization");
 	                    break;
 	                case 2:
-	                    StudentOrganization.addMember(student, NameOrganization.BCL);
+	                    StudentOrganization.addMember(student);
+	                    System.out.println("You are join to organization");
 	                    break;
 	                case 3:
-	                    StudentOrganization.addMember(student, NameOrganization.K2L);
+	                    StudentOrganization.addMember(student);
+	                    System.out.println("You are join to organization");
 	                    break;
 	                case 4:
 	                    exit();

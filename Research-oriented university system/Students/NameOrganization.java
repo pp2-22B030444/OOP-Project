@@ -7,5 +7,5 @@ package Students ;
  */
 public enum NameOrganization
 {
-	OSIT, BCL,K2L;
+	OSIT,BCL,K2L;
 }

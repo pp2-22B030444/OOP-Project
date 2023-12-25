@@ -1,5 +1,9 @@
 package Employee;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public abstract class Employee extends User {
 	
 	
@@ -12,9 +16,7 @@ public abstract class Employee extends User {
 		
 	}
 	
-public Employee(String name, String surname, String birthDate, String phoneNumber, String userName, String password,
-			 String id) {
-
+	public Employee(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
 		super(name, surname, birthDate, phoneNumber, userName, password);
 		this.id = id;
 	}
@@ -24,22 +26,56 @@ public Employee(String name, String surname, String birthDate, String phoneNumbe
     public void setId(String id) {
         this.id = id;
     }
-    public void sendMessage(String messageFrom, String messageTo, String title, String text) {
-        Messages m = new Messages(messageFrom, messageTo, title, text);
-        Data.messages.add(m);
+    public void sendMessage() {
+    	
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            
+            System.out.println("Enter message from: ");
+            String from = reader.readLine();
+            
+            System.out.println("Enter message to: ");
+            String to = reader.readLine();
+            
+            System.out.println("Enter title: ");
+            String title = reader.readLine();
+            
+            System.out.println("Enter text: ");
+            String text = reader.readLine();
+
+            Messages m = new Messages(from, to, title, text);
+            Data.messages.add(m);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void makeRequest(Employee request) {
-        System.out.println("Making request: " + request);
-        
-        Data.request.add(request);
-        
-        
+
+    public void makeRequest() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            
+            System.out.println("Enter request details: ");
+            String requestDetails = reader.readLine();
+            
+            Data.request.add(requestDetails);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void makeOrder(TechSupportOrder order) {
-        System.out.println("Making order: " + order);
-        Data.newOrders.add(order);
-        
+    public void makeOrder() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            
+            
+            System.out.println("Enter order details: ");
+            String orderDetails = reader.readLine();
+            TechSupportOrder order1 = new TechSupportOrder(orderDetails);
+
+            Data.newOrders.add((order1)); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 	@Override

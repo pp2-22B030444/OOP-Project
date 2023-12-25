@@ -1,6 +1,7 @@
 package Employee ;
 
 import Department.Teacher;
+
 import Department.TeacherTitle;
 import Students.GraduateStudent;
 import Students.School;
@@ -31,6 +32,11 @@ public class Admin extends User implements Serializable
         Manager m = new Manager(id, name, surname, birthDate, phoneNumber, userName,password, ManagerType.DEPARTMENTS );
         Data.users.add(m);    
     }
+    public void createEmployee(String id,String name, String surname, String birthDate, String phoneNumber, String userName, String password) {
+    	RegularEmployee e = new RegularEmployee(id, name, surname, birthDate, phoneNumber, userName, password);
+        Data.users.add(e);  
+    	
+    }
     public boolean deleteUser(String userName) {
         for(User u: Data.users){
             if(u.getUserName().equals(userName)){
@@ -42,8 +48,6 @@ public class Admin extends User implements Serializable
     }	
 	public void update(String oldUserName, User newUser) {
 		deleteUser(oldUserName);
-
-	    
 	    Data.users.add(newUser);	
 	}	
 	public void seeLongFile() {

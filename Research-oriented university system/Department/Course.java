@@ -10,7 +10,7 @@ public class Course {
 	private String disciplineName;
 	private Integer credit;
 	private Integer ects;
-	private TypeOfCourse typeOfCourse;
+	private String typeOfCourse;
 	private Vector<Student> enrolledStudents;
 	private Vector<String> courseTeachers;
 	private Integer maxStudents;
@@ -19,29 +19,18 @@ public class Course {
 	
 		
 	}
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit,String disciplineCode,int yearOfStudy, int ects) {
+	public Course(String disciplineСode, String disciplineName,  int credit, int ects,String typeOfCourse) {
 		this.typeOfCourse = typeOfCourse;
 		this.disciplineCode = disciplineCode;
 		this.disciplineName = disciplineName;
 		this.credit = credit;
-		
 		this.ects = ects;
 		this.yearOfStudy = yearOfStudy;
 		
 	}
 
-	public Course(String disciplineСode, String disciplineName,  int credit, int ects,TypeOfCourse typeOfCourse, Vector<Student> enrolledStudents, int maxStudents, String disciplineCode) {
-		this();
 
-		this.typeOfCourse = typeOfCourse;
-		this.disciplineName = disciplineName;
-		this.credit = credit;
-		this.disciplineCode = disciplineCode;
-		this.ects = ects;
-		this.enrolledStudents = enrolledStudents;
-		this.maxStudents = maxStudents;
-	}
-	public Course(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy, String disciplineCode) {
+	public Course(String typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy, String disciplineCode) {
 		this();
 
 		this.typeOfCourse = typeOfCourse;
@@ -60,11 +49,11 @@ public class Course {
 		
 		// TODO Auto-generated constructor stub
 	}
-	public TypeOfCourse getTypeOfCourse() {
+	public String getTypeOfCourse() {
 		return typeOfCourse;
 	}
 
-	public void setTypeOfCourse(TypeOfCourse typeOfCourse) {
+	public void setTypeOfCourse(String typeOfCourse) {
 		this.typeOfCourse = typeOfCourse;
 	}
 

@@ -49,8 +49,5 @@ public class NewsPublisher {
     public String toString() {
         return "NewsPublisher [observers=" + observers + "]";
     }
-
-    
-
 	
 }

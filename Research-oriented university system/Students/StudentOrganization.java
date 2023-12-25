@@ -8,44 +8,30 @@ import java.util.Vector;
  * @generated
  */
 
-public class StudentOrganization{
-	public static Vector<Student> listStudent;
-	public static Vector<Student> listStudentBCL;
-	public static Vector<Student> listStudentOSIT;
-	public static Vector<Student> listStudentK2L;
-	public Student head;
-	public static NameOrganization nameOrganization;
-	public StudentOrganization(){
-		
-	}	
-	public StudentOrganization(Vector<Student> listStudentBCL, Vector<Student> listStudentOSIT,Vector<Student> listStudentK2L, Student head,
-			NameOrganization nameOrganization) {
-		this();
-		StudentOrganization.listStudentBCL = listStudentBCL;
-		StudentOrganization.listStudentOSIT=listStudentOSIT;
-		StudentOrganization.listStudentK2L=listStudentK2L;
-		this.head = head;
-		StudentOrganization.nameOrganization = nameOrganization;
-	}
-	
-	public static void addMember(Student student, NameOrganization nameOrganization) {
+public class StudentOrganization {
+    public static Vector<Student> listStudent;
+    public String head;
+    public NameOrganization nameOrganization;
+
+    public StudentOrganization(Vector<Student> listStudent, String head, NameOrganization nameOrganization) {
+        StudentOrganization.listStudent =listStudent ;     
+        this.head = head;
+        this.nameOrganization = nameOrganization;
+    }
+	public static void addMember(Student student) {
 		listStudent.add(student);
         
     }
-//	public void removeMember(Student student) {
-//		// TODO implement me	
-//		if(o.equals(NameOrganization.BCL)) {
-//			listStudentBCL.remove(student);	
-//		}
-//		if(o.equals(NameOrganization.OSIT)) {
-//			listStudentOSIT.remove(student);	
-//		}
-//		if(o.equals(NameOrganization.K2L)) {
-//			listStudentK2L.remove(student);	
-//		}
-//		else {
-//	        System.out.println("Unknown organization: " + nameOrganization);
-//	    }
-//	}	
+	public void removeMember(Student student) {
+		// TODO implement me	
+			listStudent.remove(student);
+			System.out.println(student.getName()+"exit!");
+    }
+	public static Vector<Student> getListStudent() {
+		return listStudent;
+	}
+	public static void setListStudent(Vector<Student> listStudent) {
+		StudentOrganization.listStudent = listStudent;
+	}
 }
 

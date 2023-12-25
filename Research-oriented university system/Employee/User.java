@@ -7,14 +7,11 @@ import Students.Student;
 
 import java.io.*; 
  
-public class User implements NewsObserver, Cloneable,Serializable 
-{ 
+public class User implements NewsObserver, Cloneable,Serializable { 
   
-     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String name; 
+
+     private static final long serialVersionUID = 1L;
+     private String name; 
      private String surname; 
      private String birthDate; 
      private String phoneNumber; 
@@ -30,11 +27,8 @@ public class User implements NewsObserver, Cloneable,Serializable
          this.birthDate = birthDate; 
          this.phoneNumber = phoneNumber; 
          this.userName = userName; 
-         this.password = password; 
-         
+         this.password = password;   
      } 
- 
-
      public String getName() { 
          return this.name; 
      } 
@@ -138,14 +132,28 @@ public class User implements NewsObserver, Cloneable,Serializable
 		        throw new AdminLoginException("Admin logged in");
 		    }
 		}
-	  public boolean changePassword(String oldPassword, String newPassword) { 
-	         if(oldPassword.equals(this.password)) { 
-	             password = newPassword; 
-	             return true; 
-	         } 
-	         return false; 
-	  }
-	  @Override
+		public boolean changePassword() {
+		    try {
+		    	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		        System.out.print("Enter your old password: ");
+		        String oldPasswordInput = reader.readLine();
+
+		        if (oldPasswordInput.equals(this.password)) {
+		            System.out.print("Enter your new password: ");
+		            String newPasswordInput = reader.readLine();
+
+		            this.password = newPasswordInput;
+		            System.out.println("Password changed successfully.");
+		            return true;
+		        } else {
+		            System.out.println("Incorrect old password. Password change failed.");
+		            return false;
+		        }
+		    } catch (IOException e) {
+		        System.out.println("Error reading input. Password change failed.");
+		        return false;
+		    }
+		}	  @Override
 		public void update(News news) {
 		        System.out.println("Received a news update:");
 		        System.out.println(news);   

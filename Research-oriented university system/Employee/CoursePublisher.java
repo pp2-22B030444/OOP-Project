@@ -2,11 +2,12 @@ package Employee;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import java.util.Vector;
 
 import Department.Course;
-import Department.TypeOfCourse;
+
 import Students.Student;
 
 public class CoursePublisher {
@@ -33,8 +34,8 @@ public class CoursePublisher {
     public void unsubscribe(CourseObserver observer) {
         observers.remove(observer);
     }
-    public void publishCourse(TypeOfCourse typeOfCourse, String disciplineName, int credit, String disciplineCode, int ects, Vector<Student> enrolledStudents, int maxStudents) {
-        Course course = new Course(typeOfCourse, disciplineName, credit, disciplineCode, ects, maxStudents);
+    public void publishCourse(String typeOfCourse, String disciplineName, int credit, String disciplineCode, int ects, Vector<Student> enrolledStudents, int maxStudents) {
+        Course course = new Course(typeOfCourse, disciplineName, credit, disciplineCode, ects, enrolledStudents, maxStudents, maxStudents, disciplineCode);
         notifyObservers(course);
     }
     @Override
