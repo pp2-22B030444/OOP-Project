@@ -2,8 +2,6 @@ package Tester;
 
 
 import java.io.BufferedReader;
-
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
@@ -17,18 +15,16 @@ public class TestSystem {
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args)  throws IOException, ClassNotFoundException, CreditsExceeded{
-		StudentOrganization organization = new StudentOrganization(new Vector<>(), "Zhasmin", NameOrganization.OSIT);
-		StudentOrganization organization1 = new StudentOrganization(new Vector<>(), "Doka", NameOrganization.BCL);
-		StudentOrganization organization2 = new StudentOrganization(new Vector<>(), "Ayazhan", NameOrganization.K2L);
+		new StudentOrganization(new Vector<>(), "Zhasmin", NameOrganization.OSIT);
+		new StudentOrganization(new Vector<>(), "Doka", NameOrganization.BCL);
+		new StudentOrganization(new Vector<>(), "Ayazhan", NameOrganization.K2L);
 		Admin a1 = new Admin("Admin", "Head", "22/02/1985", "8 747-777-55-66", "admin", "11111"); 
         Data.users.add(a1); 
         Teacher t1 = new Teacher( "16BD0419","Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan", "12001",  TeacherTitle.LECTURER); 
         Data.users.add(t1); 
-        Manager m1 = new Manager("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias", "12222", ManagerType.DEPARTMENTS); 
-        Data.users.add(m1);
         Student s1 = new Student("22B030729","Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek", "123456",  School.SITE,2, GraduateStudent.BACHELOR);
         Data.users.add(s1); 
-        Course c1 = new Course("CSCI2104", "Databases", 3,  2,"Minor"); 
+        Course c1 = new Course("CSCI2104", "Databases", 3,5,"Minor"); 
         Data.courses.add(c1); 
         Data.studentRegistration.put("22B030729", c1);
         Data.teacherRatings.put(t1, 5);
@@ -40,7 +36,6 @@ public class TestSystem {
         System.out.println("|                                              |");
         System.out.println("|______________________________________________|");
         
-        boolean quitRequested = false;
         while (true) {
             System.out.println("Press q to quit.");
             System.out.print("Enter your login: ");
@@ -48,7 +43,6 @@ public class TestSystem {
             
             if (input.equals("q")) {
                 System.out.println("Good Bye!");
-                quitRequested = true;
                 break;
             }
 
@@ -149,10 +143,52 @@ public class TestSystem {
                             break;
                         case 8:
                         	m.addNews("For All", "Today will be exam", new Date (14, 10, 2023));
-                            break;  
+                            m.addNews("Exam", "Exam will be in 280" ,new Date (14, 10, 2023));
+                            Data.save();
+                        	break;   
                         case 9:
-                        	m.removeNews(null);
-                            break; 
+                            System.out.println("Enter news topic to remove: ");
+                            String newsTopicToRemove = reader.readLine();
+                            m.removeNews(newsTopicToRemove);
+                            Data.save();
+                            break;
+                        case 10:
+                            System.out.println("Enter old news topic: ");
+                            String oldNewsTopic = reader.readLine();
+                            System.out.println("Enter new news topic: ");
+                            String newNewsTopic = reader.readLine();
+                            System.out.println("Enter new news text: ");
+                            String newNewsText = reader.readLine();
+                            Date newNewsDate = new Date(14, 10, 2023); 
+                            News oldNews = null;
+                            for (News news : Data.news) {
+                                if (news.getTopic().equals(oldNewsTopic)) {
+                                    oldNews = news;
+                                    break;
+                                }
+                            }
+                            if (oldNews != null) {
+                                News newNews = new News(newNewsTopic, newNewsText, newNewsDate);
+                                m.updateNews(oldNews, newNews);
+                                System.out.println("News updated successfully.");
+                            } else {
+                                System.out.println("News with the specified topic not found.");
+                            }
+                            Data.save();
+                            break;
+                        case 11:
+                        	m.viewNews();
+                        	Data.save();
+                        	break;
+                        case 12:
+                            m.viewMessages();
+                            break;
+                        case 13:
+                            m.sendMessage();
+                            Data.save();
+                            System.out.println("Message sent successfully.");
+                            break;
+
                         case 14:
                         	 loggedIn = false;
                              System.out.println("Logged out successfully.");
@@ -176,17 +212,16 @@ public class TestSystem {
                         "    [6]          View marks\n" +
                         "    [7]          Rate teachers\n" + 
                         "    [8]          Join To Organization\n" + 
-         
                         "    [9]          Quit\n" + 
-                        "    [10]          Change password"); 
+                        "    [10]         Change password"); 
                     System.out.println("Enter:");
                         int chosen = Integer.parseInt(reader.readLine()); 
  
                         switch(chosen) { 
                             case 1: 
                                 System.out.println("Enter course's ID to register: ");
-                            String courseIdToRegister = reader.readLine();
-                            s.registerToCourse(courseIdToRegister); 
+	                            String courseIdToRegister = reader.readLine();
+	                            s.registerToCourse(courseIdToRegister); 
                                     Data.save();
                                     break;
      
@@ -233,10 +268,11 @@ public class TestSystem {
                     "    [2]          Create Teacher\n" + 
                     "    [3]          Create Manager\n" + 
                     "    [4]          Created Employee\n" +
-                    "    [5]          Delete user\n" + 
-                    "    [6]          Update user\n" +
-                    "    [7]          Quit\n"+ 
-                	"    [8]          Change password"); 
+                    "    [5]          Created TechSupport\n" +
+                    "    [6]          Delete user\n" + 
+                    "    [7]          Update user\n" +
+                    "    [8]          Quit\n"+ 
+                	"    [9]          Change password"); 
                 System.out.println("Enter:");
                 int chosen = Integer.parseInt(reader.readLine()); 
 
@@ -250,32 +286,45 @@ public class TestSystem {
                     	
                         a.createTeacher("2561526", "Pakita", "Shamoi", "15/10/1989", "87752552525", "p_shamoi", "1515", TeacherTitle.PROFESSOR);
                         Data.save();
-                        System.out.println("Teacher created");
+                        System.out.println("Teacher created.");
                         break; 
                     case 3: 
                     	
                         a.createManager("23556", "Aizhan", "Mana", "15/05/1988", "87756451525", "a_mana", "1505", ManagerType.OR);
                         Data.save();
-                        System.out.println("Manager created");
+                        System.out.println("Manager created.");
                         break;
                     case 4: 
                     	a.createEmployee("25654", "Rustem", "Teemirgali", "29/28/2005", "87072793912", "liu_rus", "pyvqen-xacqun-Tabgu6");
+                    	Data.save();
+                    	System.out.println("Employee created.");
+                    	break;
                     case 5: 
-                    	
-//                        a.deleteUser(input);
-//                        Data.save();
-//                        break;
-
-                    case 6: 
-//                    	
-//                        a.update(input1, u);
-//                        Data.save();
-//                        break;
+                    	a.createTechSupport("02B0111","Dias", "Omar", "21/01/1999", " 8 707-111-11-11", "o_dias", "12222");
+                    	Data.save();
+                    	System.out.println("Tech Support created.");
+                    	break;
+                    case 6:
+                        System.out.print("Enter the username of the user to delete: ");
+                        String usernameToDelete = reader.readLine();
+                        a.deleteUser(usernameToDelete);
+                        Data.save();
+                        break;
                     case 7:
+                    	System.out.print("Enter the username of the user to delete: ");
+                        String usernameToDelete1 = reader.readLine();
+                        a.deleteUser(usernameToDelete1);
+                    	
+                        a.createStudent("22B030444", "Zhasmin", "Suleimenova", "14/10/2004", "87779908551", "zh_suleimenova", "14102004", School.SITE, 2, GraduateStudent.BACHELOR);
+                        Data.save();
+                        
+                        System.out.println("User details updated.");
+                        break;
+                    case 8:
                     	loggedIn = false;
                         System.out.println("Logged out successfully.");
                         break; 
-                    case 8:
+                    case 9:
                     	a.changePassword();
                         break;    
                     
@@ -298,17 +347,17 @@ public class TestSystem {
 	                    case 1: 
 	                        e.sendMessage();
 	                        Data.save();
-	                        System.out.println("Message sended");
+	                        
 	                        break; 
 	                    case 2: 
 	                    	e.makeRequest();
 	                        Data.save();
-	                        System.out.println("Teacher created");
+	                       
 	                        break; 
 	                    case 3: 
 	                        e.makeOrder();
 	                        Data.save();
-	                        System.out.println("Manager created");
+	                       
 	                        break; 
 	                    case 4: 
 	                    	loggedIn = false;
@@ -352,7 +401,48 @@ public class TestSystem {
 //		                        break;
 //	                 }
 //	             }
-//	        }  
+//	        }
+	         else if(currentUser instanceof TechSupport) {
+		            while (loggedIn) {
+		            	TechSupport t = (TechSupport) currentUser; 
+		                System.out.println("/--------------------TechSupport's tab--------------------/"); 
+		                System.out.println("    [1]          Get Order\n" + 
+		                    "    [2]          Accept order\n" + 
+		                    "    [3]          Redject order\n" + 
+		                    "    [4]          View Accepted Orders\n" + 
+		                    "    [5]          View Done Orders\n" + 
+		                    "    [6]          Quit\n" ); 
+		                System.out.println("Enter:");
+		                int chosen = Integer.parseInt(reader.readLine()); 
+		                switch(chosen) { 
+		                    case 1: 
+		                        t.receiveOrder();
+		                        break; 
+		                    case 2: 
+		                    	t.acceptOrder();
+		                        Data.save();
+		                        
+		                        break; 
+		                    case 3: 
+		                        t.rejectOrder();
+		                        Data.save();
+		                        
+		                        break; 
+		                    case 4: 
+		                        t.viewAcceptedOrders();
+		                        Data.save();
+		                        break;
+		                    case 5: 
+		                        t.viewDoneOrders();
+		                        Data.save();
+		                        break;      
+		                    case 6: 
+		                    	loggedIn = false;
+		                        System.out.println("Logged out successfully.");
+		                        break;
+	                 }
+	             }
+	        }  
        }
    }               
 }

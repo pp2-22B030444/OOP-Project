@@ -8,15 +8,8 @@ import java.util.HashMap;
 import java.util.Vector;
 import Department.*;
 import Students.*;
-
-
 import java.io.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Vector;
-import Department.*;
-import Students.*;
 
 public class Data implements Serializable {
 
@@ -29,13 +22,13 @@ public class Data implements Serializable {
 
     protected static Vector<Marks> marks = new Vector<>();
     protected static Vector<String> request = new Vector<>();
-    protected static Vector<TechSupportOrder> newOrders = new Vector<>();
-    protected static Vector<TechSupportOrder> acceptedOrders = new Vector<>();
-    protected static Vector<TechSupportOrder> doneOrders = new Vector<>();
+    protected static Vector<String> newOrders = new Vector<>();
+    protected static Vector<String> acceptedOrders = new Vector<>();
+    protected static Vector<String> doneOrders = new Vector<>();
     protected static Vector<Messages> messages = new Vector<>();
     protected static Vector<File> files = new Vector<>();
     protected static HashMap<String, String> logFiles = new HashMap<>();
-    protected static Vector<News> news = new Vector<>();
+    public static Vector<News> news = new Vector<>();
     protected static Vector<Lesson> lessons = new Vector<>();
 
     public static String getTeachers() {
@@ -152,27 +145,27 @@ public class Data implements Serializable {
         Data.marks = marks;
     }
 
-    public static Vector<TechSupportOrder> getNewOrders() {
+    public static Vector<String> getNewOrders() {
         return newOrders;
     }
 
-    public static void setNewOrders(Vector<TechSupportOrder> newOrders) {
+    public static void setNewOrders(Vector<String> newOrders) {
         Data.newOrders = newOrders;
     }
 
-    public static Vector<TechSupportOrder> getAcceptedOrders() {
+    public static Vector<String> getAcceptedOrders() {
         return acceptedOrders;
     }
 
-    public static void setAcceptedOrders(Vector<TechSupportOrder> acceptedOrders) {
+    public static void setAcceptedOrders(Vector<String> acceptedOrders) {
         Data.acceptedOrders = acceptedOrders;
     }
 
-    public static Vector<TechSupportOrder> getDoneOrders() {
+    public static Vector<String> getDoneOrders() {
         return doneOrders;
     }
 
-    public static void setDoneOrders(Vector<TechSupportOrder> doneOrders) {
+    public static void setDoneOrders(Vector<String> doneOrders) {
         Data.doneOrders = doneOrders;
     }
 
@@ -479,7 +472,7 @@ public class Data implements Serializable {
         	fis = new FileInputStream("orders.txt");
         	oin = new ObjectInputStream(fis); 
 
-            doneOrders = (Vector<TechSupportOrder>) oin.readObject();
+            doneOrders = (Vector<String>) oin.readObject();
             oin.close();
             fis.close();
         } catch (IOException e) {

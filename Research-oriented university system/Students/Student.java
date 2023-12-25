@@ -64,6 +64,8 @@ public class Student extends User implements Comparable<Student>{
                 newCourse = course;
                 if (this.chosenCredits <= this.creditLimit) {
                     Data.studentRegistration.put(this.id, newCourse);
+                    registeredCourses.add(newCourse);
+                    System.out.println("Course successfully registred!");
                 } else {
                     throw new CreditsExceeded("Number of credits exceeded or Course is not available!!!");
                 }
@@ -145,6 +147,7 @@ public class Student extends User implements Comparable<Student>{
 		    }
 	    }
 	}
+	@SuppressWarnings({ "unchecked", "unlikely-arg-type" })
 	public void rateTeachers() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
              ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("teacherRatings.ser"));

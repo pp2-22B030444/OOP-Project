@@ -1,12 +1,12 @@
 package Employee ;
 
 import Department.Teacher;
-
 import Department.TeacherTitle;
 import Students.GraduateStudent;
 import Students.School;
 import Students.Student;
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class Admin extends User implements Serializable
 {
@@ -37,19 +37,37 @@ public class Admin extends User implements Serializable
         Data.users.add(e);  
     	
     }
+    public void createTechSupport(String name, String surname, String birthDate, String phoneNumber, String userName,String password, String id) {
+    	TechSupport t = new TechSupport(id, name, surname, birthDate, phoneNumber, userName, password);
+    	Data.users.add(t);
+    }
     public boolean deleteUser(String userName) {
-        for(User u: Data.users){
-            if(u.getUserName().equals(userName)){
-                Data.users.remove(u);
+        Iterator<User> iterator = Data.users.iterator();
+        while (iterator.hasNext()) {
+            User u = iterator.next();
+            if (u.getUserName().equals(userName)) {
+                iterator.remove();
+                System.out.println("User with username " + userName + " deleted successfully.");
                 return true;
             }
         }
+        System.out.println("User with username " + userName + " not found.");
         return false;
+    }
+
+    public void update(String oldUserName, User newUser) {
+        Iterator<User> iterator = Data.users.iterator();
+        while (iterator.hasNext()) {
+            User u = iterator.next();
+            if (u.getUserName().equals(oldUserName)) {
+                iterator.remove();
+                Data.users.add(newUser);
+                System.out.println("User with username " + oldUserName + " updated successfully.");
+                return;
+            }
+        }
+        System.out.println("User with username " + oldUserName + " not found.");
     }	
-	public void update(String oldUserName, User newUser) {
-		deleteUser(oldUserName);
-	    Data.users.add(newUser);	
-	}	
 	public void seeLongFile() {
 		// TODO implement me	
 	}

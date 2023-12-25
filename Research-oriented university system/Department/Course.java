@@ -8,44 +8,41 @@ public class Course {
 	
 	private String disciplineCode;
 	private String disciplineName;
-	private Integer credit;
-	private Integer ects;
+	private int credit;
+	private int ects;
 	private String typeOfCourse;
 	private Vector<Student> enrolledStudents;
 	private Vector<String> courseTeachers;
 	private Integer maxStudents;
-	int yearOfStudy;
+	
 	public Course(){
 	
 		
 	}
-	public Course(String disciplineСode, String disciplineName,  int credit, int ects,String typeOfCourse) {
-		this.typeOfCourse = typeOfCourse;
+
+	
+	public Course(String disciplineCode, String disciplineName, int credit, int ects, String typeOfCourse,
+			Vector<Student> enrolledStudents, Vector<String> courseTeachers, Integer maxStudents) {
+		this();
 		this.disciplineCode = disciplineCode;
 		this.disciplineName = disciplineName;
 		this.credit = credit;
 		this.ects = ects;
-		this.yearOfStudy = yearOfStudy;
+		this.typeOfCourse = typeOfCourse;
+		this.enrolledStudents = enrolledStudents;
+		this.courseTeachers = courseTeachers;
+		this.maxStudents = maxStudents;
 		
 	}
 
 
-	public Course(String typeOfCourse, String disciplineName, int credit, String disciplineСode,int ects, Vector<Student> enrolledStudents, int maxStudents,int yearOfStudy, String disciplineCode) {
-		this();
-
-		this.typeOfCourse = typeOfCourse;
+	public Course(String disciplineCode,String disciplineName, int credit,int ects, String type) {
+		this.disciplineCode = disciplineCode;
 		this.disciplineName = disciplineName;
 		this.credit = credit;
-		this.disciplineCode = disciplineCode;
-		this.ects = ects;
-		this.enrolledStudents = enrolledStudents;
-		this.maxStudents = maxStudents;
-		this.yearOfStudy=yearOfStudy;
-	}
-	public Course(String disciplineName, int credit, String disciplineCode) {
-		this.disciplineName = disciplineName;
-		this.credit = credit;
-		this.disciplineCode = disciplineCode;
+		this.ects=ects;
+		this.typeOfCourse=type;
+		
 		
 		// TODO Auto-generated constructor stub
 	}

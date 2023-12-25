@@ -23,42 +23,40 @@ public class TechSupport extends Employee
 	}
 
 
-	public void getOrder(TechSupportOrder order) {
-		Data.newOrders.add(order);
-		System.out.println("New order received: " + order.getDescription());
+	public void receiveOrder() {
+	    
+	    System.out.println("New order received: " + Data.newOrders);
 	}
-	
-	
-	public void Accept(TechSupportOrder order) {
-		if(Data.newOrders.contains(order)) {
-			Data.acceptedOrders.add(order);
-			System.out.println("Order acceptede: " + order.getDescription());
-		}
-		else {
-			System.out.println("Order not found.");
-		}	
+
+	public void acceptOrder() {
+	    if (!Data.newOrders.isEmpty()) {
+	        String order = Data.newOrders.remove(0);  // Remove the first order from the list
+	        Data.acceptedOrders.add(order);
+	        System.out.println("Order accepted: " + order);
+	    } else {
+	        System.out.println("No new orders to accept.");
+	    }
 	}
-	
-	
-	public void rejectOrder(TechSupportOrder order) {
-        if (Data.newOrders.contains(order)) {
-            Data.newOrders.remove(order);
-            System.out.println("Order rejected: " + order.getDescription());
-        } else {
-            System.out.println("Order not found.");
-        }
-    }
+
+	public void rejectOrder() {
+	    if (!Data.newOrders.isEmpty()) {
+	        String order = Data.newOrders.remove(0);  // Remove the first order from the list
+	        System.out.println("Order rejected: " + order);
+	    } else {
+	        System.out.println("No new orders to reject.");
+	    }
+	}
 	
 	public void viewAcceptedOrders() {
 		System.out.println("Accepted orders: ");
-		for( TechSupportOrder order: Data.acceptedOrders) {	
+		for( String order: Data.acceptedOrders) {	
 			System.out.println(order);
 		}
 	}
 	
 	public void viewDoneOrders() {
 		System.out.println("Done orders: ");
-		for(TechSupportOrder order: Data.doneOrders) {	
+		for(String order: Data.doneOrders) {	
 			System.out.println(order);
 		}
 		
