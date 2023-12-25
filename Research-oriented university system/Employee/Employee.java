@@ -77,12 +77,14 @@ public abstract class Employee extends User {
             e.printStackTrace();
         }
     }
+
     public void updateDetails(String name, String surname, String birthDate, String phoneNumber) {
         this.setName(name);
         this.setSurname(surname);
         this.setBirthDate(birthDate);
         this.setPhoneNumber(phoneNumber);
     }
+
 	@Override
 	public String toString() {
 		return "Id=" + id + super.toString() ;

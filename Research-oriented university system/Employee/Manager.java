@@ -1,6 +1,9 @@
 package Employee ;
 
 import java.io.BufferedReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,6 +49,9 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	 public void setManagerType(ManagerType managerType) {
 	        this.managerType = managerType;
 	    }
+	 
+	 
+	 
 	 
 	 public void addCoursesForRegistration(String disciplineCode,String disciplineName, int credit,int ect, String type) {
 		 Course newCourse = new Course(disciplineCode,disciplineName,credit,ect, type);
@@ -245,8 +251,11 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	
 	public void viewNews() {
         System.out.println();
+
 		News news = new News();
 		news.viewNews();
+
+
     }
 	
 	public void viewMessages() {

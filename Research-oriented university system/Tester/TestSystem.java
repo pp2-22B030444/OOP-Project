@@ -131,7 +131,7 @@ public class TestSystem {
                         case 6:
 
                             m.createAcademicReport();
-                            break;  // Add this break statement
+                            break;  
                         case 7:
                             System.out.println("Enter course's ID: ");
                             String courseId2 = reader.readLine();
@@ -145,7 +145,9 @@ public class TestSystem {
                         	m.addNews("For All", "Today will be exam", new Date (14, 10, 2023));
                             m.addNews("Exam", "Exam will be in 280" ,new Date (14, 10, 2023));
                             Data.save();
+
                         	break;   
+
                         case 9:
                             System.out.println("Enter news topic to remove: ");
                             String newsTopicToRemove = reader.readLine();
@@ -296,6 +298,7 @@ public class TestSystem {
                         break;
                     case 4: 
                     	a.createEmployee("25654", "Rustem", "Teemirgali", "29/28/2005", "87072793912", "liu_rus", "pyvqen-xacqun-Tabgu6");
+
                     	Data.save();
                     	System.out.println("Employee created.");
                     	break;
@@ -304,16 +307,22 @@ public class TestSystem {
                     	Data.save();
                     	System.out.println("Tech Support created.");
                     	break;
+
                     case 6:
-                        System.out.print("Enter the username of the user to delete: ");
-                        String usernameToDelete = reader.readLine();
-                        a.deleteUser(usernameToDelete);
-                        Data.save();
-                        break;
-                    case 7:
                     	System.out.print("Enter the username of the user to delete: ");
                         String usernameToDelete1 = reader.readLine();
                         a.deleteUser(usernameToDelete1);
+                    	
+                        a.createStudent("22B030444", "Zhasmin", "Suleimenova", "14/10/2004", "87779908551", "zh_suleimenova", "14102004", School.SITE, 2, GraduateStudent.BACHELOR);
+                        Data.save();
+                        
+                        System.out.println("User details updated.");
+                        break;
+
+                    case 7:
+                    	System.out.print("Enter the username of the user to delete: ");
+                        String usernameToDelete11 = reader.readLine();
+                        a.deleteUser(usernameToDelete11);
                     	
                         a.createStudent("22B030444", "Zhasmin", "Suleimenova", "14/10/2004", "87779908551", "zh_suleimenova", "14102004", School.SITE, 2, GraduateStudent.BACHELOR);
                         Data.save();
