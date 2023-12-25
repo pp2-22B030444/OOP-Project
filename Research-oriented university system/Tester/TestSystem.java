@@ -137,7 +137,7 @@ public class TestSystem {
                         case 6:
 
                             m.createAcademicReport();
-                            break;  // Add this break statement
+                            break;  
                         case 7:
                             System.out.println("Enter course's ID: ");
                             String courseId2 = reader.readLine();
@@ -149,10 +149,52 @@ public class TestSystem {
                             break;
                         case 8:
                         	m.addNews("For All", "Today will be exam", new Date (14, 10, 2023));
-                            break;  
+                            m.addNews("Exam", "Exam will be in 280" ,new Date (14, 10, 2023));
+                            Data.save();
+                        	break;  
                         case 9:
-                        	m.removeNews(null);
-                            break; 
+                            System.out.println("Enter news topic to remove: ");
+                            String newsTopicToRemove = reader.readLine();
+                            m.removeNews(newsTopicToRemove);
+                            Data.save();
+                            break;
+                        case 10:
+                            System.out.println("Enter old news topic: ");
+                            String oldNewsTopic = reader.readLine();
+                            System.out.println("Enter new news topic: ");
+                            String newNewsTopic = reader.readLine();
+                            System.out.println("Enter new news text: ");
+                            String newNewsText = reader.readLine();
+                            Date newNewsDate = new Date(14, 10, 2023); 
+                            News oldNews = null;
+                            for (News news : Data.news) {
+                                if (news.getTopic().equals(oldNewsTopic)) {
+                                    oldNews = news;
+                                    break;
+                                }
+                            }
+                            if (oldNews != null) {
+                                News newNews = new News(newNewsTopic, newNewsText, newNewsDate);
+                                m.updateNews(oldNews, newNews);
+                                System.out.println("News updated successfully.");
+                            } else {
+                                System.out.println("News with the specified topic not found.");
+                            }
+                            Data.save();
+                            break;
+                        case 11:
+                        	m.viewNews();
+                        	Data.save();
+                        	break;
+                        case 12:
+                            m.viewMessages();
+                            break;
+                        case 13:
+                            m.sendMessage();
+                            Data.save();
+                            System.out.println("Message sent successfully.");
+                            break;
+
                         case 14:
                         	 loggedIn = false;
                              System.out.println("Logged out successfully.");
@@ -260,17 +302,23 @@ public class TestSystem {
                         break;
                     case 4: 
                     	a.createEmployee("25654", "Rustem", "Teemirgali", "29/28/2005", "87072793912", "liu_rus", "pyvqen-xacqun-Tabgu6");
-                    case 5: 
+                    	break;
+                    case 5:
+                        System.out.print("Enter the username of the user to delete: ");
+                        String usernameToDelete = reader.readLine();
+                        a.deleteUser(usernameToDelete);
+                        Data.save();
+                        break;
+                    case 6:
+                    	System.out.print("Enter the username of the user to delete: ");
+                        String usernameToDelete1 = reader.readLine();
+                        a.deleteUser(usernameToDelete1);
                     	
-//                        a.deleteUser(input);
-//                        Data.save();
-//                        break;
-
-                    case 6: 
-//                    	
-//                        a.update(input1, u);
-//                        Data.save();
-//                        break;
+                        a.createStudent("22B030444", "Zhasmin", "Suleimenova", "14/10/2004", "87779908551", "zh_suleimenova", "14102004", School.SITE, 2, GraduateStudent.BACHELOR);
+                        Data.save();
+                        
+                        System.out.println("User details updated.");
+                        break;
                     case 7:
                     	loggedIn = false;
                         System.out.println("Logged out successfully.");
