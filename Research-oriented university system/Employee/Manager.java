@@ -1,6 +1,9 @@
 package Employee ;
 
 import java.io.BufferedReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,6 +49,9 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 	 public void setManagerType(ManagerType managerType) {
 	        this.managerType = managerType;
 	    }
+	 
+	 
+	 
 	 
 	 public void addCoursesForRegistration(String disciplineCode,String disciplineName, int credit,int ect, String type) {
 		 Course newCourse = new Course(disciplineCode,disciplineName,credit,ect, type);
@@ -224,13 +230,19 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
 
 	public void addNews(String topic, String text, Date date) {
         newsPublisher.publishNews(topic, text, date);
+        
     }
 	
-	public void removeNews(News news) {
-		if(news.getTopic().contains((CharSequence) Data.news)) {
-			newsPublisher.removeNews(news);
-		}
-    }
+	public void removeNews(String topic) {
+	    for (News news : Data.news) {
+	        if (news.getTopic().equals(topic)) {
+	            newsPublisher.removeNews(news);
+	            System.out.println("News with topic '" + topic + "' removed successfully.");
+	            return; 
+	        }
+	    }
+	    System.out.println("News with topic '" + topic + "' not found.");
+	}
 	
 	public void updateNews(News oldNews, News newNews) {
         
@@ -239,10 +251,33 @@ public class Manager extends Employee implements CanViewStudent, NewsObserver
         
     }
 	
-	public void update(News news) {
-        System.out.println("Manager received a news update:");
-        System.out.println(news);
+	public void viewNews() {
+        System.out.println();
+		News.viewNews();
     }
+	
+	public void viewMessages() {
+	    System.out.println("Messages in your inbox:");
+	    for (Messages message : Data.messages) {
+	        if (message.getMessageTo().equals(this.getName())) {
+	            System.out.println(message);
+	        }
+	    }
+	}
+
+	public void sendMessage() throws IOException {
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+	    System.out.println("Enter recipient's username: ");
+	    String recipientUsername = reader.readLine();
+	    System.out.println("Enter message title: ");
+	    String title = reader.readLine();
+	    System.out.println("Enter message text: ");
+	    String text = reader.readLine();
+
+	    Messages newMessage = new Messages(this.getName(), recipientUsername, title, text);
+	    Data.messages.add(newMessage);
+	}
 
 	@Override
 	public String toString() {
