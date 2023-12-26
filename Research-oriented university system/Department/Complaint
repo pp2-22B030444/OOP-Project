@@ -1,0 +1,36 @@
+package Department;
+
+public class Complaint {
+    private String teacher;
+    private String student;
+    private UrgencyLevel urgencyLevel;
+    private String text;
+    
+
+    public Complaint(String teacher, String student, UrgencyLevel urgencyLevel, String text) {
+        this.teacher = teacher;
+        this.student = student;
+        this.urgencyLevel = urgencyLevel;
+        this.text = text;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public UrgencyLevel getUrgencyLevel() {
+        return urgencyLevel;
+    }
+    public String getText() {
+        return text;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher: " + teacher + ", Student: " + student + ", Urgency Level: " + urgencyLevel;
+    }
+}
