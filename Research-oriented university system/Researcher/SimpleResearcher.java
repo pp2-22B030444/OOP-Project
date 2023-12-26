@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import Employee.User;
 
-public class SimpleResearcher implements Researcher{
+public class SimpleResearcher extends User implements Researcher{
 	private User user;
 	private List<ResearchProject> researchProjects;
 	private List<ResearchPaper> researchPapers;
