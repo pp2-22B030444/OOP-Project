@@ -2,6 +2,7 @@ package Tester;
 
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
@@ -21,7 +22,9 @@ public class TestSystem {
 		Admin a1 = new Admin("Admin", "Head", "22/02/1985", "8 747-777-55-66", "admin", "11111"); 
         Data.users.add(a1); 
         Teacher t1 = new Teacher( "16BD0419","Kaster", "Nurmukan", "26/03/1985", "8 701-947-65-55", "k_nurmukan", "12001",  TeacherTitle.LECTURER); 
-        Data.users.add(t1); 
+        Data.users.add(t1);
+        Teacher t2 = new Teacher( "16BD0420","Alina", "Bekbol", "26/03/1991", "8 701-947-65-38", "a_bekbol", "12002",  TeacherTitle.SENIOR_LECTURER); 
+        Data.users.add(t2);
         Student s1 = new Student("22B030729","Alua", "Aibek", "23/10/2005", "8 777-777-77-89", "a_aibek", "123456",  School.SITE,2, GraduateStudent.BACHELOR);
         Data.users.add(s1); 
         Course c1 = new Course("CSCI2104", "Databases", 3,5,"Minor"); 
@@ -65,6 +68,13 @@ public class TestSystem {
                         System.out.println("Incorrect password. Authorization failed.");
                         break;
                     }
+                }
+                else {
+                	System.out.println("Non such user in system!");
+                	System.out.println(u.getUserName()+ " " + u.getPassword());
+                	if(u instanceof TechSupport) {
+                		System.out.println(u);
+                	}
                 }
            }
            if (!loggedIn) {
@@ -340,7 +350,88 @@ public class TestSystem {
                    }
                 }
              }
-            
+            else if(currentUser instanceof Teacher) {
+	        	 while(loggedIn) {
+	        		 Teacher t = (Teacher) currentUser;
+	        		 System.out.println("/--------------------Teacher's tab--------------------/"); 
+		                System.out.println("    [1]          View courses\n" + 
+		                    "    [2]          View student info\n" + 
+		                    "    [3]          Put marks\n" + 
+		                    "    [4]          Send messages\n" + 
+		                    "    [5]          Send complaints\n" + 
+		                    "    [6]          Quit\n" ); 
+		                System.out.println("Enter:");
+		                int chosen = Integer.parseInt(reader.readLine()); 
+		                switch(chosen) { 
+	                    case 1: 
+	                        t.viewCourses();
+	                        break; 
+	                    case 2: 
+	                    	t.viewStudentInfo();
+	    
+	                        
+	                        break; 
+//	                    case 3: 
+//	                        t.rejectOrder();
+//	                        Data.save();
+	                        
+//	                        break; 
+//	                    case 4: 
+//	                        t.sendComplaints();
+//	                        Data.save();
+//	                        break;
+	                    case 5: 
+	                    	t.sendComplaints();
+	                        Data.save();
+	                        break;      
+	                    case 6: 
+	                    	loggedIn = false;
+	                        System.out.println("Logged out successfully.");
+	                        break;
+                }
+            }
+       }
+            else if(currentUser instanceof TechSupport) {
+	            while (loggedIn) {
+	            	TechSupport t = (TechSupport) currentUser; 
+	                System.out.println("/--------------------TechSupport's tab--------------------/"); 
+	                System.out.println("    [1]          Get Order\n" + 
+	                    "    [2]          Accept order\n" + 
+	                    "    [3]          Redject order\n" + 
+	                    "    [4]          View Accepted Orders\n" + 
+	                    "    [5]          View Done Orders\n" + 
+	                    "    [6]          Quit\n" ); 
+	                System.out.println("Enter:");
+	                int chosen = Integer.parseInt(reader.readLine()); 
+	                switch(chosen) { 
+	                    case 1: 
+	                        t.receiveOrder();
+	                        break; 
+	                    case 2: 
+	                    	t.acceptOrder();
+	                        Data.save();
+	                        
+	                        break; 
+	                    case 3: 
+	                        t.rejectOrder();
+	                        Data.save();
+	                        
+	                        break; 
+	                    case 4: 
+	                        t.viewAcceptedOrders();
+	                        Data.save();
+	                        break;
+	                    case 5: 
+	                        t.viewDoneOrders();
+	                        Data.save();
+	                        break;      
+	                    case 6: 
+	                    	loggedIn = false;
+	                        System.out.println("Logged out successfully.");
+	                        break;
+                 }
+             }
+        }  
 	         else if(currentUser instanceof Employee) {
 	            while (loggedIn) {
 	                Employee e = (Employee) currentUser; 
@@ -378,84 +469,8 @@ public class TestSystem {
                     }
                  }
              } 
-//	         else if(currentUser instanceof Teacher) {
-//		            while (loggedIn) {
-//		                Teacher t = (Teacher) currentUser; 
-//		                System.out.println("/--------------------Teacher's tab--------------------/"); 
-//		                System.out.println("    [1]          Send Message\n" + 
-//		                    "    [2]          Make request\n" + 
-//		                    "    [3]          Make order\n" + 
-//		                    "    [4]          Quit\n" ); 
-//		                System.out.println("Enter:");
-//		                int chosen = Integer.parseInt(reader.readLine()); 
-//		                switch(chosen) { 
-//		                    case 1: 
-//		                        e.sendMessage();
-//		                        Data.save();
-//		                        System.out.println("Message sended");
-//		                        break; 
-//		                    case 2: 
-//		                    	e.makeRequest();
-//		                        Data.save();
-//		                        System.out.println("Teacher created");
-//		                        break; 
-//		                    case 3: 
-//		                        e.makeOrder();
-//		                        Data.save();
-//		                        System.out.println("Manager created");
-//		                        break; 
-//		                    case 4: 
-//		                    	loggedIn = false;
-//		                        System.out.println("Logged out successfully.");
-//		                        break;
-//	                 }
-//	             }
-//	        }
-	         else if(currentUser instanceof TechSupport) {
-		            while (loggedIn) {
-		            	TechSupport t = (TechSupport) currentUser; 
-		                System.out.println("/--------------------TechSupport's tab--------------------/"); 
-		                System.out.println("    [1]          Get Order\n" + 
-		                    "    [2]          Accept order\n" + 
-		                    "    [3]          Redject order\n" + 
-		                    "    [4]          View Accepted Orders\n" + 
-		                    "    [5]          View Done Orders\n" + 
-		                    "    [6]          Quit\n" ); 
-		                System.out.println("Enter:");
-		                int chosen = Integer.parseInt(reader.readLine()); 
-		                switch(chosen) { 
-		                    case 1: 
-		                        t.receiveOrder();
-		                        break; 
-		                    case 2: 
-		                    	t.acceptOrder();
-		                        Data.save();
-		                        
-		                        break; 
-		                    case 3: 
-		                        t.rejectOrder();
-		                        Data.save();
-		                        
-		                        break; 
-		                    case 4: 
-		                        t.viewAcceptedOrders();
-		                        Data.save();
-		                        break;
-		                    case 5: 
-		                        t.viewDoneOrders();
-		                        Data.save();
-		                        break;      
-		                    case 6: 
-		                    	loggedIn = false;
-		                        System.out.println("Logged out successfully.");
-		                        break;
-	                 }
-	             }
-	        }  
-       }
-   }               
-}
-    
+	        
+	        }}}   
     
     
 
