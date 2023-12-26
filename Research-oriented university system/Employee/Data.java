@@ -5,7 +5,10 @@ package Employee ;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
+import java.util.stream.Collectors;
+
 import Department.*;
 import Students.*;
 import java.io.*;
@@ -26,10 +29,17 @@ public class Data implements Serializable {
     protected static Vector<String> acceptedOrders = new Vector<>();
     protected static Vector<String> doneOrders = new Vector<>();
     protected static Vector<Messages> messages = new Vector<>();
+    public static List<Complaint> complaints;
     protected static Vector<File> files = new Vector<>();
     protected static HashMap<String, String> logFiles = new HashMap<>();
     public static Vector<News> news = new Vector<>();
     protected static Vector<Lesson> lessons = new Vector<>();
+    
+    public static List<Complaint> viewComplaintsByUrgency(UrgencyLevel urgencyLevel) {
+        return complaints.stream()
+                .filter(complaint -> complaint.getUrgencyLevel() == urgencyLevel)
+                .collect(Collectors.toList());
+    }
 
     public static String getTeachers() {
         StringBuilder s = new StringBuilder();
