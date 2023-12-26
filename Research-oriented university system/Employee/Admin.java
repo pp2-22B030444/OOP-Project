@@ -1,12 +1,18 @@
 package Employee ;
 
 import Department.Teacher;
+
 import Department.TeacherTitle;
-import Students.GraduateStudent;
-import Students.School;
-import Students.Student;
+import Researcher.*;
+import Students.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Admin extends User implements Serializable
 {
@@ -69,6 +75,31 @@ public class Admin extends User implements Serializable
         System.out.println("User with username " + oldUserName + " not found.");
 
     }	
+    public void makeResearcher(){
+        BufferedReader res = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String command = res.readLine();
+            boolean flag = false;
+            for(User u : Data.users) {
+                if (command.equalsIgnoreCase(u.getUserName())){
+                    List<ResearchProject> listRPro = new ArrayList<>();
+                    List<ResearchPaper> listRPap = new ArrayList<>();
+                    SimpleResearcher nr = new SimpleResearcher(u, listRPro , listRPap,0 );
+                    Data.users.add(nr);
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                System.out.println("No such user in system");
+            } else {
+                System.out.println("Researcher suscesfully created");
+            }
+            res.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     
 
