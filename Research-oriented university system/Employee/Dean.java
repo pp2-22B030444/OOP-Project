@@ -1,5 +1,9 @@
 package Employee;
 
+import java.util.List;
+
+import Department.*;
+
 public class Dean extends Employee {
 	
 	/**
@@ -17,10 +21,13 @@ public class Dean extends Employee {
 		}
 		return false;	
 	}
-    public void viewComplaints() {
-    	
+    public void viewComplaints(UrgencyLevel urgencyLevel) {
+
+        System.out.println("Complaints by urgency level " + urgencyLevel + "):");
+        for (Complaint complaint : Data.viewComplaintsByUrgency(urgencyLevel)) {
+            System.out.println(complaint);
     	
     }
 
-    
+    }
 }
